@@ -2,12 +2,12 @@
 =========================================
  Mountain GPV
  Search Module
- Version 0.3.0
+ Version 0.5.0
 =========================================
 */
 
 // ----------------------------
-// 検索機能を開始
+// 検索機能開始
 // ----------------------------
 
 function initializeSearch() {
@@ -26,7 +26,8 @@ function searchMountain(event) {
 
     const keyword = event.target.value.trim().toLowerCase();
 
-    const resultsDiv = document.getElementById("search-results");
+    const resultsDiv =
+        document.getElementById("search-results");
 
     resultsDiv.innerHTML = "";
 
@@ -69,7 +70,8 @@ function searchMountain(event) {
 
         item.className = "search-item";
 
-        item.textContent = "🏔 " + mountain.name;
+        item.textContent =
+            "🏔 " + mountain.name;
 
         item.onclick = () => {
 
@@ -87,6 +89,7 @@ function searchMountain(event) {
     });
 
 }
+
 // ----------------------------
 // 山情報表示
 // ----------------------------
@@ -97,12 +100,28 @@ function showMountain(mountain) {
         mountain.name;
 
     document.getElementById("mountain-height").textContent =
-        `標高 ${mountain.elevation} m`;
+        "標高 " + mountain.elevation + " m";
+
+    // ----------------------------
+    // 天気取得
+    // ----------------------------
+
+    if (
+        mountain.latitude !== undefined &&
+        mountain.longitude !== undefined
+    ) {
+
+        loadWeather(
+            mountain.latitude,
+            mountain.longitude
+        );
+
+    }
 
 }
 
 // ----------------------------
-// 表示を初期化
+// 初期化
 // ----------------------------
 
 function clearMountainInfo() {
@@ -112,5 +131,17 @@ function clearMountainInfo() {
 
     document.getElementById("mountain-height").textContent =
         "標高 --";
+
+    document.getElementById("weather-temperature").textContent =
+        "--";
+
+    document.getElementById("weather-cloud").textContent =
+        "--";
+
+    document.getElementById("weather-rain").textContent =
+        "--";
+
+    document.getElementById("weather-wind").textContent =
+        "--";
 
 }
