@@ -26,21 +26,30 @@ function searchMountain(event) {
 
     const keyword = event.target.value.trim().toLowerCase();
 
+    const resultsDiv = document.getElementById("search-results");
+
+    resultsDiv.innerHTML = "";
+
     if (keyword === "") {
 
+        resultsDiv.style.display = "none";
+
         clearMountainInfo();
+
         return;
 
     }
 
-    const result = app.mountains.find(mountain =>
+    const results = app.mountains.filter(mountain =>
 
         mountain.name.includes(keyword) ||
         mountain.reading.includes(keyword)
 
     );
 
-    if (!result) {
+    if (results.length === 0) {
+
+        resultsDiv.style.display = "none";
 
         document.getElementById("mountain-name").textContent =
             "見つかりません";
@@ -52,10 +61,32 @@ function searchMountain(event) {
 
     }
 
-    showMountain(result);
+    resultsDiv.style.display = "block";
+
+    results.forEach(mountain => {
+
+        const item = document.createElement("div");
+
+        item.className = "search-item";
+
+        item.textContent = "🏔 " + mountain.name;
+
+        item.onclick = () => {
+
+            showMountain(mountain);
+
+            resultsDiv.style.display = "none";
+
+            document.getElementById("mountain-search").value =
+                mountain.name;
+
+        };
+
+        resultsDiv.appendChild(item);
+
+    });
 
 }
-
 // ----------------------------
 // 山情報表示
 // ----------------------------
