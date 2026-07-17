@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mountain GPV</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header>
+    <h1>🏔 Mountain GPV</h1>
+    <p>登山者のための山岳気象予報</p>
+</header>
+
+<main>
+
+<section class="search-box">
+
+    <h2>山を検索</h2>
+
+    <input
+        type="text"
+        id="mountain-search"
+        placeholder="山名を入力してください">
+
+</section>
+
+<section class="mountain-info">
+
+    <h2>山情報</h2>
+
+    <div id="mountain-name">
+        山を選択してください
+    </div>
+
+    <div id="mountain-height">
+        標高 --
+    </div>
+
+</section>
+
+<section class="weather">
+
+    <h2>気象グラフ</h2>
+
+    <canvas id="weatherChart"></canvas>
+
+</section>
+
+</main>
+
+<footer>
+
+Mountain GPV Version 0.1
+
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
