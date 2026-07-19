@@ -2,7 +2,7 @@
 =========================================
  Mountain GPV
  Search Module
- Version 0.5.0
+ Version 0.6.1
 =========================================
 */
 
@@ -26,8 +26,7 @@ function searchMountain(event) {
 
     const keyword = event.target.value.trim().toLowerCase();
 
-    const resultsDiv =
-        document.getElementById("search-results");
+    const resultsDiv = document.getElementById("search-results");
 
     resultsDiv.innerHTML = "";
 
@@ -41,13 +40,13 @@ function searchMountain(event) {
 
     }
 
-const results = app.mountains.filter(mountain =>
+    const results = app.mountains.filter(mountain =>
 
-    mountain.name.startsWith(keyword) ||
-    mountain.reading.startsWith(keyword)
+        mountain.name.startsWith(keyword) ||
+        mountain.reading.startsWith(keyword)
 
-);
- 
+    );
+
     if (results.length === 0) {
 
         resultsDiv.style.display = "none";
@@ -70,17 +69,16 @@ const results = app.mountains.filter(mountain =>
 
         item.className = "search-item";
 
-        item.textContent =
-            "🏔 " + mountain.name;
+        item.textContent = "🏔 " + mountain.name;
 
         item.onclick = () => {
 
             showMountain(mountain);
 
-            resultsDiv.style.display = "none";
-
             document.getElementById("mountain-search").value =
                 mountain.name;
+
+            resultsDiv.style.display = "none";
 
         };
 
@@ -101,23 +99,6 @@ function showMountain(mountain) {
 
     document.getElementById("mountain-height").textContent =
         "標高 " + mountain.elevation + " m";
-
-    if (
-        mountain.latitude &&
-        mountain.longitude
-    ) {
-
-        loadWeather(
-            mountain.latitude,
-            mountain.longitude
-        );
-
-    }
-
-}
-    // ----------------------------
-    // 天気取得
-    // ----------------------------
 
     if (
         mountain.latitude !== undefined &&
