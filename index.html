@@ -1,81 +1,101 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Mountain GPV</title>
 
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
 
 <header>
+
     <h1>🏔 Mountain GPV</h1>
+
     <p>登山者のための山岳気象予報</p>
+
 </header>
 
 <main>
 
-<section class="search-box">
+    <section class="search-box">
 
-    <h2>山を検索</h2>
+        <h2>山を検索</h2>
 
-    <input
-        type="text"
-        id="mountain-search"
-        placeholder="山名を入力してください">
+        <input
+            type="text"
+            id="mountain-search"
+            placeholder="山名を入力してください">
 
-    <div id="search-results"></div>
-    
-</section>
+        <div id="search-results"></div>
 
-<section class="mountain-info">
+    </section>
 
-    <h2>山情報</h2>
+    <section class="mountain-info">
 
-    <div id="mountain-name">
-        山を選択してください
-    </div>
+        <h2>山情報</h2>
 
-    <div id="mountain-height">
-        標高 --
-    </div>
-<div id="weather-box">
+        <div id="mountain-name">
 
-    <h3>現在の天気</h3>
+            山を選択してください
 
-    <p>🌡 気温：<span id="weather-temperature">--</span></p>
+        </div>
 
-    <p>☁ 雲量：<span id="weather-cloud">--</span></p>
+        <div id="mountain-height">
 
-    <p>🌧 降水量：<span id="weather-rain">--</span></p>
+            標高 --
 
-    <p>💨 風速：<span id="weather-wind">--</span></p>
+        </div>
 
-</div>
-</section>
+    </section>
 
-<section class="weather">
+    <section id="weather-box">
 
-    <h2>気象グラフ</h2>
+        <h2>現在の天気</h2>
 
-    <canvas id="weatherChart"></canvas>
+        <p>🌡 気温：<span id="weather-temperature">--</span></p>
 
-</section>
+        <p>☁ 雲量：<span id="weather-cloud">--</span></p>
+
+        <p>🌧 降水量：<span id="weather-rain">--</span></p>
+
+        <p>💨 風速：<span id="weather-wind">--</span></p>
+
+    </section>
+
+    <section class="weather">
+
+        <h2>72時間予報</h2>
+
+        <div class="chart-container">
+
+            <canvas id="forecastChart"></canvas>
+
+        </div>
+
+    </section>
 
 </main>
 
 <footer>
 
-Mountain GPV Version 0.1
+    Mountain GPV Version 0.7.0
 
 </footer>
+
 <script src="search.js"></script>
 <script src="weather.js"></script>
 <script src="app.js"></script>
-    
+
 </body>
+
 </html>
