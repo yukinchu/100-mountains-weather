@@ -102,6 +102,19 @@ function showMountain(mountain) {
     document.getElementById("mountain-height").textContent =
         "標高 " + mountain.elevation + " m";
 
+    if (
+        mountain.latitude &&
+        mountain.longitude
+    ) {
+
+        loadWeather(
+            mountain.latitude,
+            mountain.longitude
+        );
+
+    }
+
+}
     // ----------------------------
     // 天気取得
     // ----------------------------
