@@ -2,14 +2,18 @@
 =========================================
  Mountain GPV
  Weather Module
- Version 0.6.0
+ Version 0.6.1
 =========================================
 */
+
+// ----------------------------
+// 天気取得
+// ----------------------------
 
 async function loadWeather(latitude, longitude) {
 
     const url =
-`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m&timezone=Asia/Tokyo`;
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m&timezone=Asia/Tokyo`;
 
     try {
 
@@ -27,7 +31,7 @@ async function loadWeather(latitude, longitude) {
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
@@ -47,7 +51,11 @@ async function loadWeather(latitude, longitude) {
 
 }
 
-function showWeather(weather){
+// ----------------------------
+// 天気表示
+// ----------------------------
+
+function showWeather(weather) {
 
     document.getElementById("weather-temperature").textContent =
         weather.temperature_2m.toFixed(1) + " ℃";
