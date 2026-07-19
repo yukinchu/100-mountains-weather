@@ -41,13 +41,13 @@ function searchMountain(event) {
 
     }
 
-    const results = app.mountains.filter(mountain =>
+const results = app.mountains.filter(mountain =>
 
-        mountain.name.includes(keyword) ||
-        mountain.reading.includes(keyword)
+    mountain.name.startsWith(keyword) ||
+    mountain.reading.startsWith(keyword)
 
-    );
-
+);
+ 
     if (results.length === 0) {
 
         resultsDiv.style.display = "none";
