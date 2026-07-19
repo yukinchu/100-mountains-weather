@@ -2,7 +2,7 @@
 =========================================
  Mountain GPV
  Weather Module
- Version 0.7.0
+ Version 0.8.0
 =========================================
 */
 
@@ -15,7 +15,7 @@ let forecastChart = null;
 async function loadWeather(latitude, longitude) {
 
     const url =
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m&hourly=temperature_2m&timezone=Asia/Tokyo`;
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`;
 
     try {
 
@@ -56,10 +56,10 @@ async function loadWeather(latitude, longitude) {
 }
 
 // ----------------------------
-// 現在の天気表示
+// 現在天気表示
 // ----------------------------
 
-function showWeather(weather){
+function showWeather(weather) {
 
     document.getElementById("weather-temperature").textContent =
         weather.temperature_2m.toFixed(1) + " ℃";
@@ -73,22 +73,40 @@ function showWeather(weather){
     document.getElementById("weather-wind").textContent =
         weather.wind_speed_10m.toFixed(1) + " m/s";
 
-}
-
 // ----------------------------
 // 72時間予報グラフ
 // ----------------------------
 
-function drawForecastChart(hourly){
+function drawForecastChart(hourly) {
 
-    const labels = hourly.time
-        .slice(0,72)
-        .map(time => time.substring(5,16));
+    const labels = hourly.time.slice(0, 72).map(time => {
+
+        const date = new Date(time);
+
+        return (
+            (date.getMonth() + 1) +
+            "/" +
+            date.getDate() +
+            " " +
+            String(date.getHours()).padStart(2, "0") +
+            ":00"
+        );
+
+    });
 
     const temperatures =
-        hourly.temperature_2m.slice(0,72);
+        hourly.temperature_2m.slice(0, 72);
 
-    if(forecastChart){
+    const rain =
+        hourly.precipitation.slice(0, 72);
+
+    const wind =
+        hourly.wind_speed_10m.slice(0, 72);
+
+    const cloud =
+        hourly.cloud_cover.slice(0, 72);
+
+    if (forecastChart) {
 
         forecastChart.destroy();
 
@@ -99,53 +117,131 @@ function drawForecastChart(hourly){
             .getElementById("forecastChart")
             .getContext("2d");
 
-    forecastChart = new Chart(ctx,{
+    forecastChart = new Chart(ctx, {
 
-        type:"line",
+        data: {
 
-        data:{
+            labels: labels,
 
-            labels:labels,
+            datasets: [
 
-            datasets:[{
+                {
+                    type: "line",
+                    label: "気温 (℃)",
+                    data: temperatures,
+                    yAxisID: "y",
+                    tension: 0.3,
+                    borderWidth: 2
+                },
 
-                label:"気温 (℃)",
+                {
+                    type: "bar",
+                    label: "降水量 (mm)",
+                    data: rain,
+                    yAxisID: "y1"
+                },
 
-                data:temperatures,
+                {
+                    type: "line",
+                    label: "風速 (m/s)",
+                    data: wind,
+                    yAxisID: "y2",
+                    tension: 0.3,
+                    borderWidth: 2
+                },
 
-                borderWidth:2,
+                {
+                    type: "line",
+                    label: "雲量 (%)",
+                    data: cloud,
+                    yAxisID: "y3",
+                    tension: 0.3,
+                    borderWidth: 2
+                }
 
-                tension:0.3
-
-            }]
+            ]
 
         },
 
-        options:{
+        options: {
 
-            responsive:true,
+            responsive: true,
 
-            maintainAspectRatio:false,
+            maintainAspectRatio: false,
 
-            plugins:{
+            interaction: {
 
-                legend:{
+                mode: "index",
 
-                    display:true
+                intersect: false
+
+            },
+
+            plugins: {
+
+                legend: {
+
+                    position: "top"
 
                 }
 
             },
 
-            scales:{
+            scales: {
 
-                x:{
+                x: {
 
-                    ticks:{
+                    ticks: {
 
-                        maxTicksLimit:12
+                        maxTicksLimit: 12
 
                     }
+
+                },
+
+                y: {
+
+                    position: "left",
+
+                    title: {
+
+                        display: true,
+
+                        text: "気温"
+
+                    }
+
+                },
+
+                y1: {
+
+                    position: "right",
+
+                    grid: {
+
+                        drawOnChartArea: false
+
+                    },
+
+                    title: {
+
+                        display: true,
+
+                        text: "降水"
+
+                    }
+
+                },
+
+                y2: {
+
+                    display: false
+
+                },
+
+                y3: {
+
+                    display: false
 
                 }
 
