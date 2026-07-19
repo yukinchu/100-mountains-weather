@@ -74,6 +74,7 @@ function showWeather(weather) {
         weather.wind_speed_10m.toFixed(1) + " m/s";
 
 }
+
 // ----------------------------
 // 72時間予報グラフ
 // ----------------------------
