@@ -106,18 +106,18 @@ function drawForecastChart(hourly) {
 
     }
 
-    const canvas = document.getElementById("weatherChart");
+const canvas = document.getElementById("forecastChart");
 
-    if (!canvas) {
+if (!canvas) {
 
-        console.error("weatherChart が見つかりません。");
+    console.error("forecastChart が見つかりません。");
 
-        return;
+    return;
 
-    }
+}
 
-    const ctx = canvas.getContext("2d");
-
+const ctx = canvas.getContext("2d");
+ 
     forecastChart = new Chart(ctx, {
 
         data: {
