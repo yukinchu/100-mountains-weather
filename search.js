@@ -100,18 +100,52 @@ function showMountain(mountain) {
     document.getElementById("mountain-height").textContent =
         "標高 " + mountain.elevation + " m";
 
-    if (
-        mountain.latitude !== undefined &&
-        mountain.longitude !== undefined
-    ) {
+if (
+    mountain.latitude !== undefined &&
+    mountain.longitude !== undefined
+) {
 
-        loadWeather(
-            mountain.latitude,
-            mountain.longitude
+    loadWeather(
+        mountain.latitude,
+        mountain.longitude
+    );
+
+    // ----------------------------
+    // 地図更新
+    // ----------------------------
+
+    if (map) {
+
+        map.setView(
+            [
+                mountain.latitude,
+                mountain.longitude
+            ],
+            11
         );
+
+        if (marker) {
+
+            map.removeLayer(marker);
+
+        }
+
+        marker = L.marker(
+            [
+                mountain.latitude,
+                mountain.longitude
+            ]
+        ).addTo(map);
+
+        marker
+            .bindPopup(
+                "🏔 " + mountain.name
+            )
+            .openPopup();
 
     }
 
+}
 }
 
 // ----------------------------
