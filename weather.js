@@ -14,49 +14,46 @@ let forecastChart = null;
 
 async function loadWeather(latitude, longitude) {
 
-// ----------------------------
-// 天気データ取得URL
-// ----------------------------
+    // ----------------------------
+    // 天気データ取得URL
+    // ----------------------------
 
-const API_MODE = "openmeteo";
-// const API_MODE = "gpv";
+    const API_MODE = "openmeteo";
+    // const API_MODE = "gpv";
 
-const WEATHER_API =
+    const WEATHER_API =
 
-    API_MODE === "openmeteo"
+        API_MODE === "openmeteo"
 
-        ? `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`
+            ? `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`
 
-        : `https://example.com/gpv?lat=${latitude}&lon=${longitude}`;
+            : `https://example.com/gpv?lat=${latitude}&lon=${longitude}`;
 
-const url = WEATHER_API;
-Commit
-Add weather API selector for future GPV integration
-この変更の意味
+    const url = WEATHER_API;
 
-見た目は変わりません。
+    try {
 
-しかし今後は
+        const response = await fetch(url);
 
-const API_MODE = "gpv";
+        if (!response.ok) {
 
-に変更するだけで、GPV側へ切り替えられる構造になります。
+            throw new Error("Weather API Error");
 
-このステップまで終われば、次はいよいよ実際のGPVデータ取得先へ接続する実装に入ります。
- 
-     
-       // ----------------------------
-// データ取得
-// 将来GPVへ対応するため関数化
-// ----------------------------
+        }
 
-const weather = getCurrentWeather(data);
+        const data = await response.json();
 
-const forecast = getForecast(data);
+        // ----------------------------
+        // データ取得
+        // ----------------------------
 
-showWeather(weather);
+        const weather = getCurrentWeather(data);
 
-drawForecastChart(forecast);
+        const forecast = getForecast(data);
+
+        showWeather(weather);
+
+        drawForecastChart(forecast);
 
     }
 
@@ -125,6 +122,7 @@ function getForecast(data) {
     throw new Error("予報データがありません");
 
 }
+
 // ----------------------------
 // 現在天気表示
 // ----------------------------
@@ -144,6 +142,7 @@ function showWeather(weather) {
         weather.wind_speed_10m.toFixed(1) + " m/s";
 
 }
+
 // ----------------------------
 // 72時間予報グラフ
 // ----------------------------
@@ -176,18 +175,18 @@ function drawForecastChart(hourly) {
 
     }
 
-const canvas = document.getElementById("forecastChart");
+    const canvas = document.getElementById("forecastChart");
 
-if (!canvas) {
+    if (!canvas) {
 
-    console.error("forecastChart が見つかりません。");
+        console.error("forecastChart が見つかりません。");
 
-    return;
+        return;
 
-}
+    }
 
-const ctx = canvas.getContext("2d");
- 
+    const ctx = canvas.getContext("2d");
+
     forecastChart = new Chart(ctx, {
 
         data: {
