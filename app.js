@@ -13,9 +13,16 @@ let map = null;
 let marker = null;
 
 const app = {
-    version: "0.5.0",
-    mountains: []
+
+    version: "0.6.0",
+
+    mountains: [],
+
+    weatherProvider: "openmeteo"
+    // "gpv" に変更するとGPVを使用
+
 };
+
 
 // ----------------------------
 // アプリ起動
