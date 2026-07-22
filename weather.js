@@ -146,7 +146,7 @@ async function loadGPV(latitude, longitude) {
     throw new Error("GPV API 未実装");
 
 }
-}
+
 
 // ----------------------------
 // 現在天気表示
