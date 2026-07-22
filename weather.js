@@ -18,7 +18,7 @@ async function loadWeather(latitude, longitude) {
     // 天気データ取得URL
     // ----------------------------
 
-    const API_MODE = "openmeteo";
+const API_MODE = app.weatherProvider;
     // const API_MODE = "gpv";
 
     const WEATHER_API =
