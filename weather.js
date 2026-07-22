@@ -72,24 +72,49 @@ drawForecastChart(forecast);
 
 // ----------------------------
 // 現在天気取得
+// Open-Meteo / GPV 共通
 // ----------------------------
 
 function getCurrentWeather(data) {
 
-    return data.current;
+    if (data.current) {
+
+        return data.current;
+
+    }
+
+    if (data.current_weather) {
+
+        return data.current_weather;
+
+    }
+
+    throw new Error("現在天気データがありません");
 
 }
 
 // ----------------------------
 // 予報取得
+// Open-Meteo / GPV 共通
 // ----------------------------
 
 function getForecast(data) {
 
-    return data.hourly;
+    if (data.hourly) {
+
+        return data.hourly;
+
+    }
+
+    if (data.forecast) {
+
+        return data.forecast;
+
+    }
+
+    throw new Error("予報データがありません");
 
 }
-
 // ----------------------------
 // 現在天気表示
 // ----------------------------
