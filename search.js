@@ -109,6 +109,19 @@ if (
         mountain.latitude,
         mountain.longitude
     );
+
+ // ----------------------------
+// 地図ラベル更新
+// ----------------------------
+
+const mapTitle = document.getElementById("map-title");
+
+if (mapTitle) {
+
+    mapTitle.textContent =
+        "📍 " + mountain.name + "（" + mountain.elevation + "m）";
+
+}
 // ----------------------------
 // 現在選択中の山を保存
 // ----------------------------
