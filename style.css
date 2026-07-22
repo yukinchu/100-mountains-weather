@@ -61,5 +61,15 @@
         height:300px;
 
     }
+#map-title{
 
+    font-weight:700;
+
+    margin:10px 0 14px 0;
+
+    color:#1f2937;
+
+    font-size:1rem;
+
+}
 }
