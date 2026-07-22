@@ -109,7 +109,15 @@ if (
         mountain.latitude,
         mountain.longitude
     );
+// ----------------------------
+// 現在選択中の山を保存
+// ----------------------------
 
+localStorage.setItem(
+    "lastMountain",
+    JSON.stringify(mountain)
+);
+ 
     // ----------------------------
     // 地図更新
     // ----------------------------
