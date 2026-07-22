@@ -14,9 +14,16 @@ let forecastChart = null;
 
 async function loadWeather(latitude, longitude) {
 
-    const url =
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`;
+// ----------------------------
+// 天気データ取得URL
+// ※現在はOpen-Meteo
+// 将来ここをGPV APIへ変更する
+// ----------------------------
 
+const WEATHER_API =
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`;
+
+const url = WEATHER_API;
     try {
 
         const response = await fetch(url);
