@@ -33,7 +33,8 @@ const url = WEATHER_API;
             throw new Error("Weather API Error");
 
         }
-
+const data = await response.json();
+     
        // ----------------------------
 // データ取得
 // 将来GPVへ対応するため関数化
