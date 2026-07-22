@@ -34,11 +34,18 @@ const url = WEATHER_API;
 
         }
 
-        const data = await response.json();
+       // ----------------------------
+// データ取得
+// 将来GPVへ対応するため関数化
+// ----------------------------
 
-        showWeather(data.current);
+const weather = getCurrentWeather(data);
 
-        drawForecastChart(data.hourly);
+const forecast = getForecast(data);
+
+showWeather(weather);
+
+drawForecastChart(forecast);
 
     }
 
@@ -59,6 +66,26 @@ const url = WEATHER_API;
             "--";
 
     }
+
+}
+
+// ----------------------------
+// 現在天気取得
+// ----------------------------
+
+function getCurrentWeather(data) {
+
+    return data.current;
+
+}
+
+// ----------------------------
+// 予報取得
+// ----------------------------
+
+function getForecast(data) {
+
+    return data.hourly;
 
 }
 
