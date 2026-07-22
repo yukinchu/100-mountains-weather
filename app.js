@@ -87,16 +87,5 @@ function initializeMap() {
             attribution: "&copy; OpenStreetMap contributors"
         }
     ).addTo(map);
-// ----------------------------
-// 雨雲レーダー（RainViewer）
-// ----------------------------
-
-L.tileLayer(
-    "https://tilecache.rainviewer.com/v2/radar/nowcast_256/{z}/{x}/{y}/2/1_1.png",
-    {
-        attribution: "&copy; RainViewer",
-        opacity: 0.45
-    }
-).addTo(map);
  
 }
