@@ -16,24 +16,34 @@ async function loadWeather(latitude, longitude) {
 
 // ----------------------------
 // 天気データ取得URL
-// ※現在はOpen-Meteo
-// 将来ここをGPV APIへ変更する
 // ----------------------------
 
+const API_MODE = "openmeteo";
+// const API_MODE = "gpv";
+
 const WEATHER_API =
-    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`;
+
+    API_MODE === "openmeteo"
+
+        ? `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`
+
+        : `https://example.com/gpv?lat=${latitude}&lon=${longitude}`;
 
 const url = WEATHER_API;
-    try {
+Commit
+Add weather API selector for future GPV integration
+この変更の意味
 
-        const response = await fetch(url);
+見た目は変わりません。
 
-        if (!response.ok) {
+しかし今後は
 
-            throw new Error("Weather API Error");
+const API_MODE = "gpv";
 
-        }
-const data = await response.json();
+に変更するだけで、GPV側へ切り替えられる構造になります。
+
+このステップまで終われば、次はいよいよ実際のGPVデータ取得先へ接続する実装に入ります。
+ 
      
        // ----------------------------
 // データ取得
