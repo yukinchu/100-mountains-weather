@@ -33,16 +33,28 @@ const API_MODE = app.weatherProvider;
 
     try {
 
-        const response = await fetch(url);
+let data;
 
-        if (!response.ok) {
+if (API_MODE === "openmeteo") {
 
-            throw new Error("Weather API Error");
+    const response = await fetch(url);
 
-        }
+    if (!response.ok) {
 
-        const data = await response.json();
+        throw new Error("Open-Meteo API Error");
 
+    }
+
+    data = await response.json();
+
+}
+
+else if (API_MODE === "gpv") {
+
+    data = await loadGPV(latitude, longitude);
+
+}
+     
         // ----------------------------
         // データ取得
         // ----------------------------
@@ -120,7 +132,20 @@ function getForecast(data) {
     }
 
     throw new Error("予報データがありません");
+ }
 
+// ----------------------------
+// GPV取得
+// （後で実装）
+// ----------------------------
+
+async function loadGPV(latitude, longitude) {
+
+    console.log("GPV MODE");
+
+    throw new Error("GPV API 未実装");
+
+}
 }
 
 // ----------------------------
