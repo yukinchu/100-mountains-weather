@@ -66,24 +66,23 @@ else if (API_MODE === "gpv") {
 
     }
 
-    catch (error) {
+catch (error) {
 
-        console.error(error);
+    console.error(error);
 
-        document.getElementById("weather-temperature").textContent =
-            "取得失敗";
+    document.getElementById("weather-temperature").textContent =
+        "取得失敗";
 
-        document.getElementById("weather-cloud").textContent =
-            "--";
+    document.getElementById("weather-cloud").textContent =
+        error.message;
 
-        document.getElementById("weather-rain").textContent =
-            "--";
+    document.getElementById("weather-rain").textContent =
+        "--";
 
-        document.getElementById("weather-wind").textContent =
-            "--";
+    document.getElementById("weather-wind").textContent =
+        "--";
 
-    }
-
+}
 }
 
 // ----------------------------
