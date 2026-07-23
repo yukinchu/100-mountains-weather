@@ -2,14 +2,19 @@
 
 header("Content-Type: application/json; charset=UTF-8");
 
+$latitude  = $_GET["lat"] ?? "";
+$longitude = $_GET["lon"] ?? "";
+
 echo json_encode([
-    "status" => "ok",
-    "message" => "GPV API Ready",
+    "provider" => "GPV",
+    "status"   => "ready",
+    "latitude" => $latitude,
+    "longitude"=> $longitude,
     "current" => [
-        "temperature_2m" => 20.0,
-        "cloud_cover" => 30,
+        "temperature_2m" => 0,
+        "cloud_cover" => 0,
         "precipitation" => 0,
-        "wind_speed_10m" => 5
+        "wind_speed_10m" => 0
     ],
     "hourly" => [
         "time" => [],
