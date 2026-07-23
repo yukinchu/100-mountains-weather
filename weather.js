@@ -21,7 +21,6 @@ async function loadWeather(latitude, longitude) {
 const API_MODE = app.weatherProvider;
     // const API_MODE = "gpv";
 
-    const WEATHER_API =
 
 const OPENMETEO_API =
     `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`;
@@ -34,7 +33,6 @@ const url =
         ? OPENMETEO_API
         : GPV_API;
  
-    const url = WEATHER_API;
 
     try {
 
