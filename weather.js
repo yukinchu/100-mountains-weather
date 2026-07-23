@@ -13,6 +13,8 @@
 
 async function loadWeather(latitude, longitude) {
 
+showLoading();
+ 
     // ----------------------------
     // 天気データ取得URL
     // ----------------------------
@@ -129,7 +131,25 @@ function getForecast(data) {
     throw new Error("予報データがありません");
  }
 
+// ----------------------------
+// 読み込み中表示
+// ----------------------------
 
+function showLoading() {
+
+    document.getElementById("weather-temperature").textContent =
+        "取得中...";
+
+    document.getElementById("weather-cloud").textContent =
+        "--";
+
+    document.getElementById("weather-rain").textContent =
+        "--";
+
+    document.getElementById("weather-wind").textContent =
+        "--";
+
+}
 
 // ----------------------------
 // 現在天気表示
