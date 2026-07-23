@@ -24,14 +24,7 @@ const API_MODE = app.weatherProvider;
 const OPENMETEO_API =
     `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,cloud_cover,precipitation,wind_speed_10m,relative_humidity_2m&hourly=temperature_2m,precipitation,cloud_cover,wind_speed_10m&forecast_days=3&timezone=Asia/Tokyo`;
 
-const GPV_API =
-    "";
-
-const url =
-    API_MODE === "openmeteo"
-        ? OPENMETEO_API
-        : GPV_API;
- 
+const url = OPENMETEO_API; 
 
     try {
 
