@@ -129,18 +129,6 @@ function getForecast(data) {
     throw new Error("予報データがありません");
  }
 
-// ----------------------------
-// GPV取得
-// （後で実装）
-// ----------------------------
-
-async function loadGPV(latitude, longitude) {
-
-    console.log("GPV MODE");
-
-    throw new Error("GPV API 未実装");
-
-}
 
 
 // ----------------------------
