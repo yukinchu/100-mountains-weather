@@ -70,6 +70,9 @@ catch (error) {
 
     console.error(error);
 
+ document.getElementById("weather-text").textContent =
+    "--";
+ 
     document.getElementById("weather-temperature").textContent =
         "取得失敗";
 
@@ -206,6 +209,9 @@ function getWeatherText(weatherCode) {
 
 function showWeather(weather) {
 
+document.getElementById("weather-text").textContent =
+    getWeatherText(weather.weather_code);
+ 
     document.getElementById("weather-temperature").textContent =
         weather.temperature_2m.toFixed(1) + " ℃";
 
