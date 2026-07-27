@@ -303,7 +303,7 @@ function getWeatherIcon(code) {
 // 現在天気表示
 // ----------------------------
 
-function showWeather(weather) {
+function showWeather(weather, mountain) {
 
     const weatherText = document.getElementById("weather-text");
 
