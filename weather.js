@@ -28,8 +28,8 @@ const OPENMETEO_API =
 
 const url = OPENMETEO_API; 
 
-    t．ry {
-
+try {
+ 
 let data;
 
 if (API_MODE === "openmeteo") {
