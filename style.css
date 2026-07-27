@@ -97,3 +97,43 @@
     margin-bottom: 12px;
 
 }
+
+/* =========================
+   Weather Color
+========================= */
+
+.weather-sunny {
+
+    color: #ff9800;
+
+}
+
+.weather-partly {
+
+    color: #f4b400;
+
+}
+
+.weather-cloudy {
+
+    color: #666666;
+
+}
+
+.weather-rain {
+
+    color: #2196f3;
+
+}
+
+.weather-snow {
+
+    color: #00acc1;
+
+}
+
+.weather-thunder {
+
+    color: #7b1fa2;
+
+}
