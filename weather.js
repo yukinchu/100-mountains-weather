@@ -355,36 +355,6 @@ function showWeather(weather, mountain) {
 
 }
 
-document.getElementById("mountain-comment").textContent =
-    comment;
- 
- 
-    document.getElementById("weather-cloud").textContent =
-        weather.cloud_cover + " %";
-
-    document.getElementById("weather-rain").textContent =
-        weather.precipitation.toFixed(1) + " mm";
-
-    document.getElementById("weather-wind").textContent =
-        weather.wind_speed_10m.toFixed(1) + " m/s";
- 
-// ----------------------------
-// 山頂推定気温
-// 気温減率：100mごとに約0.6℃
-/* ---------------------------- */
-
-if (mountain) {
-
-    const elevation = mountain.elevation;
-
-    const summitTemp =
-        weather.temperature_2m - (elevation * 0.006);
-
-    document.getElementById("summit-temperature").textContent =
-        summitTemp.toFixed(1) + " ℃";
-
-}
-}
 
 // ----------------------------
 // 72時間予報グラフ
