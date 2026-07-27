@@ -355,6 +355,36 @@ function showWeather(weather, mountain) {
     document.getElementById("weather-temperature").textContent =
         weather.temperature_2m.toFixed(1) + " ℃";
 
+let comment = "";
+
+if (summitTemp <= 0) {
+
+    comment = "❄️ 厳しい寒さです。冬山装備が必要です。";
+
+}
+
+else if (summitTemp <= 10) {
+
+    comment = "🧥 防寒着を推奨します。";
+
+}
+
+else if (summitTemp <= 20) {
+
+    comment = "😊 登山に適した気温です。";
+
+}
+
+else {
+
+    comment = "🥵 暑さ対策・熱中症に注意してください。";
+
+}
+
+document.getElementById("mountain-comment").textContent =
+    comment;
+ 
+ 
     document.getElementById("weather-cloud").textContent =
         weather.cloud_cover + " %";
 
