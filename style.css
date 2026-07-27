@@ -137,3 +137,35 @@
     color: #7b1fa2;
 
 }
+
+/* ---------------------------- */
+/* 山頂推定気温 */
+/* ---------------------------- */
+
+.temp-freezing {
+
+    color: #2196F3;
+    font-weight: bold;
+
+}
+
+.temp-cold {
+
+    color: #03A9F4;
+    font-weight: bold;
+
+}
+
+.temp-good {
+
+    color: #4CAF50;
+    font-weight: bold;
+
+}
+
+.temp-hot {
+
+    color: #F44336;
+    font-weight: bold;
+
+}
