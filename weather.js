@@ -305,12 +305,53 @@ function getWeatherIcon(code) {
 
 function showWeather(weather) {
 
-const weatherLabel =
-    `${getWeatherIcon(weather.weather_code)} ${getWeatherText(weather.weather_code)}`;
+    const weatherText = document.getElementById("weather-text");
 
-document.getElementById("weather-text").textContent =
-    weatherLabel;
- 
+    const weatherLabel =
+        `${getWeatherIcon(weather.weather_code)} ${getWeatherText(weather.weather_code)}`;
+
+    weatherText.textContent = weatherLabel;
+
+    // デフォルトクラス
+    weatherText.className = "weather-main";
+
+    // 天気ごとの色
+    if (weather.weather_code === 0) {
+
+        weatherText.classList.add("weather-sunny");
+
+    }
+
+    else if ([1, 2].includes(weather.weather_code)) {
+
+        weatherText.classList.add("weather-partly");
+
+    }
+
+    else if (weather.weather_code === 3) {
+
+        weatherText.classList.add("weather-cloudy");
+
+    }
+
+    else if ([51,53,55,61,63,65,80,81,82].includes(weather.weather_code)) {
+
+        weatherText.classList.add("weather-rain");
+
+    }
+
+    else if ([71,73,75,85,86].includes(weather.weather_code)) {
+
+        weatherText.classList.add("weather-snow");
+
+    }
+
+    else if ([95,96,99].includes(weather.weather_code)) {
+
+        weatherText.classList.add("weather-thunder");
+
+    }
+
     document.getElementById("weather-temperature").textContent =
         weather.temperature_2m.toFixed(1) + " ℃";
 
