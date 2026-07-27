@@ -28,7 +28,7 @@ const OPENMETEO_API =
 
 const url = OPENMETEO_API; 
 
-    try {
+    t．ry {
 
 let data;
 
@@ -70,54 +70,6 @@ catch (error) {
 
     console.error(error);
 
-const weatherText = document.getElementById("weather-text");
-
-weatherText.textContent = weatherLabel;
-
-// 天気に応じて色を変更
-weatherText.className = "weather-main";
-
-if (weather.weather_code === 0) {
-
-    weatherText.classList.add("weather-sunny");
-
-}
-
-else if ([1, 2].includes(weather.weather_code)) {
-
-    weatherText.classList.add("weather-partly");
-
-}
-
-else if (weather.weather_code === 3) {
-
-    weatherText.classList.add("weather-cloudy");
-
-}
-
-else if (
-    [51,53,55,61,63,65,80,81,82].includes(weather.weather_code)
-) {
-
-    weatherText.classList.add("weather-rain");
-
-}
-
-else if (
-    [71,73,75,85,86].includes(weather.weather_code)
-) {
-
-    weatherText.classList.add("weather-snow");
-
-}
-
-else if (
-    [95,96,99].includes(weather.weather_code)
-) {
-
-    weatherText.classList.add("weather-thunder");
-
-} 
     document.getElementById("weather-temperature").textContent =
         "取得失敗";
 
