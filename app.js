@@ -18,11 +18,12 @@ const app = {
 
     mountains: [],
 
-    weatherProvider: "openmeteo"
+    weatherProvider: "openmeteo",
     // "gpv" に変更するとGPVを使用
 
-};
+    selectedMountain: null
 
+};
 
 // ----------------------------
 // アプリ起動
