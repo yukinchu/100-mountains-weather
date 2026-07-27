@@ -319,9 +319,39 @@ function showWeather(weather, mountain) {
         const summitTemp =
             weather.temperature_2m - (mountain.elevation * 0.006);
 
-        document.getElementById("summit-temperature").textContent =
-            summitTemp.toFixed(1) + " ℃";
+const summitElement =
+    document.getElementById("summit-temperature");
 
+summitElement.textContent =
+    summitTemp.toFixed(1) + " ℃";
+
+summitElement.className = "";
+
+if (summitTemp <= 0) {
+
+    summitElement.classList.add("temp-freezing");
+
+}
+
+else if (summitTemp <= 10) {
+
+    summitElement.classList.add("temp-cold");
+
+}
+
+else if (summitTemp <= 20) {
+
+    summitElement.classList.add("temp-good");
+
+}
+
+else {
+
+    summitElement.classList.add("temp-hot");
+
+}
+
+     
         let comment = "";
 
         if (summitTemp <= 0) {
