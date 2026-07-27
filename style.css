@@ -75,3 +75,25 @@
     font-size:1rem;
 
 }
+
+/* =========================
+   Current Weather
+========================= */
+
+.weather-current {
+
+    margin-bottom: 15px;
+
+}
+
+.weather-main {
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    padding: 10px;
+
+}
