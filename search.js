@@ -100,7 +100,7 @@ function showMountain(mountain) {
     document.getElementById("mountain-height").textContent =
         "標高 " + mountain.elevation + " m";
 document.getElementById("mountain-prefecture").textContent =
-    "都道府県 " + mountain.prefecture;
+    "都道府県 " + mountain.prefecture.join("・");
 
 document.getElementById("mountain-latitude").textContent =
     "緯度 " + mountain.latitude;
