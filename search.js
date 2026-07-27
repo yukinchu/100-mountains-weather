@@ -113,6 +113,8 @@ if (
     mountain.longitude !== undefined
 ) {
 
+ app.selectedMountain = mountain;
+
     loadWeather(
         mountain.latitude,
         mountain.longitude
