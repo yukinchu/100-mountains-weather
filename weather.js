@@ -312,17 +312,15 @@ function showWeather(weather, mountain) {
 
     weatherText.textContent = weatherLabel;
 
-    // デフォルトクラス
     weatherText.className = "weather-main";
 
-    // 天気ごとの色
     if (weather.weather_code === 0) {
 
         weatherText.classList.add("weather-sunny");
 
     }
 
-    else if ([1, 2].includes(weather.weather_code)) {
+    else if ([1,2].includes(weather.weather_code)) {
 
         weatherText.classList.add("weather-partly");
 
@@ -355,29 +353,53 @@ function showWeather(weather, mountain) {
     document.getElementById("weather-temperature").textContent =
         weather.temperature_2m.toFixed(1) + " ℃";
 
-let comment = "";
+    document.getElementById("weather-cloud").textContent =
+        weather.cloud_cover + " %";
 
-if (summitTemp <= 0) {
+    document.getElementById("weather-rain").textContent =
+        weather.precipitation.toFixed(1) + " mm";
 
-    comment = "❄️ 厳しい寒さです。冬山装備が必要です。";
+    document.getElementById("weather-wind").textContent =
+        weather.wind_speed_10m.toFixed(1) + " m/s";
 
-}
+    if (mountain) {
 
-else if (summitTemp <= 10) {
+        const summitTemp =
+            weather.temperature_2m - (mountain.elevation * 0.006);
 
-    comment = "🧥 防寒着を推奨します。";
+        document.getElementById("summit-temperature").textContent =
+            summitTemp.toFixed(1) + " ℃";
 
-}
+        let comment = "";
 
-else if (summitTemp <= 20) {
+        if (summitTemp <= 0) {
 
-    comment = "😊 登山に適した気温です。";
+            comment = "❄️ 厳しい寒さです。冬山装備が必要です。";
 
-}
+        }
 
-else {
+        else if (summitTemp <= 10) {
 
-    comment = "🥵 暑さ対策・熱中症に注意してください。";
+            comment = "🧥 防寒着を推奨します。";
+
+        }
+
+        else if (summitTemp <= 20) {
+
+            comment = "😊 登山に適した気温です。";
+
+        }
+
+        else {
+
+            comment = "🥵 暑さ対策・熱中症に注意してください。";
+
+        }
+
+        document.getElementById("mountain-comment").textContent =
+            comment;
+
+    }
 
 }
 
