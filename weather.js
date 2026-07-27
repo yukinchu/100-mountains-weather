@@ -60,8 +60,8 @@ else if (API_MODE === "gpv") {
 
         const forecast = getForecast(data);
 
-        showWeather(weather);
-
+     showWeather(weather, app.selectedMountain);
+     
         drawForecastChart(forecast);
 
     }
