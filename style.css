@@ -169,3 +169,23 @@
     font-weight: bold;
 
 }
+
+.wind-safe {
+    color: #2e8b57;
+    font-weight: bold;
+}
+
+.wind-normal {
+    color: #d4a000;
+    font-weight: bold;
+}
+
+.wind-warning {
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+.wind-danger {
+    color: #d32f2f;
+    font-weight: bold;
+}
