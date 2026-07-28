@@ -44,6 +44,8 @@ window.onload = async () => {
 
     initializeSearch();
 initializeMap();
+
+console.log("Application Ready");
  
     console.log("Application Ready");
 
