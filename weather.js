@@ -361,32 +361,43 @@ else {
 }
 
      
-        let comment = "";
+let comment = "";
 
-        if (summitTemp <= 0) {
+// 気温判定
+if (summitTemp <= 0) {
 
-            comment = "❄️ 厳しい寒さです。冬山装備が必要です。";
+    comment = "❄️ 厳しい寒さです。冬山装備が必要です。";
 
-        }
+}
+else if (summitTemp <= 10) {
 
-        else if (summitTemp <= 10) {
+    comment = "🧥 防寒着を推奨します。";
 
-            comment = "🧥 防寒着を推奨します。";
+}
+else if (summitTemp <= 20) {
 
-        }
+    comment = "😊 登山に適した気温です。";
 
-        else if (summitTemp <= 20) {
+}
+else {
 
-            comment = "😊 登山に適した気温です。";
+    comment = "🥵 暑さ対策・熱中症に注意してください。";
 
-        }
+}
 
-        else {
+// 強風
+if (weather.wind_speed_10m >= 10) {
 
-            comment = "🥵 暑さ対策・熱中症に注意してください。";
+    comment += " 💨 強風に注意してください。";
 
-        }
+}
 
+// 雨
+if (weather.precipitation >= 1) {
+
+    comment += " 🌧 レインウェア推奨です。";
+
+}
         document.getElementById("mountain-comment").textContent =
             comment;
 
