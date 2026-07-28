@@ -82,6 +82,9 @@ catch (error) {
     document.getElementById("weather-wind").textContent =
         "--";
 
+ document.getElementById("weather-humidity").textContent =
+    "--";
+ 
 }
 }
 
@@ -148,6 +151,9 @@ function showLoading() {
     document.getElementById("weather-wind").textContent =
         "--";
 
+document.getElementById("weather-humidity").textContent =
+    "--";
+ 
 }
 
 // ----------------------------
@@ -314,6 +320,9 @@ function showWeather(weather, mountain) {
     document.getElementById("weather-wind").textContent =
         weather.wind_speed_10m.toFixed(1) + " m/s";
 
+document.getElementById("weather-humidity").textContent =
+    weather.relative_humidity_2m + " %";
+ 
     if (mountain) {
 
         const summitTemp =
