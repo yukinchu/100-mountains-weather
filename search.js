@@ -40,12 +40,15 @@ function searchMountain(event) {
 
     }
 
-    const results = app.mountains.filter(mountain =>
+const results = app.mountains.filter(mountain =>
 
-        mountain.name.startsWith(keyword) ||
-        mountain.reading.startsWith(keyword)
+    mountain.name.startsWith(keyword) ||
 
-    );
+    mountain.reading.startsWith(keyword) ||
+
+    mountain.prefecture.join("").includes(keyword)
+
+                                    );
 
     if (results.length === 0) {
 
