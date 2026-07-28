@@ -189,3 +189,42 @@
     color: #d32f2f;
     font-weight: bold;
 }
+
+/* ===========================
+   Card Design
+=========================== */
+
+.info-box,
+.weather-box,
+.chart-box,
+.map-box {
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,0.08);
+
+    border: 1px solid #e6e6e6;
+
+}
+/* ===========================
+   Section Title
+=========================== */
+
+h2 {
+
+    margin-top: 0;
+
+    padding-bottom: 8px;
+
+    border-bottom: 2px solid #4CAF50;
+
+    color: #2e7d32;
+
+}
