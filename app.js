@@ -21,7 +21,11 @@ const app = {
     weatherProvider: "openmeteo",
     // "gpv" に変更するとGPVを使用
 
-    selectedMountain: null
+    selectedMountain: null,
+
+    currentLatitude: null,
+    currentLongitude: null
+
 
 };
 
