@@ -40,14 +40,14 @@ window.onload = async () => {
     console.log(" Version " + app.version);
     console.log("=================================");
 
-    await loadMountains();
+await loadMountains();
 
-    initializeSearch();
+initializeSearch();
 initializeMap();
 
+loadCurrentLocation();
+
 console.log("Application Ready");
- 
-    console.log("Application Ready");
 
 };
 
