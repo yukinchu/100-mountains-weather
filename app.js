@@ -47,6 +47,25 @@ initializeMap();
 
 loadCurrentLocation();
 
+// ----------------------------
+// 前回表示した山を復元
+// ----------------------------
+
+const lastMountain = localStorage.getItem("lastMountain");
+
+if (lastMountain) {
+
+    const mountain = JSON.parse(lastMountain);
+
+    showMountain(mountain);
+
+    document.getElementById("mountain-search").value =
+        mountain.name;
+
+}
+
+console.log("Application Ready");
+ 
 console.log("Application Ready");
 
 };
