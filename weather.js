@@ -258,6 +258,32 @@ function getWeatherIcon(code) {
 }
 
 // ----------------------------
+// 風向変換
+// ----------------------------
+
+function getWindDirection(degree) {
+
+    if (degree === undefined || degree === null) {
+        return "--";
+    }
+
+    const directions = [
+        "北",
+        "北東",
+        "東",
+        "南東",
+        "南",
+        "南西",
+        "西",
+        "北西",
+        "北"
+    ];
+
+    return directions[Math.round(degree / 45)];
+
+}
+
+// ----------------------------
 // 現在天気表示
 // ----------------------------
 
@@ -317,8 +343,12 @@ function showWeather(weather, mountain) {
     document.getElementById("weather-rain").textContent =
         weather.precipitation.toFixed(1) + " mm";
 
-    document.getElementById("weather-wind").textContent =
-        weather.wind_speed_10m.toFixed(1) + " m/s";
+document.getElementById("weather-wind").textContent =
+    weather.wind_speed_10m.toFixed(1) + " m/s";
+
+// 風向
+document.getElementById("weather-wind-direction").textContent =
+    getWindDirection(weather.wind_direction_10m);
 
 document.getElementById("weather-humidity").textContent =
     weather.relative_humidity_2m + " %";
