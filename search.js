@@ -72,8 +72,20 @@ const results = app.mountains.filter(mountain =>
 
         item.className = "search-item";
 
-        item.textContent = "🏔 " + mountain.name;
+item.innerHTML = `
 
+    <strong>${mountain.name}</strong><br>
+
+    <small>
+
+        ${mountain.elevation}m　
+
+        ${mountain.prefecture.join("・")}
+
+    </small>
+
+`;
+     
         item.onclick = () => {
 
             showMountain(mountain);
