@@ -218,4 +218,22 @@ function clearMountainInfo() {
     document.getElementById("weather-wind").textContent =
         "--";
 
+    // 湿度
+    const humidity = document.getElementById("weather-humidity");
+    if (humidity) {
+        humidity.textContent = "--";
+    }
+
+    // 山頂推定気温
+    const summit = document.getElementById("summit-temperature");
+    if (summit) {
+        summit.textContent = "--";
+    }
+
+    // コメント
+    const comment = document.getElementById("mountain-comment");
+    if (comment) {
+        comment.textContent = "";
+    }
+
 }
