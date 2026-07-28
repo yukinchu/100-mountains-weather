@@ -14,7 +14,7 @@ let marker = null;
 
 const app = {
 
-    version: "0.6.0",
+    version: "1.0.0",
 
     mountains: [],
 
@@ -35,11 +35,12 @@ const app = {
 
 window.onload = async () => {
 
-    console.log("=================================");
-    console.log(" Mountain GPV");
-    console.log(" Version " + app.version);
-    console.log("=================================");
-
+console.log("=================================");
+console.log("🏔 Mountain GPV");
+console.log("Version " + app.version);
+console.log("Ready.");
+console.log("=================================");
+ 
 await loadMountains();
 
 initializeSearch();
