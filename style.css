@@ -228,3 +228,86 @@ h2 {
     color: #2e7d32;
 
 }
+
+/* ===========================
+   Responsive Design
+=========================== */
+
+@media (max-width: 768px) {
+
+    body {
+
+        margin: 10px;
+
+        font-size: 15px;
+
+    }
+
+    .container {
+
+        width: 100%;
+
+        padding: 0;
+
+    }
+
+    .info-box,
+    .weather-box,
+    .map-box,
+    .chart-box {
+
+        padding: 14px;
+
+        margin-bottom: 16px;
+
+    }
+
+    #map {
+
+        height: 300px;
+
+    }
+
+    #forecastChart {
+
+        height: 280px !important;
+
+    }
+
+    #weather-text {
+
+        font-size: 1.5rem;
+
+    }
+
+    h1 {
+
+        font-size: 1.6rem;
+
+    }
+
+    h2 {
+
+        font-size: 1.2rem;
+
+    }
+
+    input[type="text"] {
+
+        width: 100%;
+
+        font-size: 16px;
+
+        box-sizing: border-box;
+
+    }
+
+    .search-item {
+
+        padding: 12px;
+
+        font-size: 15px;
+
+    }
+
+}
