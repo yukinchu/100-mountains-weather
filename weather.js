@@ -343,9 +343,38 @@ function showWeather(weather, mountain) {
     document.getElementById("weather-rain").textContent =
         weather.precipitation.toFixed(1) + " mm";
 
-document.getElementById("weather-wind").textContent =
+const windElement =
+    document.getElementById("weather-wind");
+
+windElement.textContent =
     weather.wind_speed_10m.toFixed(1) + " m/s";
 
+windElement.className = "";
+
+if (weather.wind_speed_10m < 5) {
+
+    windElement.classList.add("wind-safe");
+
+}
+
+else if (weather.wind_speed_10m < 10) {
+
+    windElement.classList.add("wind-normal");
+
+}
+
+else if (weather.wind_speed_10m < 15) {
+
+    windElement.classList.add("wind-warning");
+
+}
+
+else {
+
+    windElement.classList.add("wind-danger");
+
+}
+ 
 // 風向
 document.getElementById("weather-wind-direction").textContent =
     getWindDirection(weather.wind_direction_10m);
