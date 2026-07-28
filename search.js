@@ -42,13 +42,13 @@ function searchMountain(event) {
 
 const results = app.mountains.filter(mountain =>
 
-    mountain.name.startsWith(keyword) ||
+    mountain.name.includes(keyword) ||
 
-    mountain.reading.startsWith(keyword) ||
+    mountain.reading.includes(keyword) ||
 
     mountain.prefecture.join("").includes(keyword)
 
-                                    );
+);
 
     if (results.length === 0) {
 
