@@ -101,3 +101,40 @@ function initializeMap() {
     ).addTo(map);
  
 }
+// ----------------------------
+// 現在地取得
+// ----------------------------
+
+function loadCurrentLocation() {
+
+    if (!navigator.geolocation) {
+
+        console.log("位置情報が利用できません");
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            app.currentLatitude = position.coords.latitude;
+            app.currentLongitude = position.coords.longitude;
+
+            console.log(
+                "現在地取得",
+                app.currentLatitude,
+                app.currentLongitude
+            );
+
+        },
+
+        function(error) {
+
+            console.log("現在地取得失敗", error);
+
+        }
+
+    );
+
+}
