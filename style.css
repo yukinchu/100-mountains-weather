@@ -1,8 +1,4 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
@@ -18,46 +14,41 @@ header h1 {
   color: #2c3e50;
 }
 
-.controls {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.controls label {
-  font-weight: bold;
-  margin-right: 8px;
-}
-
+.controls { text-align: center; margin-bottom: 20px; }
+.controls label { font-weight: bold; margin-right: 8px; }
 .controls select {
-  padding: 6px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
+  padding: 6px 12px; font-size: 16px;
+  border: 1px solid #ccc; border-radius: 6px; background: #fff;
 }
 
 .chart-area {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
-  margin-bottom: 20px;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  background: #fff; border: 1px solid #ddd; border-radius: 8px;
+  padding: 12px; margin-bottom: 20px;
+  max-width: 1000px; margin-left: auto; margin-right: auto;
 }
 
 .chart-area h2 {
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: normal;
-  color: #444;
+  font-size: 16px; text-align: center; margin-bottom: 10px;
+  font-weight: normal; color: #444;
 }
 
-footer {
+/* 天気アイコンを横並びに */
+#weatherStrip {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+  padding-bottom: 8px;
+}
+.weather-cell {
+  flex: 0 0 auto;
   text-align: center;
   font-size: 12px;
-  color: #888;
-  margin-top: 20px;
+  width: 60px;
 }
+.weather-cell .icon { font-size: 22px; }
+.weather-cell .time { color: #666; white-space: nowrap; }
+
+footer {
+  text-align: center; font-size: 12px; color: #888; margin-top: 20px;
+}
+Copy
