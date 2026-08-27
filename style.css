@@ -17,54 +17,53 @@ header h1 {
 .controls { text-align: center; margin-bottom: 20px; }
 .controls label { font-weight: bold; margin-right: 8px; }
 .controls select {
-  padding: 6px 12px; font-size: 16px;
-  border: 1px solid #ccc; border-radius: 6px; background: #fff;
+  padding: 6px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
 }
 
 .chart-area {
-  background: #fff; border: 1px solid #ddd; border-radius: 8px;
-  padding: 12px; margin-bottom: 20px;
-  max-width: 1000px; margin-left: auto; margin-right: auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0 auto 20px;
+  max-width: 1000px;
 }
 
 .chart-area h2 {
-  font-size: 16px; text-align: center; margin-bottom: 10px;
-  font-weight: normal; color: #444;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: normal;
+  color: #444;
 }
 
-/* 天気アイコンを横並びに */
+/* 天気ストリップ */
 #weatherStrip {
   display: flex;
   overflow-x: auto;
   gap: 4px;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
 }
 .weather-cell {
   flex: 0 0 auto;
+  width: 54px;
   text-align: center;
-  font-size: 12px;
-  width: 60px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 6px 2px;
+  background: #fafafa;
 }
-.weather-cell .icon { font-size: 22px; }
-.weather-cell .time { color: #666; white-space: nowrap; }
+.w-date { font-size: 11px; color: #888; }
+.w-time { font-size: 12px; color: #555; }
+.w-icon { font-size: 22px; margin-top: 2px; }
 
 footer {
-  text-align: center; font-size: 12px; color: #888; margin-top: 20px;
-}
-Copy
-
-#weatherStrip {
-  display: flex;
-  overflow-x: auto;
-  gap: 4px;
-  padding: 4px 0;
-}
-.weather-cell {
-  flex: 0 0 auto;
   text-align: center;
-  padding: 4px 8px;
-  border-right: 1px solid #eee;
+  font-size: 12px;
+  color: #888;
+  margin-top: 20px;
 }
-.w-date { font-size: 12px; color: #666; }
-.w-time { font-size: 12px; color: #666; }
-.w-icon { font-size: 22px; }
