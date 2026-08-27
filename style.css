@@ -152,3 +152,11 @@ footer {
   display: inline-block;
   width: 52px;
 }
+
+#weatherStrip .weather-cell {
+  display: inline-flex !important;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: top;
+}
+.w-date, .w-time, .w-icon { display: block; }
