@@ -92,7 +92,7 @@ async function showWeather() {
       + "<div class='w-icon'>" + weatherIcon(h.weathercode[i]) + "</div>";
     strip.appendChild(cell);
   }
-
+  
   drawChart1(labels, h.cloudcover, h.precipitation);
   drawChart2(labels, h.cloudcover_low, h.cloudcover_mid, h.cloudcover_high);
   drawChart3(labels, h.temperature_2m, h.windspeed_10m);
