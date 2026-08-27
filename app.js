@@ -122,7 +122,9 @@ async function showWeather() {
   }
   
   drawChart1(labels, h.cloudcover, h.precipitation);
-  drawChart2(labels, h.cloudcover_low, h.cloudcover_mid, h.cloudcover_high);
+    drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
+  drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
+  drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
   drawChart3(labels, h.temperature_2m, h.windspeed_10m);
 }
 
@@ -147,20 +149,20 @@ function drawChart1(labels, cloud, precip) {
   });
 }
 
-function drawChart2(labels, low, mid, high) {
-  if (chart2) chart2.destroy();
-  chart2 = new Chart(document.getElementById("chart2"), {
+let cloudCharts = {};
+function drawCloud(canvasId, labels, data, label, color) {
+  if (cloudCharts[canvasId]) cloudCharts[canvasId].destroy();
+  cloudCharts[canvasId] = new Chart(document.getElementById(canvasId), {
     type: "line",
     data: {
       labels,
       datasets: [
-        { label: "上層雲量（%）", data: high, borderColor: "#4caf50", pointRadius: 0, tension: 0.3 },
-        { label: "中層雲量（%）", data: mid, borderColor: "#2196f3", pointRadius: 0, tension: 0.3 },
-        { label: "下層雲量（%）", data: low, borderColor: "#e91e8c", pointRadius: 0, tension: 0.3 }
+        { label: label, data: data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 }
       ]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
       scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
     }
