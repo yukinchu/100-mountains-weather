@@ -67,3 +67,29 @@ footer {
   color: #888;
   margin-top: 20px;
 }
+
+/* モデル切替ボタン */
+.model-switch {
+  margin-left: 12px;
+  display: inline-flex;
+  border: 1px solid #3399dd;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.model-btn {
+  padding: 6px 16px;
+  font-size: 14px;
+  border: none;
+  background: #fff;
+  color: #3399dd;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.model-btn:hover {
+  background: #eaf4fb;
+}
+.model-btn.active {
+  background: #3399dd;
+  color: #fff;
+  font-weight: bold;
+}
