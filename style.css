@@ -92,25 +92,46 @@ header h1 {
   border-bottom: 2px solid #eef2f6;
 }
 
-/* 天気ストリップ */
-#weatherStrip {
-  display: flex;
-  overflow-x: auto;
-  gap: 6px;
-  padding-bottom: 8px;
+/* 天気ストリップ（3行・信頼度別） */
+#weatherStrip { display: flex; flex-direction: column; gap: 12px; }
+
+.weather-row {
+  border-radius: 10px;
+  padding: 10px 12px;
+  border-left: 5px solid #ccc;
 }
+.row-label {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #34495e;
+}
+.row-cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* 信頼度カラー */
+.grp-high { background: #e8f5f0; border-left-color: #26a69a; }
+.grp-high .row-label { color: #1b7d70; }
+.grp-mid  { background: #fff8e1; border-left-color: #f5b300; }
+.grp-mid .row-label { color: #b07d00; }
+.grp-low  { background: #f0f2f5; border-left-color: #9aa7b3; }
+.grp-low .row-label { color: #6b7885; }
+
 .weather-cell {
   flex: 0 0 auto;
-  width: 56px;
+  width: 52px;
   text-align: center;
-  border: 1px solid #e8edf2;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 8px;
-  padding: 8px 2px;
-  background: linear-gradient(180deg, #fafcfe 0%, #f0f5fa 100%);
+  padding: 6px 2px;
+  background: rgba(255,255,255,0.7);
 }
 .w-date { font-size: 11px; color: #8a99a8; }
 .w-time { font-size: 12px; color: #5a6b7b; font-weight: 500; }
-.w-icon { font-size: 24px; margin-top: 3px; }
+.w-icon { font-size: 22px; margin-top: 3px; }
 
 /* フッター */
 footer {
