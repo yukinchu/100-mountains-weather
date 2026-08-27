@@ -1,57 +1,7 @@
 [
-  {
-    "id": 1,
-    "name": "富士山",
-    "reading": "ふじさん",
-    "elevation": 3776,
-    "latitude": 35.3606,
-    "longitude": 138.7274,
-    "prefecture": ["山梨県", "静岡県"],
-    "area": "南アルプス・富士",
-    "hyakumeizan": true
-  },
-  {
-    "id": 2,
-    "name": "槍ヶ岳",
-    "reading": "やりがたけ",
-    "elevation": 3180,
-    "latitude": 36.3418,
-    "longitude": 137.6476,
-    "prefecture": ["長野県", "岐阜県"],
-    "area": "北アルプス",
-    "hyakumeizan": true
-  },
-  {
-    "id": 3,
-    "name": "北岳",
-    "reading": "きただけ",
-    "elevation": 3193,
-    "latitude": 35.6740,
-    "longitude": 138.2389,
-    "prefecture": ["山梨県"],
-    "area": "南アルプス",
-    "hyakumeizan": true
-  },
-  {
-    "id": 4,
-    "name": "月山",
-    "reading": "がっさん",
-    "elevation": 1984,
-    "latitude": 38.5478,
-    "longitude": 140.0267,
-    "prefecture": ["山形県"],
-    "area": "出羽山地",
-    "hyakumeizan": true
-  },
-  {
-    "id": 5,
-    "name": "栗駒山",
-    "reading": "くりこまやま",
-    "elevation": 1626,
-    "latitude": 38.9614,
-    "longitude": 140.7880,
-    "prefecture": ["岩手県", "宮城県", "秋田県"],
-    "area": "奥羽山脈",
-    "hyakumeizan": false
-  }
+  { "name": "穂高岳", "lat": 36.3, "lon": 137.625 },
+  { "name": "富士山", "lat": 35.3606, "lon": 138.7274 },
+  { "name": "槍ヶ岳", "lat": 36.3417, "lon": 137.6478 },
+  { "name": "立山", "lat": 36.5744, "lon": 137.6197 },
+  { "name": "白馬岳", "lat": 36.7583, "lon": 137.7586 }
 ]
