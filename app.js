@@ -81,7 +81,7 @@ async function showWeather() {
 
   const labels = h.time.map(t => fmtDate(t) + " " + fmtTime(t));
 
-    const strip = document.getElementById("weatherStrip");
+  const strip = document.getElementById("weatherStrip");
   strip.innerHTML = "";
 
   const baseTime = new Date(h.time[0]);
@@ -92,14 +92,19 @@ async function showWeather() {
     { label: "5～7日先（参考程度）", cls: "grp-low", min: 4, max: 99, cells: [] }
   ];
 
+  let lastDate = "";
   for (let i = 0; i < h.time.length; i += 3) {
     const t = new Date(h.time[i]);
     const dayDiff = (t - baseTime) / (1000 * 60 * 60 * 24);
+    const dateStr = fmtDate(h.time[i]);
+    const showDate = (dateStr !== lastDate) ? dateStr : "";
+    lastDate = dateStr;
+
     const cell =
       "<span class='weather-cell'>"
-      + "<span class='w-date'>" + fmtDate(h.time[i]) + "</span>"
-      + "<span class='w-time'>" + fmtTime(h.time[i]) + "</span>"
+      + "<span class='w-date'>" + showDate + "</span>"
       + "<span class='w-icon'>" + weatherIcon(h.weathercode[i]) + "</span>"
+      + "<span class='w-time'>" + fmtTime(h.time[i]) + "</span>"
       + "</span>";
     for (const g of groups) {
       if (dayDiff >= g.min && dayDiff < g.max) { g.cells.push(cell); break; }
