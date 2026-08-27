@@ -1,152 +1,36 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Mountain GPV</title>
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mountain GPV</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
+  <header>
+    <h1>Mountain GPV</h1>
+  </header>
 
-<header>
+  <div class="controls">
+    <label for="mountainSelect">山を選択：</label>
+    <select id="mountainSelect"></select>
+  </div>
 
-    <h1>🏔 Mountain GPV</h1>
+  <div class="chart-area">
+    <h2 id="title1"></h2>
+    <canvas id="chart1"></canvas>
+  </div>
 
-    <p>登山者のための山岳気象予報</p>
+  <div class="chart-area">
+    <h2 id="title2"></h2>
+    <canvas id="chart2"></canvas>
+  </div>
 
-</header>
+  <footer>
+    <p>データ提供：Open-Meteo</p>
+  </footer>
 
-<main>
-
-    <section class="search-box">
-
-        <h2>山を検索</h2>
-
-        <input
-            type="text"
-            id="mountain-search"
-            placeholder="山名を入力してください">
-
-        <div id="search-results"></div>
-
-    </section>
-
-    <section class="mountain-info">
-
-        <h2>山情報</h2>
-
-        <div id="mountain-name">
-
-            山を選択してください
-
-        </div>
-
-        <div id="mountain-height">
-
-            標高 --
-
-        </div>
-<div id="mountain-prefecture">
-    都道府県 --
-</div>
-
-<div id="mountain-latitude">
-    緯度 --
-</div>
-
-<div id="mountain-longitude">
-    経度 --
-</div>
-
-        
-    </section>
-
-    <section id="weather-box">
-
-        <h2>現在の天気</h2>
-
-<div class="weather-current">
-
-    <div id="weather-text" class="weather-main">
-        --
-    </div>
-
-</div> 
-        
-        <p>🌡 気温：<span id="weather-temperature">--</span></p>
-
-        <p>🏔 山頂推定気温：<span id="summit-temperature">--</span></p>
-
-        <p id="summit-note" class="summit-note">
-    ※標高差から気温減率0.6℃/100mで推定しています
-</p>
-        
-        <p>💬 コメント：<span id="mountain-comment">--</span></p>
-        
-        <p>☁ 雲量：<span id="weather-cloud">--</span></p>
-
-        <p>🌧 降水量：<span id="weather-rain">--</span></p>
-
-        <p>💨 風速：<span id="weather-wind">--</span></p>
-
-        <p>🧭 風向：<span id="weather-wind-direction">--</span></p>
-        
-        <p>💧 湿度：<span id="weather-humidity">--</span></p>
-        
-    </section>
-
-    <section class="weather">
-
-        <h2>72時間予報</h2>
-
-        <div class="chart-container">
-
-            <canvas id="forecastChart"></canvas>
-
-        </div>
-
-    </section>
-<section class="map">
-
-
-    <h2>山の位置</h2>
-
-    <div id="map-title">
-        📍 山を選択してください
-    </div>
-
-    <div id="map"></div>
-
-</section>
-    
-</main>
-
-<footer>
-
-    Mountain GPV Version 1.0.0
-
-</footer>
-
-<script src="search.js"></script>
-<script src="graph.js"></script>
-<script src="gpv.js"></script>
-<script src="weather.js"></script>
-<script src="app.js"></script>
-    
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
+  <script src="app.js"></script>
 </body>
-
 </html>
