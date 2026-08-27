@@ -1,4 +1,6 @@
 let chart1, chart2, chart3;
+let currentMountain = null;
+let currentModel = "jma_seamless";
 
 function fmtDate(t) {
   const m = parseInt(t.slice(5, 7), 10);
@@ -33,23 +35,45 @@ async function loadMountains() {
     opt.textContent = m.name;
     select.appendChild(opt);
   });
-  select.addEventListener("change", () => showWeather(mountains[select.value]));
-  if (mountains.length > 0) showWeather(mountains[0]);
+  select.addEventListener("change", () => {
+    currentMountain = mountains[select.value];
+    showWeather();
+  });
+
+  document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
+  document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs04", "btnECMWF"));
+
+  if (mountains.length > 0) {
+    currentMountain = mountains[0];
+    showWeather();
+  }
 }
 
-async function showWeather(m) {
+function setModel(model, btnId) {
+  currentModel = model;
+  document.getElementById("btnJMA").classList.remove("active");
+  document.getElementById("btnECMWF").classList.remove("active");
+  document.getElementById(btnId).classList.add("active");
+  showWeather();
+}
+
+async function showWeather() {
+  const m = currentMountain;
+  if (!m) return;
+
   const url = "https://api.open-meteo.com/v1/forecast"
     + "?latitude=" + m.lat
     + "&longitude=" + m.lon
     + "&hourly=temperature_2m,precipitation,weathercode,windspeed_10m,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
-    + "&models=jma_seamless"
+    + "&models=" + currentModel
     + "&timezone=Asia%2FTokyo";
 
   const res = await fetch(url);
   const data = await res.json();
   const h = data.hourly;
 
-  const title = m.name + " 緯度:" + m.lat + " 経度:" + m.lon;
+  const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
+  const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
   document.getElementById("titleWeather").textContent = title + "（天気）";
   document.getElementById("title1").textContent = title;
   document.getElementById("title2").textContent = title;
@@ -57,7 +81,6 @@ async function showWeather(m) {
 
   const labels = h.time.map(t => fmtDate(t) + " " + fmtTime(t));
 
-  // 天気ストリップ（3時間おきに表示）
   const strip = document.getElementById("weatherStrip");
   strip.innerHTML = "";
   for (let i = 0; i < h.time.length; i += 3) {
@@ -91,7 +114,7 @@ function drawChart1(labels, cloud, precip) {
       scales: {
         y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
         y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
-              }
+      }
     }
   });
 }
