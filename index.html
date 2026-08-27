@@ -8,13 +8,16 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Mountain GPV</h1>
-  </header>
+  <header><h1>Mountain GPV</h1></header>
 
   <div class="controls">
     <label for="mountainSelect">山を選択：</label>
     <select id="mountainSelect"></select>
+  </div>
+
+  <div class="chart-area">
+    <h2 id="titleWeather"></h2>
+    <div id="weatherStrip"></div>
   </div>
 
   <div class="chart-area">
@@ -27,9 +30,12 @@
     <canvas id="chart2"></canvas>
   </div>
 
-  <footer>
-    <p>データ提供：Open-Meteo</p>
-  </footer>
+  <div class="chart-area">
+    <h2 id="title3"></h2>
+    <canvas id="chart3"></canvas>
+  </div>
+
+  <footer><p>データ提供：Open-Meteo</p></footer>
 
   <script src="app.js"></script>
 </body>
