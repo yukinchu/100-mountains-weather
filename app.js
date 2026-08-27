@@ -1,6 +1,9 @@
 let chart1, chart2, chart3;
 
-const weatherIcon = (code) => {
+function fmtDate(t) { return t.slice(5, 10); }
+function fmtTime(t) { return t.slice(11, 16); }
+
+function weatherIcon(code) {
   if (code === 0) return "☀️";
   if (code <= 2) return "🌤️";
   if (code === 3) return "☁️";
@@ -8,23 +11,10 @@ const weatherIcon = (code) => {
   if (code >= 51 && code <= 67) return "🌧️";
   if (code >= 71 && code <= 77) return "❄️";
   if (code >= 80 && code <= 82) return "🌧️";
+  if (code >= 85 && code <= 86) return "❄️";
   if (code >= 95) return "⛈️";
   return "☁️";
-};
-
-// 日付を 8/27 に、時刻を 8時 に整形
-const fmtLabel = (t) => {
-  const m = parseInt(t.slice(5, 7), 10);
-  const d = parseInt(t.slice(8, 10), 10);
-  const h = parseInt(t.slice(11, 13), 10);
-  return m + "/" + d + " " + h + "時";
-};
-const fmtDate = (t) => {
-  const m = parseInt(t.slice(5, 7), 10);
-  const d = parseInt(t.slice(8, 10), 10);
-  return m + "/" + d;
-};
-const fmtTime = (t) => parseInt(t.slice(11, 13), 10) + "時";
+}
 
 async function loadMountains() {
   const res = await fetch("mountains.json");
@@ -44,7 +34,7 @@ async function showWeather(m) {
   const url = "https://api.open-meteo.com/v1/forecast"
     + "?latitude=" + m.lat
     + "&longitude=" + m.lon
-    + "&hourly=temperature_2m,windspeed_10m,weathercode,precipitation,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
+    + "&hourly=temperature_2m,precipitation,weathercode,windspeed_10m,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
     + "&models=jma_seamless"
     + "&timezone=Asia%2FTokyo";
 
@@ -53,11 +43,12 @@ async function showWeather(m) {
   const h = data.hourly;
 
   const title = m.name + " 緯度:" + m.lat + " 経度:" + m.lon;
-  ["titleWeather", "title1", "title2", "title3"].forEach(id => {
-    document.getElementById(id).textContent = title;
-  });
+  document.getElementById("titleWeather").textContent = title + "（天気）";
+  document.getElementById("title1").textContent = title;
+  document.getElementById("title2").textContent = title;
+  document.getElementById("title3").textContent = title;
 
-  const labels = h.time.map(fmtLabel);
+  const labels = h.time.map(t => fmtDate(t) + " " + fmtTime(t));
 
   // 天気ストリップ（3時間おきに表示）
   const strip = document.getElementById("weatherStrip");
