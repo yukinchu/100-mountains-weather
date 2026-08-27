@@ -140,3 +140,15 @@ footer {
   color: #8a99a8;
   margin-top: 24px;
 }
+
+/* 天気アイコンを確実に横並びに */
+#weatherStrip .row-cells {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 6px;
+}
+#weatherStrip .weather-cell {
+  display: inline-block;
+  width: 52px;
+}
