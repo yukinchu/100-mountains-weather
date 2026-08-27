@@ -41,7 +41,7 @@ async function loadMountains() {
   });
 
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
-  document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs04", "btnECMWF"));
+  document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
 
   if (mountains.length > 0) {
     currentMountain = mountains[0];
