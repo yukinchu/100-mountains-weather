@@ -83,8 +83,8 @@ function drawChart1(labels, cloud, precip) {
       interaction: { mode: "index", intersect: false },
       scales: {
         y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
-        y1: { position: "right", min: 0, max: 10, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
-      }
+        y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
+              }
     }
   });
 }
