@@ -1,7 +1,14 @@
 let chart1, chart2, chart3;
 
-function fmtDate(t) { return t.slice(5, 10); }
-function fmtTime(t) { return t.slice(11, 16); }
+function fmtDate(t) {
+  const m = parseInt(t.slice(5, 7), 10);
+  const d = parseInt(t.slice(8, 10), 10);
+  return m + "/" + d;
+}
+function fmtTime(t) {
+  const hh = parseInt(t.slice(11, 13), 10);
+  return hh + "時";
+}
 
 function weatherIcon(code) {
   if (code === 0) return "☀️";
