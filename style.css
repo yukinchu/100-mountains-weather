@@ -52,3 +52,19 @@ footer {
   text-align: center; font-size: 12px; color: #888; margin-top: 20px;
 }
 Copy
+
+#weatherStrip {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 4px 0;
+}
+.weather-cell {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 4px 8px;
+  border-right: 1px solid #eee;
+}
+.w-date { font-size: 12px; color: #666; }
+.w-time { font-size: 12px; color: #666; }
+.w-icon { font-size: 22px; }
