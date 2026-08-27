@@ -2,94 +2,120 @@
 
 body {
   font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-  background: #f5f5f5;
-  color: #333;
-  padding: 16px;
-}
-
-header h1 {
-  font-size: 22px;
-  text-align: center;
-  margin-bottom: 16px;
+  background: #eef2f6;
   color: #2c3e50;
+  padding: 0 0 40px;
+  line-height: 1.6;
 }
 
-.controls { text-align: center; margin-bottom: 20px; }
-.controls label { font-weight: bold; margin-right: 8px; }
+/* ヘッダー */
+header {
+  background: linear-gradient(135deg, #1a2a4f 0%, #2c5b8f 60%, #4a90d9 100%);
+  padding: 28px 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+header h1 {
+  font-size: 26px;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* コントロール */
+.controls {
+  text-align: center;
+  margin: 0 auto 24px;
+  max-width: 1000px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.controls label { font-weight: bold; color: #34495e; }
 .controls select {
-  padding: 6px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 15px;
+  border: 1px solid #b9c6d3;
+  border-radius: 8px;
   background: #fff;
+  color: #2c3e50;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  cursor: pointer;
+}
+.controls select:focus { outline: none; border-color: #4a90d9; }
+
+/* モデル切替ボタン */
+.model-switch {
+  display: inline-flex;
+  border: 1px solid #4a90d9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.model-btn {
+  padding: 8px 18px;
+  font-size: 14px;
+  border: none;
+  background: #fff;
+  color: #4a90d9;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.model-btn:hover { background: #eaf4fb; }
+.model-btn.active {
+  background: #4a90d9;
+  color: #fff;
+  font-weight: bold;
 }
 
+/* カード */
 .chart-area {
   background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 12px;
-  margin: 0 auto 20px;
+  border: 1px solid #e0e6ec;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 0 auto 22px;
   max-width: 1000px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
 }
-
 .chart-area h2 {
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
-  margin-bottom: 10px;
-  font-weight: normal;
-  color: #444;
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: #34495e;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eef2f6;
 }
 
 /* 天気ストリップ */
 #weatherStrip {
   display: flex;
   overflow-x: auto;
-  gap: 4px;
-  padding-bottom: 6px;
+  gap: 6px;
+  padding-bottom: 8px;
 }
 .weather-cell {
   flex: 0 0 auto;
-  width: 54px;
+  width: 56px;
   text-align: center;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  padding: 6px 2px;
-  background: #fafafa;
+  border: 1px solid #e8edf2;
+  border-radius: 8px;
+  padding: 8px 2px;
+  background: linear-gradient(180deg, #fafcfe 0%, #f0f5fa 100%);
 }
-.w-date { font-size: 11px; color: #888; }
-.w-time { font-size: 12px; color: #555; }
-.w-icon { font-size: 22px; margin-top: 2px; }
+.w-date { font-size: 11px; color: #8a99a8; }
+.w-time { font-size: 12px; color: #5a6b7b; font-weight: 500; }
+.w-icon { font-size: 24px; margin-top: 3px; }
 
+/* フッター */
 footer {
   text-align: center;
   font-size: 12px;
-  color: #888;
-  margin-top: 20px;
-}
-
-/* モデル切替ボタン */
-.model-switch {
-  margin-left: 12px;
-  display: inline-flex;
-  border: 1px solid #3399dd;
-  border-radius: 6px;
-  overflow: hidden;
-}
-.model-btn {
-  padding: 6px 16px;
-  font-size: 14px;
-  border: none;
-  background: #fff;
-  color: #3399dd;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.model-btn:hover {
-  background: #eaf4fb;
-}
-.model-btn.active {
-  background: #3399dd;
-  color: #fff;
-  font-weight: bold;
+  color: #8a99a8;
+  margin-top: 24px;
 }
