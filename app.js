@@ -8,10 +8,7 @@ function fmtDate(t) {
   const d = parseInt(t.slice(8, 10), 10);
   return m + "/" + d;
 }
-function fmtTime(t) {
-  const hh = parseInt(t.slice(11, 13), 10);
-  return hh + "時";
-}
+function fmtHour(t) { return parseInt(t.slice(11, 13), 10); }
 
 function weatherIcon(code) {
   if (code === 0) return "☀️";
@@ -40,14 +37,9 @@ async function loadMountains() {
     currentMountain = mountains[select.value];
     showWeather();
   });
-
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
   document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
-
-  if (mountains.length > 0) {
-    currentMountain = mountains[0];
-    showWeather();
-  }
+  if (mountains.length > 0) { currentMountain = mountains[0]; showWeather(); }
 }
 
 function setModel(model, btnId) {
@@ -65,7 +57,7 @@ async function showWeather() {
   const url = "https://api.open-meteo.com/v1/forecast"
     + "?latitude=" + m.lat
     + "&longitude=" + m.lon
-    + "&hourly=temperature_2m,precipitation,weathercode,windspeed_10m,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
+    + "&hourly=temperature_2m,precipitation,precipitation_probability,relativehumidity_2m,weathercode,windspeed_10m,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
     + "&models=" + currentModel
     + "&timezone=Asia%2FTokyo";
 
@@ -75,56 +67,66 @@ async function showWeather() {
 
   const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
   const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
-  document.getElementById("titleWeather").textContent = title + "（天気）";
+  document.getElementById("titleWeather").textContent = title + "（天気予測）";
   document.getElementById("title1").textContent = title;
   document.getElementById("title2").textContent = title;
 
-  const labels = h.time.map(t => fmtDate(t) + " " + fmtTime(t));
+  buildStrip(h);
 
-  const strip = document.getElementById("weatherStrip");
-  strip.innerHTML = "";
-
-  const baseTime = new Date(h.time[0]);
-
-  const groups = [
-    { label: "1～2日先（信頼度高）", cls: "grp-high", min: 0, max: 2, cells: [] },
-    { label: "3～4日先（おおよその傾向）", cls: "grp-mid", min: 2, max: 4, cells: [] },
-    { label: "5～7日先（参考程度）", cls: "grp-low", min: 4, max: 99, cells: [] }
-  ];
-
-  let lastDate = "";
-  for (let i = 0; i < h.time.length; i += 3) {
-    const t = new Date(h.time[i]);
-    const dayDiff = (t - baseTime) / (1000 * 60 * 60 * 24);
-    const dateStr = fmtDate(h.time[i]);
-    const showDate = (dateStr !== lastDate) ? dateStr : "";
-    lastDate = dateStr;
-
-    const cell =
-      "<span class='weather-cell'>"
-      + "<span class='w-date'>" + showDate + "</span>"
-      + "<span class='w-icon'>" + weatherIcon(h.weathercode[i]) + "</span>"
-      + "<span class='w-time'>" + fmtTime(h.time[i]) + "</span>"
-      + "</span>";
-    for (const g of groups) {
-      if (dayDiff >= g.min && dayDiff < g.max) { g.cells.push(cell); break; }
-    }
-  }
-
-  for (const g of groups) {
-    if (g.cells.length === 0) continue;
-    const row = document.createElement("div");
-    row.className = "weather-row " + g.cls;
-    row.innerHTML =
-      "<div class='row-label'>【" + g.label + "】</div>"
-      + "<div class='row-cells'>" + g.cells.join("") + "</div>";
-    strip.appendChild(row);
-  }
-
+  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
   drawChart1(labels, h.cloudcover, h.precipitation);
   drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
   drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
   drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
+}
+
+function buildStrip(h) {
+  const strip = document.getElementById("weatherStrip");
+  strip.innerHTML = "";
+  const baseTime = new Date(h.time[0]);
+  let cells = "";
+
+  for (let i = 0; i < h.time.length; i++) {
+    const hour = fmtHour(h.time[i]);
+    const t = new Date(h.time[i]);
+    const dayDiff = Math.floor((t - baseTime) / (1000 * 60 * 60 * 24));
+
+    // 表示間隔：1〜2日目=3時間おき / 3日目以降=6時間おき
+    if (dayDiff <= 1) { if (hour % 3 !== 0) continue; }
+    else { if (hour % 6 !== 0) continue; }
+
+    // 信頼度クラス（背景色）
+    let cls = "conf-high";
+    if (dayDiff >= 4) cls = "conf-low";
+    else if (dayDiff >= 2) cls = "conf-mid";
+
+    const showDate = (hour === 0 || i === 0) ? fmtDate(h.time[i]) : "";
+
+    cells +=
+      "<div class='ws-col " + cls + "'>"
+      + "<div class='ws-date'>" + showDate + "</div>"
+      + "<div class='ws-time'>" + hour + "時</div>"
+      + "<div class='ws-icon'>" + weatherIcon(h.weathercode[i]) + "</div>"
+      + "<div class='ws-val'>" + (h.precipitation_probability[i] ?? "-") + "%</div>"
+      + "<div class='ws-val'>" + (h.precipitation[i] ?? 0) + "mm</div>"
+      + "<div class='ws-val'>" + (h.relativehumidity_2m[i] ?? "-") + "%</div>"
+      + "<div class='ws-val'>" + Math.round(h.temperature_2m[i]) + "℃</div>"
+      + "<div class='ws-val'>" + Math.round(h.windspeed_10m[i]) + "m/s</div>"
+      + "</div>";
+  }
+
+  strip.innerHTML =
+    "<div class='ws-labels'>"
+    + "<div class='ws-date'>日付</div>"
+    + "<div class='ws-time'>時刻</div>"
+    + "<div class='ws-icon'>天気</div>"
+    + "<div class='ws-val'>降水</div>"
+    + "<div class='ws-val'>雨量</div>"
+    + "<div class='ws-val'>湿度</div>"
+    + "<div class='ws-val'>気温</div>"
+    + "<div class='ws-val'>風速</div>"
+    + "</div>"
+    + "<div class='ws-scroll'>" + cells + "</div>";
 }
 
 function drawChart1(labels, cloud, precip) {
@@ -152,12 +154,7 @@ function drawCloud(canvasId, labels, data, label, color) {
   if (cloudCharts[canvasId]) cloudCharts[canvasId].destroy();
   cloudCharts[canvasId] = new Chart(document.getElementById(canvasId), {
     type: "line",
-    data: {
-      labels,
-      datasets: [
-        { label: label, data: data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 }
-      ]
-    },
+    data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
     options: {
       responsive: true,
       maintainAspectRatio: false,
