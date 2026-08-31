@@ -77,7 +77,6 @@ async function showWeather() {
   document.getElementById("titleWeather").textContent = title + "（天気）";
   document.getElementById("title1").textContent = title;
   document.getElementById("title2").textContent = title;
-  document.getElementById("title3").textContent = title;
 
   const labels = h.time.map(t => fmtDate(t) + " " + fmtTime(t));
 
@@ -125,7 +124,6 @@ async function showWeather() {
     drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
   drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
   drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
-  drawChart3(labels, h.temperature_2m, h.windspeed_10m);
 }
 
 function drawChart1(labels, cloud, precip) {
@@ -169,26 +167,5 @@ function drawCloud(canvasId, labels, data, label, color) {
   });
 }
 
-function drawChart3(labels, temp, wind) {
-  if (chart3) chart3.destroy();
-  chart3 = new Chart(document.getElementById("chart3"), {
-    type: "line",
-    data: {
-      labels,
-      datasets: [
-        { label: "気温（℃）", data: temp, yAxisID: "y", borderColor: "#e53935", pointRadius: 0, tension: 0.3 },
-        { label: "風速（m/s）", data: wind, yAxisID: "y1", borderColor: "#1e88e5", pointRadius: 0, tension: 0.3 }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: "index", intersect: false },
-      scales: {
-        y: { position: "left", title: { display: true, text: "気温（℃）" } },
-        y1: { position: "right", grid: { drawOnChartArea: false }, title: { display: true, text: "風速（m/s）" } }
-      }
-    }
-  });
-}
 
 loadMountains();
