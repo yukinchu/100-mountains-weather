@@ -97,6 +97,7 @@ header h1 { margin: 0; font-size: 20px; }
   border-left: 4px solid #999;
 }
 .cloud-canvas { max-height: 220px; }
+#chart1 { max-height: 220px; }
 
 footer {
   text-align: center;
