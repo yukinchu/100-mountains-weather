@@ -1,218 +1,99 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
+* { box-sizing: border-box; }
 body {
-  font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-  background: #eef2f6;
-  color: #2c3e50;
-  padding: 0 0 40px;
-  line-height: 1.6;
+  font-family: sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+  color: #333;
 }
-
-/* ヘッダー */
 header {
-  background: linear-gradient(135deg, #1a2a4f 0%, #2c5b8f 60%, #4a90d9 100%);
-  padding: 28px 16px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1 {
-  font-size: 26px;
-  text-align: center;
+  background: #2c3e50;
   color: #fff;
-  letter-spacing: 2px;
-  font-weight: 600;
+  padding: 12px 20px;
 }
+header h1 { margin: 0; font-size: 20px; }
 
-/* コントロール */
 .controls {
-  text-align: center;
-  margin: 0 auto 24px;
-  max-width: 1000px;
-  padding: 0 16px;
+  padding: 12px 20px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   gap: 10px;
-}
-.controls label { font-weight: bold; color: #34495e; }
-.controls select {
-  padding: 8px 14px;
-  font-size: 15px;
-  border: 1px solid #b9c6d3;
-  border-radius: 8px;
-  background: #fff;
-  color: #2c3e50;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  cursor: pointer;
-}
-.controls select:focus { outline: none; border-color: #4a90d9; }
-
-/* モデル切替ボタン */
-.model-switch {
-  display: inline-flex;
-  border: 1px solid #4a90d9;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  flex-wrap: wrap;
 }
 .model-btn {
-  padding: 8px 18px;
-  font-size: 14px;
-  border: none;
+  padding: 6px 14px;
+  border: 1px solid #2c3e50;
   background: #fff;
-  color: #4a90d9;
+  color: #2c3e50;
   cursor: pointer;
-  transition: 0.2s;
+  border-radius: 4px;
 }
-.model-btn:hover { background: #eaf4fb; }
 .model-btn.active {
-  background: #4a90d9;
+  background: #2c3e50;
   color: #fff;
-  font-weight: bold;
 }
 
-/* カード */
 .chart-area {
   background: #fff;
-  border: 1px solid #e0e6ec;
-  border-radius: 12px;
-  padding: 18px;
-  margin: 0 auto 22px;
-  max-width: 1000px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-}
-.chart-area h2 {
-  font-size: 15px;
-  text-align: center;
-  margin-bottom: 14px;
-  font-weight: 600;
-  color: #34495e;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #eef2f6;
-}
-
-/* 天気ストリップ（3行・信頼度別） */
-#weatherStrip { display: flex; flex-direction: column; gap: 12px; }
-
-.weather-row {
-  border-radius: 10px;
-  padding: 10px 12px;
-  border-left: 5px solid #ccc;
-}
-.row-label {
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #34495e;
-}
-.row-cells {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* 信頼度カラー */
-.grp-high { background: #e8f5f0; border-left-color: #26a69a; }
-.grp-high .row-label { color: #1b7d70; }
-.grp-mid  { background: #fff8e1; border-left-color: #f5b300; }
-.grp-mid .row-label { color: #b07d00; }
-.grp-low  { background: #f0f2f5; border-left-color: #9aa7b3; }
-.grp-low .row-label { color: #6b7885; }
-
-.weather-cell {
-  flex: 0 0 auto;
-  width: 52px;
-  text-align: center;
-  border: 1px solid rgba(0,0,0,0.06);
+  margin: 16px;
+  padding: 16px;
   border-radius: 8px;
-  padding: 6px 2px;
-  background: rgba(255,255,255,0.7);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.w-date { font-size: 11px; color: #8a99a8; }
-.w-time { font-size: 12px; color: #5a6b7b; font-weight: 500; }
-.w-icon { font-size: 22px; margin-top: 3px; }
+.chart-area h2 { font-size: 16px; margin-top: 0; }
 
-/* フッター */
-footer {
-  text-align: center;
-  font-size: 12px;
-  color: #8a99a8;
-  margin-top: 24px;
+/* ▼ 天気ストリップ（横並びに直す肝の部分） */
+#weatherStrip {
+  display: flex;
+  align-items: stretch;
 }
-
-/* 天気アイコンを確実に横並びに */
-#weatherStrip .row-cells {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  gap: 6px;
-}
-#weatherStrip .weather-cell {
-  display: inline-block;
-  width: 52px;
-}
-
-#weatherStrip .weather-cell {
-  display: inline-flex !important;
+.ws-labels {
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  vertical-align: top;
-}
-.w-date, .w-time, .w-icon { display: block; }
-
-/* 天気セル：枠なし・時系列すっきり版 */
-#weatherStrip .row-cells {
-  display: flex !important;
-  flex-direction: row !important;
-  flex-wrap: wrap !important;
-  gap: 0 !important;
-}
-#weatherStrip .weather-cell {
-  display: inline-flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 44px !important;
-  padding: 2px 0 !important;
-  border: none !important;
-  background: transparent !important;
-}
-#weatherStrip .w-date {
-  font-size: 11px;
-  color: #34495e;
+  border-right: 2px solid #ccc;
+  padding-right: 6px;
   font-weight: bold;
-  height: 16px;
   white-space: nowrap;
 }
-#weatherStrip .w-icon {
-  font-size: 22px;
-  margin: 2px 0;
+.ws-scroll {
+  display: flex;
+  overflow-x: auto;
 }
-#weatherStrip .w-time {
-  font-size: 11px;
-  color: #7a8894;
+.ws-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+  border-right: 1px solid #eee;
 }
+.ws-date, .ws-time, .ws-icon, .ws-val {
+  padding: 4px 2px;
+  text-align: center;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.ws-icon { font-size: 18px; }
 
-/* 雲量3分割グラフ */
-.cloud-block {
-  margin-bottom: 18px;
-}
+/* 信頼度の背景色 */
+.conf-high { background: #ffffff; }
+.conf-mid  { background: #fff7e6; }
+.conf-low  { background: #f0f0f0; }
+
+/* 雲量の説明ブロック */
+.cloud-block { margin-bottom: 24px; }
 .cloud-desc {
-  font-size: 12.5px;
-  color: #4a5a68;
-  background: #f4f8fb;
-  border-left: 4px solid #4a90d9;
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin-bottom: 8px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.6;
+  background: #f9f9f9;
+  padding: 10px;
+  border-left: 4px solid #999;
 }
-.cloud-desc b {
-  color: #2c5b8f;
-  font-size: 13.5px;
-}
-.cloud-canvas {
-  height: 240px !important;
-  max-height: 240px;
+.cloud-canvas { max-height: 220px; }
+
+footer {
+  text-align: center;
+  padding: 16px;
+  color: #888;
+  font-size: 12px;
 }
