@@ -12,6 +12,7 @@ function fmtTime(t) {
   const hh = parseInt(t.slice(11, 13), 10);
   return hh + "時";
 }
+
 function weatherIcon(code) {
   if (code === 0) return "☀️";
   if (code <= 2) return "🌤️";
@@ -39,8 +40,10 @@ async function loadMountains() {
     currentMountain = mountains[select.value];
     showWeather();
   });
+
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
   document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
+
   if (mountains.length > 0) {
     currentMountain = mountains[0];
     showWeather();
@@ -78,4 +81,90 @@ async function showWeather() {
 
   const labels = h.time.map(t => fmtDate(t) + " " + fmtTime(t));
 
-  const strip = document.getElementById("weatherStrip
+  const strip = document.getElementById("weatherStrip");
+  strip.innerHTML = "";
+
+  const baseTime = new Date(h.time[0]);
+
+  const groups = [
+    { label: "1～2日先（信頼度高）", cls: "grp-high", min: 0, max: 2, cells: [] },
+    { label: "3～4日先（おおよその傾向）", cls: "grp-mid", min: 2, max: 4, cells: [] },
+    { label: "5～7日先（参考程度）", cls: "grp-low", min: 4, max: 99, cells: [] }
+  ];
+
+  let lastDate = "";
+  for (let i = 0; i < h.time.length; i += 3) {
+    const t = new Date(h.time[i]);
+    const dayDiff = (t - baseTime) / (1000 * 60 * 60 * 24);
+    const dateStr = fmtDate(h.time[i]);
+    const showDate = (dateStr !== lastDate) ? dateStr : "";
+    lastDate = dateStr;
+
+    const cell =
+      "<span class='weather-cell'>"
+      + "<span class='w-date'>" + showDate + "</span>"
+      + "<span class='w-icon'>" + weatherIcon(h.weathercode[i]) + "</span>"
+      + "<span class='w-time'>" + fmtTime(h.time[i]) + "</span>"
+      + "</span>";
+    for (const g of groups) {
+      if (dayDiff >= g.min && dayDiff < g.max) { g.cells.push(cell); break; }
+    }
+  }
+
+  for (const g of groups) {
+    if (g.cells.length === 0) continue;
+    const row = document.createElement("div");
+    row.className = "weather-row " + g.cls;
+    row.innerHTML =
+      "<div class='row-label'>【" + g.label + "】</div>"
+      + "<div class='row-cells'>" + g.cells.join("") + "</div>";
+    strip.appendChild(row);
+  }
+
+  drawChart1(labels, h.cloudcover, h.precipitation);
+  drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
+  drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
+  drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
+}
+
+function drawChart1(labels, cloud, precip) {
+  if (chart1) chart1.destroy();
+  chart1 = new Chart(document.getElementById("chart1"), {
+    data: {
+      labels,
+      datasets: [
+        { type: "line", label: "雲量（%）", data: cloud, yAxisID: "y", borderColor: "#999", backgroundColor: "rgba(180,180,180,0.4)", fill: true, pointRadius: 0, tension: 0.3 },
+        { type: "bar", label: "降水量（mm）", data: precip, yAxisID: "y1", backgroundColor: "#3399dd" }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
+        y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
+      }
+    }
+  });
+}
+
+function drawCloud(canvasId, labels, data, label, color) {
+  if (cloudCharts[canvasId]) cloudCharts[canvasId].destroy();
+  cloudCharts[canvasId] = new Chart(document.getElementById(canvasId), {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        { label: label, data: data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
+    }
+  });
+}
+
+loadMountains();
