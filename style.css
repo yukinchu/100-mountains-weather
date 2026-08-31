@@ -73,7 +73,13 @@ header h1 { margin: 0; font-size: 20px; }
   font-size: 12px;
   white-space: nowrap;
 }
-.ws-date { min-height: 20px; }
+.ws-date {
+  height: 1.2em;
+  line-height: 1.2em;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  overflow: hidden;
+}
 .ws-icon { font-size: 18px; }
 
 /* 信頼度の背景色 */
