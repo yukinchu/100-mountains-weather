@@ -40,7 +40,10 @@ header h1 { margin: 0; font-size: 20px; }
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
+
 .chart-area h2 { font-size: 16px; margin-top: 0; }
 
 /* ▼ 天気ストリップ（横並びに直す肝の部分） */
