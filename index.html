@@ -26,32 +26,43 @@
 
   <div class="chart-area">
     <h2 id="title1"></h2>
-    <canvas id="chart1"></canvas>
+    <div class="graph-container">
+      <div class="graph-labels">
+        <div class="graph-label-item">
+          <span class="graph-label-text">全体概要</span>
+        </div>
+      </div>
+      <div class="graph-scroll">
+        <div class="graph-block">
+          <canvas id="chart1" class="graph-canvas"></canvas>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="chart-area">
     <h2 id="title2"></h2>
-    <div class="cloud-container">
-      <div class="cloud-labels">
-        <div class="cloud-label-item">
-          <span class="cloud-label-text">下層雲量</span>
+    <div class="graph-container">
+      <div class="graph-labels">
+        <div class="graph-label-item">
+          <span class="graph-label-text">下層雲量</span>
         </div>
-        <div class="cloud-label-item">
-          <span class="cloud-label-text">中層雲量</span>
+        <div class="graph-label-item">
+          <span class="graph-label-text">中層雲量</span>
         </div>
-        <div class="cloud-label-item">
-          <span class="cloud-label-text">上層雲量</span>
+        <div class="graph-label-item">
+          <span class="graph-label-text">上層雲量</span>
         </div>
       </div>
-      <div class="cloud-scroll">
-        <div class="cloud-block">
-          <canvas id="chartLow" class="cloud-canvas"></canvas>
+      <div class="graph-scroll">
+        <div class="graph-block">
+          <canvas id="chartLow" class="graph-canvas"></canvas>
         </div>
-        <div class="cloud-block">
-          <canvas id="chartMid" class="cloud-canvas"></canvas>
+        <div class="graph-block">
+          <canvas id="chartMid" class="graph-canvas"></canvas>
         </div>
-        <div class="cloud-block">
-          <canvas id="chartHigh" class="cloud-canvas"></canvas>
+        <div class="graph-block">
+          <canvas id="chartHigh" class="graph-canvas"></canvas>
         </div>
       </div>
     </div>
