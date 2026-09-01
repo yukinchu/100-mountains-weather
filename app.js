@@ -1,5 +1,7 @@
 let chart1;
-let cloudCharts = {};
+let chartLow;
+let chartMid;
+let chartHigh;
 let currentMountain = null;
 let currentModel = "jma_seamless";
 
@@ -69,7 +71,6 @@ async function showWeather() {
   const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
   document.getElementById("titleWeather").textContent = title + "（天気予測）";
   document.getElementById("title1").textContent = title;
-  document.getElementById("title2").textContent = title;
 
   buildStrip(h);
 
@@ -151,17 +152,44 @@ function drawChart1(labels, cloud, precip) {
 }
 
 function drawCloud(canvasId, labels, data, label, color) {
-  if (cloudCharts[canvasId]) cloudCharts[canvasId].destroy();
-  cloudCharts[canvasId] = new Chart(document.getElementById(canvasId), {
-    type: "line",
-    data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: "index", intersect: false },
-      scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
-    }
-  });
+  let chart;
+  if (canvasId === "chartLow") {
+    if (chartLow) chartLow.destroy();
+    chartLow = new Chart(document.getElementById(canvasId), {
+      type: "line",
+      data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
+      }
+    });
+  } else if (canvasId === "chartMid") {
+    if (chartMid) chartMid.destroy();
+    chartMid = new Chart(document.getElementById(canvasId), {
+      type: "line",
+      data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
+      }
+    });
+  } else if (canvasId === "chartHigh") {
+    if (chartHigh) chartHigh.destroy();
+    chartHigh = new Chart(document.getElementById(canvasId), {
+      type: "line",
+      data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
+      }
+    });
+  }
 }
 
 loadMountains();
