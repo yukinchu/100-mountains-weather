@@ -31,9 +31,32 @@
 
   <div class="chart-area">
     <h2 id="title2"></h2>
-    <div class="cloud-block">
-      <p class="cloud-desc"><b>下層雲量（地表付近〜高度2,000m付近）</b><br>低い空にある雲の量です。登る山の標高と近い場合、この数値が高いと山頂がガス（霧）に包まれて真っ白になり、景色が見えなくなる可能性が高いです。また、雨や悪天候の前兆であることも多いです。</p>
-      <canvas id="chartLow" class="cloud-canvas"></canvas>
+    <div class="cloud-container">
+      <div class="cloud-labels">
+        <div class="cloud-label-item">
+          <p class="cloud-desc"><b>下層雲量（地表付近〜高度2,000m付近）</b><br>低い空にある雲の量です。登る山の標高と近い場合、この数値が高いと山頂がガス（霧）に包まれて真っ白になり、景色が見えなくなる可能性が高いです。また、雨や悪天候の前兆であることも多いです。</p>
+        </div>
+        <div class="cloud-label-item">
+          <p class="cloud-desc"><b>中層雲量（高度およそ2,000〜7,000m）</b><br>空の中ほどにある雲の量です。太陽が薄曇りで見えにくくなったり、天気下り坂のサイン（高層雲や乱層雲など）であることが多いです。</p>
+        </div>
+        <div class="cloud-label-item">
+          <p class="cloud-desc"><b>上層雲量（高度およそ5,000〜13,000m）</b><br>高い空にある薄い雲の量です。日差しが少し弱まる程度で、直ちに視界不良や大雨につながることは少ないですが、天気が下り坂に向かう最初の兆しになることがあります。</p>
+        </div>
+      </div>
+      <div class="cloud-scroll">
+        <div class="cloud-block">
+          <canvas id="chartLow" class="cloud-canvas"></canvas>
+        </div>
+        <div class="cloud-block">
+          <canvas id="chartMid" class="cloud-canvas"></canvas>
+        </div>
+        <div class="cloud-block">
+          <canvas id="chartHigh" class="cloud-canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <canvas id="chartLow" class="cloud-canvas"></canvas>
     </div>
     <div class="cloud-block">
       <p class="cloud-desc"><b>中層雲量（高度およそ2,000〜7,000m）</b><br>空の中ほどにある雲の量です。太陽が薄曇りで見えにくくなったり、天気下り坂のサイン（高層雲や乱層雲など）であることが多いです。</p>
