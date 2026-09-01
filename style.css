@@ -44,6 +44,10 @@ header h1 { margin: 0; font-size: 20px; }
 
 .chart-area h2 { font-size: 16px; margin-top: 0; }
 
+.unified-graphs {
+  margin-bottom: 16px;
+}
+
 /* ▼ 天気ストリップ（横並び） */
 #weatherStrip {
   display: flex;
@@ -56,10 +60,13 @@ header h1 { margin: 0; font-size: 20px; }
   padding-right: 6px;
   font-weight: bold;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .ws-scroll {
   display: flex;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
 }
 .ws-col {
   display: flex;
@@ -112,6 +119,7 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: 1px solid #eee;
   overflow: hidden;
   padding: 8px 4px;
+  min-height: 150px;
 }
 
 .graph-label-item:last-child {
@@ -123,10 +131,11 @@ header h1 { margin: 0; font-size: 20px; }
   -webkit-writing-mode: vertical-rl;
   text-orientation: mixed;
   -webkit-text-orientation: mixed;
-  font-size: 12px;
+  transform: rotate(180deg);
+  font-size: 13px;
   font-weight: bold;
   letter-spacing: 2px;
-  word-spacing: 0;
+  word-break: break-all;
 }
 
 @media (max-width: 768px) {
@@ -135,14 +144,20 @@ header h1 { margin: 0; font-size: 20px; }
     -webkit-writing-mode: horizontal-tb;
     text-orientation: initial;
     -webkit-text-orientation: initial;
+    transform: none;
     letter-spacing: 0;
     font-size: 11px;
     line-height: 1.2;
+    word-break: break-word;
   }
   
   .graph-labels {
     width: auto;
     padding-right: 8px;
+  }
+  
+  .graph-label-item {
+    min-height: auto;
   }
 }
 
@@ -162,6 +177,7 @@ header h1 { margin: 0; font-size: 20px; }
   justify-content: center;
   border-bottom: 1px solid #eee;
   padding: 16px;
+  min-height: 150px;
 }
 
 .graph-block:last-child {
