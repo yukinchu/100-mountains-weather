@@ -189,13 +189,7 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .graph-labels {
-  display: flex;
-  flex-direction: column;
-  border-right: 2px solid #ccc;
-  padding-right: 6px;
-  flex-shrink: 0;
-  width: 60px;
-  background: #f9f9f9;
+  display: none;
 }
 
 .graph-label-item {
