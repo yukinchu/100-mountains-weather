@@ -1,8 +1,8 @@
-# Mountain GPV
+# 100-Mountains-weather
 
 ## 登山者のための気象予報サイト
 
-Mountain GPV は、日本全国の山岳気象を分かりやすく表示するWebサービスです。
+100-Mountains-weather は、日本全国の山岳気象を分かりやすく表示するWebサービスです。
 
 ### 開発目標
 
