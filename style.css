@@ -103,15 +103,24 @@ header h1 { margin: 0; font-size: 20px; }
   border-right: 2px solid #ccc;
   padding-right: 6px;
   flex-shrink: 0;
-  width: 220px;
+  width: 60px;
 }
 
 .cloud-label-item {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-bottom: 1px solid #eee;
   overflow: hidden;
+}
+
+.cloud-label-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .cloud-scroll {
@@ -131,19 +140,50 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: 1px solid #eee;
 }
 
-.cloud-desc {
-  font-size: 13px;
-  line-height: 1.6;
-  background: #f9f9f9;
-  padding: 10px;
-  border-left: 4px solid #999;
-  margin: 0;
-}
-
 .cloud-canvas { 
   max-height: 220px;
   width: 100%;
 }
+
+/* ページ下部の情報セクション */
+.info-section {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.info-section h2 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.info-block {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.info-block:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.info-block h3 {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+}
+
+.info-block p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+  color: #555;
+}
+
 #chart1 { 
   max-height: 150px !important;
 }
