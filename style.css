@@ -131,8 +131,7 @@ header h1 { margin: 0; font-size: 20px; }
   -webkit-writing-mode: vertical-rl;
   text-orientation: mixed;
   -webkit-text-orientation: mixed;
-  transform: rotate(180deg);
-  font-size: 13px;
+   font-size: 13px;
   font-weight: bold;
   letter-spacing: 2px;
   word-break: break-all;
