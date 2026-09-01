@@ -1,6 +1,6 @@
 /*
 =========================================
- Mountain GPV
+ 100-Mountains-weather
  Weather Module
  Version 0.9.0
 =========================================
