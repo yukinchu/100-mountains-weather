@@ -10,7 +10,10 @@ function fmtDate(t) {
   const d = parseInt(t.slice(8, 10), 10);
   return m + "/" + d;
 }
-function fmtHour(t) { return parseInt(t.slice(11, 13), 10); }
+
+function fmtHour(t) { 
+  return parseInt(t.slice(11, 13), 10); 
+}
 
 function weatherIcon(code) {
   if (code === 0) return "☀️";
@@ -29,19 +32,30 @@ async function loadMountains() {
   const res = await fetch("mountains.json");
   const mountains = await res.json();
   const select = document.getElementById("mountainSelect");
+  
   mountains.forEach((m, i) => {
     const opt = document.createElement("option");
     opt.value = i;
     opt.textContent = m.name;
     select.appendChild(opt);
   });
+  
   select.addEventListener("change", () => {
     currentMountain = mountains[select.value];
     showWeather();
   });
-  document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
-  document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
-  if (mountains.length > 0) { currentMountain = mountains[0]; showWeather(); }
+  
+  document.getElementById("btnJMA").addEventListener("click", () => 
+    setModel("jma_seamless", "btnJMA")
+  );
+  document.getElementById("btnECMWF").addEventListener("click", () => 
+    setModel("ecmwf_ifs025", "btnECMWF")
+  );
+  
+  if (mountains.length > 0) { 
+    currentMountain = mountains[0]; 
+    showWeather(); 
+  }
 }
 
 function setModel(model, btnId) {
@@ -63,15 +77,18 @@ async function showWeather() {
     + "&models=" + currentModel
     + "&timezone=Asia%2FTokyo";
 
-  const res = await fetch(url);
-  const data = await res.json();
-  const h = data.hourly;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const h = data.hourly;
 
-  const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
-  const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
-  document.getElementById("title1").textContent = title;
+    const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
+    const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
+    document.getElementById("title1").textContent = title;
 
-  buildStrip(h);
+    buildStrip(h);
 
-  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
-  drawChart1(
+    const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
+    
+    drawChart1(labels, h.cloudcover, h.precipitation);
+    drawCloud("chartLow", labels, h.cloudcover_low,
