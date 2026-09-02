@@ -1,4 +1,5 @@
 * { box-sizing: border-box; }
+
 body {
   font-family: sans-serif;
   margin: 0;
@@ -55,6 +56,7 @@ header h1 {
   margin-bottom: 16px;
 }
 
+/* ▼ 統合ビュー */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
@@ -84,7 +86,7 @@ header h1 {
 }
 
 .label-item {
-  padding: 8px 12px;
+  padding: 8px 6px;
   text-align: center;
   font-size: 11px;
   font-weight: bold;
@@ -93,20 +95,12 @@ header h1 {
   align-items: center;
   justify-content: center;
   flex: 1;
-  min-height: 30px;
   word-break: break-word;
+  line-height: 1.2;
 }
 
 .label-item:last-child {
   border-bottom: none;
-}
-
-.weather-labels {
-  flex: 1;
-}
-
-.graph-labels {
-  flex: 1;
 }
 
 .unified-scroll-wrapper {
@@ -120,7 +114,6 @@ header h1 {
 .weather-section {
   flex-shrink: 0;
   border-bottom: 2px solid #ccc;
-  display: flex;
 }
 
 .graphs-section {
@@ -129,10 +122,10 @@ header h1 {
   overflow: hidden;
 }
 
+/* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
   align-items: stretch;
-  flex: 1;
 }
 
 .ws-labels {
@@ -163,7 +156,7 @@ header h1 {
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
-  min-height: 32px;
+  min-height: 40px;
 }
 
 .ws-date {
@@ -176,7 +169,6 @@ header h1 {
 
 .ws-icon { 
   font-size: 18px; 
-  min-height: auto;
 }
 
 .ws-col:last-child .ws-date,
@@ -186,10 +178,12 @@ header h1 {
   border-right: none;
 }
 
+/* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
+/* ▼ グラフセクション */
 .graph-container {
   display: flex;
   align-items: stretch;
@@ -247,22 +241,23 @@ header h1 {
   justify-content: center;
   border-bottom: 1px solid #eee;
   padding: 16px;
+  position: relative;
 }
 
 .graph-block:last-child {
   border-bottom: none;
 }
 
-.graph-canvas { 
+.graph-block canvas {
   max-height: 200px;
   width: 100%;
-  height: 100%;
 }
 
 #chart1 {
   max-height: 150px !important;
 }
 
+/* ページ下部の情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
