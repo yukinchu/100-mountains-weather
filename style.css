@@ -48,53 +48,82 @@ header h1 { margin: 0; font-size: 20px; }
   margin-bottom: 16px;
 }
 
-/* ▼ 天気表セクション */
-.weather-table-section {
-  margin-bottom: 16px;
-}
-
-.weather-table-container {
+/* ▼ 統合ビュー */
+.unified-container {
   display: flex;
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
 }
 
-.weather-labels {
+.unified-labels {
   flex-shrink: 0;
   border-right: 2px solid #ccc;
   display: flex;
   flex-direction: column;
   background: #f9f9f9;
+  width: 70px;
+}
+
+.weather-label-section,
+.graph-label-section {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid #ccc;
+}
+
+.weather-label-section {
+  flex: 1;
+}
+
+.graph-label-section {
+  flex: 1;
+}
+
+.graph-label-section:last-child {
+  border-bottom: none;
 }
 
 .label-item {
-  padding: 8px 12px;
+  padding: 8px 4px;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
-  min-width: 60px;
+  flex: 1;
+  word-break: break-word;
+  line-height: 1.2;
 }
 
 .label-item:last-child {
   border-bottom: none;
 }
 
-.weather-scroll {
+.unified-scroll-container {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-section {
+  flex-shrink: 0;
+  border-bottom: 2px solid #ccc;
+}
+
+.graphs-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
-  align-items: stretch;
 }
 
 .ws-labels {
@@ -103,7 +132,6 @@ header h1 { margin: 0; font-size: 20px; }
 
 .ws-scroll {
   display: flex;
-  width: 100%;
 }
 
 .ws-col {
@@ -125,14 +153,12 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
-  min-height: 40px;
+  min-height: 32px;
 }
 
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
-  padding-top: 4px;
-  padding-bottom: 4px;
   overflow: hidden;
 }
 
@@ -152,61 +178,7 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
-.graphs-section {
-  margin-top: 16px;
-}
-
-.graphs-container {
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-  height: 600px;
-}
-
-.graph-labels {
-  flex-shrink: 0;
-  border-right: 2px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  background: #f9f9f9;
-  width: 60px;
-}
-
-.graph-label-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  overflow: hidden;
-  padding: 8px 4px;
-}
-
-.graph-label-item:last-child {
-  border-bottom: none;
-}
-
-.graph-label-text {
-  writing-mode: vertical-rl;
-  -webkit-writing-mode: vertical-rl;
-  text-orientation: mixed;
-  -webkit-text-orientation: mixed;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  word-break: break-all;
-}
-
-.graphs-scroll {
-  flex: 1;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
-}
-
+/* ▼ グラフ */
 .graph-block {
   flex: 1;
   min-width: 600px;
@@ -221,8 +193,8 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-.graph-canvas { 
-  max-height: 100%;
+canvas {
+  max-height: 200px;
   width: 100%;
 }
 
@@ -230,7 +202,7 @@ header h1 { margin: 0; font-size: 20px; }
   max-height: 150px !important;
 }
 
-/* ページ下部の情報セクション */
+/* ページ下部 */
 .info-section {
   background: #fff;
   margin: 16px;
