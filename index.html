@@ -20,39 +20,53 @@
   </div>
 
   <div class="chart-area">
-    <h2 id="titleWeather"></h2>
-    <div id="weatherStrip"></div>
-  </div>
-
-  <div class="chart-area unified-graphs">
     <h2 id="title1"></h2>
-    <div class="graph-container">
-      <div class="graph-labels">
-        <div class="graph-label-item">
-          <span class="graph-label-text">全体概要</span>
+    
+    <!-- 統合ビュー：表とグラフを同じスクロール領域 -->
+    <div class="unified-view">
+      <!-- 左側：固定ラベル -->
+      <div class="fixed-labels">
+        <div class="label-group weather-group">
+          <div class="label">日付</div>
+          <div class="label">時刻</div>
+          <div class="label">天気</div>
+          <div class="label">降水</div>
+          <div class="label">雨量</div>
+          <div class="label">湿度</div>
+          <div class="label">気温</div>
+          <div class="label">風速</div>
         </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">下層雲量</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">中層雲量</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">上層雲量</span>
+        <div class="label-group graph-group">
+          <div class="label">全体概要</div>
+          <div class="label">下層雲量</div>
+          <div class="label">中層雲量</div>
+          <div class="label">上層雲量</div>
         </div>
       </div>
-      <div class="graph-scroll">
-        <div class="graph-block">
-          <canvas id="chart1" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartLow" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartMid" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartHigh" class="graph-canvas"></canvas>
+
+      <!-- 右側：スクロール可能なコンテンツ -->
+      <div class="scroll-content" id="scrollContent">
+        <!-- 天気表 -->
+        <div id="weatherStrip"></div>
+        
+        <!-- グラフコンテナ -->
+        <div class="graphs-wrapper">
+          <div class="graph-container">
+            <div class="graph-scroll" id="graphScroll">
+              <div class="graph-item">
+                <canvas id="chart1" class="graph-canvas"></canvas>
+              </div>
+              <div class="graph-item">
+                <canvas id="chartLow" class="graph-canvas"></canvas>
+              </div>
+              <div class="graph-item">
+                <canvas id="chartMid" class="graph-canvas"></canvas>
+              </div>
+              <div class="graph-item">
+                <canvas id="chartHigh" class="graph-canvas"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
