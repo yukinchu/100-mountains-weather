@@ -92,5 +92,4 @@ function buildStrip(h) {
     const t = new Date(h.time[i]);
     const dayDiff = Math.floor((t - baseTime) / (1000 * 60 * 60 * 24));
 
-    if (dayDiff <= 1) { if (hour % 3 !== 0) continue; }
-    else { if (
+    if (dayDiff <= 1) { if (hour % 3 !== 0)
