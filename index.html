@@ -19,61 +19,57 @@
     </span>
   </div>
 
-  <!-- 天気表セクション -->
-  <div class="chart-area weather-table-section">
+  <div class="chart-area">
     <h2 id="title1"></h2>
-    <div class="weather-table-container">
-      <div class="weather-labels">
-        <div class="label-item">日付</div>
-        <div class="label-item">時刻</div>
-        <div class="label-item">天気</div>
-        <div class="label-item">降水</div>
-        <div class="label-item">雨量</div>
-        <div class="label-item">湿度</div>
-        <div class="label-item">気温</div>
-        <div class="label-item">風速</div>
+    
+    <!-- 統合ビュー -->
+    <div class="unified-container">
+      <!-- 左側：ラベル（固定） -->
+      <div class="unified-labels">
+        <div class="weather-label-section">
+          <div class="label-item">日付</div>
+          <div class="label-item">時刻</div>
+          <div class="label-item">天気</div>
+          <div class="label-item">降水確率</div>
+          <div class="label-item">雨量</div>
+          <div class="label-item">湿度</div>
+          <div class="label-item">気温</div>
+          <div class="label-item">風速</div>
+        </div>
+        <div class="graph-label-section">
+          <div class="label-item">全体概要</div>
+          <div class="label-item">下層雲量</div>
+          <div class="label-item">中層雲量</div>
+          <div class="label-item">上層雲量</div>
+        </div>
       </div>
-      <div class="weather-scroll">
-        <div id="weatherStrip"></div>
+
+      <!-- 右側：スクロール可能エリア -->
+      <div class="unified-scroll-container" id="unifiedScroll">
+        <!-- 天気表 -->
+        <div class="weather-section">
+          <div id="weatherStrip"></div>
+        </div>
+
+        <!-- グラフセクション -->
+        <div class="graphs-section">
+          <div class="graph-block">
+            <canvas id="chart1"></canvas>
+          </div>
+          <div class="graph-block">
+            <canvas id="chartLow"></canvas>
+          </div>
+          <div class="graph-block">
+            <canvas id="chartMid"></canvas>
+          </div>
+          <div class="graph-block">
+            <canvas id="chartHigh"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- グラフセクション -->
-  <div class="chart-area graphs-section">
-    <div class="graphs-container">
-      <div class="graph-labels">
-        <div class="graph-label-item">
-          <span class="graph-label-text">全体概要</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">下層雲量</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">中層雲量</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">上層雲量</span>
-        </div>
-      </div>
-      <div class="graphs-scroll">
-        <div class="graph-block">
-          <canvas id="chart1" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartLow" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartMid" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartHigh" class="graph-canvas"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 情報セクション -->
   <div class="info-section">
     <h2>雲量について</h2>
     <div class="info-block">
