@@ -54,6 +54,7 @@ header h1 { margin: 0; font-size: 20px; }
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
+  max-height: 800px;
 }
 
 .unified-labels {
@@ -62,30 +63,22 @@ header h1 { margin: 0; font-size: 20px; }
   display: flex;
   flex-direction: column;
   background: #f9f9f9;
-  width: 70px;
+  width: 80px;
 }
 
-.weather-label-section,
-.graph-label-section {
+.label-section {
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid #ccc;
-}
-
-.weather-label-section {
   flex: 1;
 }
 
-.graph-label-section {
-  flex: 1;
-}
-
-.graph-label-section:last-child {
+.label-section:last-child {
   border-bottom: none;
 }
 
 .label-item {
-  padding: 8px 4px;
+  padding: 8px 6px;
   text-align: center;
   font-size: 11px;
   font-weight: bold;
@@ -95,14 +88,13 @@ header h1 { margin: 0; font-size: 20px; }
   justify-content: center;
   flex: 1;
   word-break: break-word;
-  line-height: 1.2;
 }
 
 .label-item:last-child {
   border-bottom: none;
 }
 
-.unified-scroll-container {
+.unified-scroll-wrapper {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -119,11 +111,13 @@ header h1 { margin: 0; font-size: 20px; }
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
+  align-items: stretch;
 }
 
 .ws-labels {
@@ -132,6 +126,7 @@ header h1 { margin: 0; font-size: 20px; }
 
 .ws-scroll {
   display: flex;
+  width: 100%;
 }
 
 .ws-col {
@@ -159,11 +154,13 @@ header h1 { margin: 0; font-size: 20px; }
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
+  padding-top: 4px;
+  padding-bottom: 4px;
   overflow: hidden;
 }
 
 .ws-icon { 
-  font-size: 18px; 
+  font-size: 18px;
 }
 
 .ws-col:last-child .ws-date,
@@ -178,7 +175,7 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフ */
+/* ▼ グラフセクション */
 .graph-block {
   flex: 1;
   min-width: 600px;
@@ -193,16 +190,17 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-canvas {
+.graph-canvas { 
   max-height: 200px;
   width: 100%;
+  height: auto;
 }
 
 #chart1 {
   max-height: 150px !important;
 }
 
-/* ページ下部 */
+/* ページ下部の情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
