@@ -22,51 +22,39 @@
   <div class="chart-area">
     <h2 id="title1"></h2>
     <div class="unified-container">
-
-      <!-- 左側：項目ラベル（固定） -->
+      <!-- 左側ラベル固定 -->
       <div class="unified-labels">
-        <div class="weather-label-section">
-          <div class="label-item">日付</div>
-          <div class="label-item">時刻</div>
-          <div class="label-item">天気</div>
-          <div class="label-item">降水</div>
-          <div class="label-item">雨量</div>
-          <div class="label-item">湿度</div>
-          <div class="label-item">気温</div>
-          <div class="label-item">風速</div>
+        <div class="label-item">日付</div>
+        <div class="label-item">時刻</div>
+        <div class="label-item">天気</div>
+        <div class="label-item">降水</div>
+        <div class="label-item">雨量</div>
+        <div class="label-item">湿度</div>
+        <div class="label-item">気温</div>
+        <div class="label-item border-bottom">風速</div>
+        <div class="label-item graph-label">全体概要</div>
+        <div class="label-item graph-label">下層雲量</div>
+        <div class="label-item graph-label">中層雲量</div>
+        <div class="label-item graph-label">上層雲量</div>
+      </div>
+      <!-- 右側スクロール -->
+      <div class="unified-scroll" id="unifiedScroll">
+        <!-- 天気ストリップ -->
+        <div id="weatherStrip"></div>
+        <!-- グラフ -->
+        <div class="graph-block">
+          <canvas id="chart1"></canvas>
         </div>
-        <div class="graph-label-section">
-          <div class="label-item">全体概要</div>
-          <div class="label-item">下層雲量</div>
-          <div class="label-item">中層雲量</div>
-          <div class="label-item">上層雲量</div>
+        <div class="graph-block">
+          <canvas id="chartLow"></canvas>
+        </div>
+        <div class="graph-block">
+          <canvas id="chartMid"></canvas>
+        </div>
+        <div class="graph-block">
+          <canvas id="chartHigh"></canvas>
         </div>
       </div>
-
-      <!-- 右側：スクロール可能な内容 -->
-      <div class="unified-scroll-wrapper" id="unifiedScroll">
-        <!-- 天気表 -->
-        <div class="weather-section">
-          <div id="weatherStrip"></div>
-        </div>
-
-        <!-- 4つのグラフ -->
-        <div class="graphs-section">
-          <div class="graph-block">
-            <canvas id="chart1" class="graph-canvas"></canvas>
-          </div>
-          <div class="graph-block">
-            <canvas id="chartLow" class="graph-canvas"></canvas>
-          </div>
-          <div class="graph-block">
-            <canvas id="chartMid" class="graph-canvas"></canvas>
-          </div>
-          <div class="graph-block">
-            <canvas id="chartHigh" class="graph-canvas"></canvas>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -87,7 +75,6 @@
   </div>
 
   <footer><p>データ提供：Open-Meteo</p></footer>
-
   <script src="app.js"></script>
 </body>
 </html>
