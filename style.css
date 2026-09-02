@@ -42,19 +42,26 @@ header h1 { margin: 0; font-size: 20px; }
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.chart-area h2 {
-  font-size: 16px;
-  margin-top: 0;
+.chart-area h2 { font-size: 16px; margin-top: 0; }
+
+.unified-graphs {
+  margin-bottom: 16px;
 }
 
-/* ▼ 天気ストリップ */
+/* ▼ 天気ストリップ（横並び） */
 #weatherStrip {
   display: flex;
   align-items: stretch;
 }
-
-
-
+.ws-labels {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ccc;
+  padding-right: 6px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 .ws-scroll {
   display: flex;
   overflow-x: auto;
@@ -67,7 +74,6 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   min-width: 52px;
   border-right: 1px solid #eee;
-  flex-shrink: 0;
 }
 .ws-date, .ws-time, .ws-icon, .ws-val {
   padding: 4px 2px;
@@ -89,12 +95,13 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフ共通デザイン */
+/* ▼ グラフ共通デザイン（統一） */
 .graph-container {
   display: flex;
   align-items: stretch;
   gap: 0;
 }
+
 .graph-labels {
   display: flex;
   flex-direction: column;
@@ -103,6 +110,7 @@ header h1 { margin: 0; font-size: 20px; }
   flex-shrink: 0;
   width: 60px;
 }
+
 .graph-label-item {
   flex: 1;
   display: flex;
@@ -113,9 +121,11 @@ header h1 { margin: 0; font-size: 20px; }
   padding: 8px 4px;
   min-height: 150px;
 }
+
 .graph-label-item:last-child {
   border-bottom: none;
 }
+
 .graph-label-text {
   writing-mode: vertical-rl;
   -webkit-writing-mode: vertical-rl;
@@ -126,6 +136,7 @@ header h1 { margin: 0; font-size: 20px; }
   letter-spacing: 2px;
   word-break: break-all;
 }
+
 .graph-scroll {
   display: flex;
   flex-direction: column;
@@ -133,6 +144,7 @@ header h1 { margin: 0; font-size: 20px; }
   -webkit-overflow-scrolling: touch;
   flex: 1;
 }
+
 .graph-block {
   flex: 1;
   min-width: 600px;
@@ -143,13 +155,16 @@ header h1 { margin: 0; font-size: 20px; }
   padding: 16px;
   min-height: 150px;
 }
+
 .graph-block:last-child {
   border-bottom: none;
 }
-.graph-canvas {
+
+.graph-canvas { 
   max-height: 200px;
   width: 100%;
 }
+
 #chart1 {
   max-height: 150px !important;
 }
@@ -162,25 +177,30 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
 .info-section h2 {
   font-size: 16px;
   margin-top: 0;
 }
+
 .info-block {
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #eee;
 }
+
 .info-block:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
 }
+
 .info-block h3 {
   font-size: 14px;
   margin: 0 0 8px 0;
   color: #2c3e50;
 }
+
 .info-block p {
   font-size: 13px;
   line-height: 1.6;
