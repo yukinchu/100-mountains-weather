@@ -52,14 +52,9 @@ header h1 { margin: 0; font-size: 20px; }
   display: flex;
   align-items: stretch;
 }
+
 .ws-labels {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  border-right: 2px solid #ccc;
-  padding-right: 6px;
-  font-weight: bold;
-  background: #f9f9f9;
+  display: none;
 }
 
 .ws-scroll {
