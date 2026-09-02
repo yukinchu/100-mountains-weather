@@ -42,13 +42,13 @@ header h1 { margin: 0; font-size: 20px; }
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.chart-area h2 { 
-  font-size: 16px; 
+.chart-area h2 {
+  font-size: 16px;
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-/* ▼ 統合ビュー */
+/* ▼ 統合コンテナ */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
@@ -56,21 +56,20 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
-/* ▼ 左側ラベル（固定） */
+/* ▼ 左側固定ラベル */
 .unified-labels {
   flex-shrink: 0;
   border-right: 2px solid #ccc;
   display: flex;
   flex-direction: column;
   background: #f9f9f9;
-  width: 80px;
+  width: 70px;
 }
 
 .label-section {
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid #ccc;
-  flex: 1;
 }
 
 .label-section:last-child {
@@ -78,16 +77,15 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .label-item {
-  padding: 8px 4px;
-  text-align: center;
   font-size: 11px;
   font-weight: bold;
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  min-height: 30px;
+  text-align: center;
+  padding: 4px;
+  min-height: 32px;
   word-break: break-word;
 }
 
@@ -95,8 +93,8 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-/* ▼ 右側スクロールラッパー */
-.unified-scroll-wrapper {
+/* ▼ 右側スクロール領域 */
+.unified-scroll-container {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -104,20 +102,14 @@ header h1 { margin: 0; font-size: 20px; }
   flex-direction: column;
 }
 
-.weather-section {
+/* ▼ 天気ストリップ */
+.weather-display {
   flex-shrink: 0;
   border-bottom: 2px solid #ccc;
 }
 
-.graphs-section {
-  flex: 1;
-  display: flex;
-}
-
-/* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
-  align-items: stretch;
 }
 
 .ws-labels {
@@ -126,7 +118,6 @@ header h1 { margin: 0; font-size: 20px; }
 
 .ws-scroll {
   display: flex;
-  width: 100%;
 }
 
 .ws-col {
@@ -139,11 +130,11 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .ws-date, .ws-time, .ws-icon, .ws-val {
+  width: 100%;
   padding: 4px 2px;
   text-align: center;
   font-size: 12px;
   white-space: nowrap;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,12 +145,10 @@ header h1 { margin: 0; font-size: 20px; }
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
-  padding-top: 4px;
-  padding-bottom: 4px;
   overflow: hidden;
 }
 
-.ws-icon { 
+.ws-icon {
   font-size: 18px;
 }
 
@@ -168,79 +157,34 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
-.graph-container {
-  display: flex;
-  align-items: stretch;
-  width: 100%;
-}
-
-/* ▼ グラフ左ラベル（graph-labelsはここで1回だけ定義） */
-.graph-label-area {
-  display: flex;
-  flex-direction: column;
-  border-right: 2px solid #ccc;
-  flex-shrink: 0;
-  width: 60px;
-  background: #f9f9f9;
-}
-
-.graph-label-item {
+/* ▼ グラフ表示 */
+.graphs-display {
   flex: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  overflow: hidden;
-  padding: 8px 4px;
-  min-height: 150px;
-}
-
-.graph-label-item:last-child {
-  border-bottom: none;
-}
-
-.graph-label-text {
-  writing-mode: vertical-rl;
-  -webkit-writing-mode: vertical-rl;
-  text-orientation: mixed;
-  -webkit-text-orientation: mixed;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  word-break: break-all;
-}
-
-.graph-scroll {
-  display: flex;
   flex-direction: column;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  flex: 1;
 }
 
-.graph-block {
+.graph-wrap {
   flex: 1;
   min-width: 600px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  padding: 16px;
-  min-height: 150px;
+  min-height: 160px;
 }
 
-.graph-block:last-child {
+.graph-wrap:last-child {
   border-bottom: none;
 }
 
-.graph-canvas { 
-  max-height: 200px;
-  width: 100%;
+.graph-wrap canvas {
+  width: 100% !important;
+  max-height: 140px;
 }
 
 #chart1 {
-  max-height: 150px !important;
+  max-height: 130px !important;
 }
 
 /* ページ下部の情報セクション */
