@@ -101,10 +101,9 @@ header h1 { margin: 0; font-size: 20px; }
   flex: 0.6;
 }
 
-.scroll-content {
+.scroll-wrapper {
   flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -184,6 +183,7 @@ header h1 { margin: 0; font-size: 20px; }
   justify-content: center;
   border-right: 1px solid #eee;
   padding: 16px;
+  position: relative;
 }
 
 .graph-item:last-child {
