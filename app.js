@@ -60,3 +60,18 @@ async function showWeather() {
     + "?latitude=" + m.lat
     + "&longitude=" + m.lon
     + "&hourly=temperature_2m,precipitation,precipitation_probability,relativehumidity_2m,weathercode,windspeed_10m,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
+    + "&models=" + currentModel
+    + "&timezone=Asia%2FTokyo";
+
+  const res = await fetch(url);
+  const data = await res.json();
+  const h = data.hourly;
+
+  const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
+  const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
+  document.getElementById("title1").textContent = title;
+
+  buildStrip(h);
+
+  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
+  drawChart1(
