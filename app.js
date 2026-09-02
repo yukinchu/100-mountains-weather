@@ -130,15 +130,25 @@ function drawChart1(labels, cloud, precip) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: true }
+      },
       scales: {
+        x: {
+          ticks: {
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 10
+          }
+        },
         y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
         y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
       }
     }
   });
 }
-
 function drawCloud(canvasId, labels, data, label, color) {
   if (canvasId === "chartLow") {
     if (chartLow) chartLow.destroy();
