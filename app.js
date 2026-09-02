@@ -70,30 +70,7 @@ async function showWeather() {
   const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
   const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
   document.getElementById("title1").textContent = title;
-  document.getElementById("titleWeather").textContent = title + "（天気予測）";
 
   buildStrip(h);
 
-  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
-  drawChart1(labels, h.cloudcover, h.precipitation);
-  drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
-  drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
-  drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
-}
-
-function buildStrip(h) {
-  const strip = document.getElementById("weatherStrip");
-  strip.innerHTML = "";
-  const baseTime = new Date(h.time[0]);
-  let cells = "";
-
-  for (let i = 0; i < h.time.length; i++) {
-    const hour = fmtHour(h.time[i]);
-    const t = new Date(h.time[i]);
-    const dayDiff = Math.floor((t - baseTime) / (1000 * 60 * 60 * 24));
-
-    if (dayDiff <= 1) { if (hour % 3 !== 0) continue; }
-    else { if (hour % 6 !== 0) continue; }
-
-    let cls = "conf-high";
-    if (
+  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) +
