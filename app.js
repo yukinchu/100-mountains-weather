@@ -10,10 +10,7 @@ function fmtDate(t) {
   const d = parseInt(t.slice(8, 10), 10);
   return m + "/" + d;
 }
-
-function fmtHour(t) { 
-  return parseInt(t.slice(11, 13), 10); 
-}
+function fmtHour(t) { return parseInt(t.slice(11, 13), 10); }
 
 function weatherIcon(code) {
   if (code === 0) return "☀️";
@@ -44,10 +41,7 @@ async function loadMountains() {
   });
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
   document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
-  if (mountains.length > 0) { 
-    currentMountain = mountains[0]; 
-    showWeather(); 
-  }
+  if (mountains.length > 0) { currentMountain = mountains[0]; showWeather(); }
 }
 
 function setModel(model, btnId) {
@@ -130,43 +124,16 @@ function drawChart1(labels, cloud, precip) {
     data: {
       labels,
       datasets: [
-        { 
-          type: "line", 
-          label: "雲量（%）", 
-          data: cloud, 
-          yAxisID: "y", 
-          borderColor: "#999", 
-          backgroundColor: "rgba(180,180,180,0.4)", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        },
-        { 
-          type: "bar", 
-          label: "降水量（mm）", 
-          data: precip, 
-          yAxisID: "y1", 
-          backgroundColor: "#3399dd" 
-        }
+        { type: "line", label: "雲量（%）", data: cloud, yAxisID: "y", borderColor: "#999", backgroundColor: "rgba(180,180,180,0.4)", fill: true, pointRadius: 0, tension: 0.3 },
+        { type: "bar", label: "降水量（mm）", data: precip, yAxisID: "y1", backgroundColor: "#3399dd" }
       ]
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
       scales: {
-        y: { 
-          position: "left", 
-          min: 0, 
-          max: 100, 
-          title: { display: true, text: "雲量（%）" } 
-        },
-        y1: { 
-          position: "right", 
-          min: 0, 
-          grid: { drawOnChartArea: false }, 
-          title: { display: true, text: "降水量（mm）" } 
-        }
+        y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
+        y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
       }
     }
   });
@@ -177,87 +144,36 @@ function drawCloud(canvasId, labels, data, label, color) {
     if (chartLow) chartLow.destroy();
     chartLow = new Chart(document.getElementById(canvasId), {
       type: "line",
-      data: { 
-        labels, 
-        datasets: [ { 
-          label, 
-          data, 
-          borderColor: color, 
-          backgroundColor: color + "33", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        } ] 
-      },
+      data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 100, 
-            title: { display: true, text: "雲量（%）" } 
-          } 
-        }
+        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
       }
     });
   } else if (canvasId === "chartMid") {
     if (chartMid) chartMid.destroy();
     chartMid = new Chart(document.getElementById(canvasId), {
       type: "line",
-      data: { 
-        labels, 
-        datasets: [ { 
-          label, 
-          data, 
-          borderColor: color, 
-          backgroundColor: color + "33", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        } ] 
-      },
+      data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 100, 
-            title: { display: true, text: "雲量（%）" } 
-          } 
-        }
+        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
       }
     });
   } else if (canvasId === "chartHigh") {
     if (chartHigh) chartHigh.destroy();
     chartHigh = new Chart(document.getElementById(canvasId), {
       type: "line",
-      data: { 
-        labels, 
-        datasets: [ { 
-          label, 
-          data, 
-          borderColor: color, 
-          backgroundColor: color + "33", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        } ] 
-      },
+      data: { labels, datasets: [ { label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 } ] },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 100, 
-            title: { display: true, text: "雲量（%）" } 
-          } 
-        }
+        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
       }
     });
   }
@@ -269,20 +185,12 @@ function syncScroll() {
 
   if (!scrollWrapper || !graphScroll) return;
 
-  let isSyncing = false;
-
   scrollWrapper.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
     graphScroll.scrollLeft = scrollWrapper.scrollLeft;
-    isSyncing = false;
   });
 
   graphScroll.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
     scrollWrapper.scrollLeft = graphScroll.scrollLeft;
-    isSyncing = false;
   });
 }
 
