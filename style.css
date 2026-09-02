@@ -41,75 +41,32 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
 .chart-area h2 {
   font-size: 16px;
   margin-top: 0;
-  margin-bottom: 12px;
 }
 
-/* 統合コンテナ */
-.unified-container {
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-/* 左側ラベル（固定） */
-.unified-labels {
-  flex-shrink: 0;
-  width: 70px;
-  border-right: 2px solid #ccc;
-  background: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-}
-
-.label-item {
-  font-size: 11px;
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  padding: 4px 2px;
-  height: 32px;
-  word-break: break-word;
-}
-
-.label-item.border-bottom {
-  border-bottom: 2px solid #ccc;
-}
-
-.label-item.graph-label {
-  height: 170px;
-  writing-mode: vertical-rl;
-  -webkit-writing-mode: vertical-rl;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-/* 右側スクロール */
-.unified-scroll {
-  flex: 1;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 天気ストリップ */
+/* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
-  border-bottom: 2px solid #ccc;
+  align-items: stretch;
+}
+.ws-labels {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ccc;
+  padding-right: 6px;
+  font-weight: bold;
+  white-space: nowrap;
   flex-shrink: 0;
 }
-
 .ws-scroll {
   display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
 }
-
 .ws-col {
   display: flex;
   flex-direction: column;
@@ -118,52 +75,92 @@ header h1 { margin: 0; font-size: 20px; }
   border-right: 1px solid #eee;
   flex-shrink: 0;
 }
-
 .ws-date, .ws-time, .ws-icon, .ws-val {
   padding: 4px 2px;
   text-align: center;
   font-size: 12px;
   white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  height: 32px;
-  width: 100%;
 }
-
 .ws-date {
+  height: 1.6em;
+  line-height: 1.6em;
+  padding-top: 4px;
+  padding-bottom: 4px;
   overflow: hidden;
 }
-
-.ws-icon { font-size: 16px; }
+.ws-icon { font-size: 18px; }
 
 /* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* グラフブロック */
-.graph-block {
-  min-width: 600px;
-  height: 170px;
-  padding: 8px 16px;
-  border-bottom: 1px solid #eee;
+/* ▼ グラフ共通デザイン */
+.graph-container {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+.graph-labels {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ccc;
+  padding-right: 6px;
   flex-shrink: 0;
+  width: 60px;
+}
+.graph-label-item {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  padding: 8px 4px;
+  min-height: 150px;
 }
-
+.graph-label-item:last-child {
+  border-bottom: none;
+}
+.graph-label-text {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  -webkit-text-orientation: mixed;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  word-break: break-all;
+}
+.graph-scroll {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+.graph-block {
+  flex: 1;
+  min-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  padding: 16px;
+  min-height: 150px;
+}
 .graph-block:last-child {
   border-bottom: none;
 }
-
-.graph-block canvas {
-  width: 100% !important;
-  height: 150px !important;
+.graph-canvas {
+  max-height: 200px;
+  width: 100%;
+}
+#chart1 {
+  max-height: 150px !important;
 }
 
-/* 情報セクション */
+/* ページ下部の情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
@@ -171,7 +168,10 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.info-section h2 { font-size: 16px; margin-top: 0; }
+.info-section h2 {
+  font-size: 16px;
+  margin-top: 0;
+}
 .info-block {
   margin-bottom: 16px;
   padding-bottom: 16px;
