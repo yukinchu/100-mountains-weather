@@ -41,53 +41,108 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+.chart-area h2 { font-size: 16px; margin-top: 0; margin-bottom: 12px; }
 
-.chart-area h2 { font-size: 16px; margin-top: 0; }
-
-.unified-graphs {
-  margin-bottom: 16px;
-}
-
-/* ▼ 天気ストリップ（横並び） */
-#weatherStrip {
+/* ▼ 統合コンテナ */
+.unified-container {
   display: flex;
-  align-items: stretch;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
 }
-.ws-labels {
+
+/* ▼ 左側固定ラベル */
+.unified-labels {
+  flex-shrink: 0;
+  width: 64px;
+  border-right: 2px solid #ccc;
+  background: #f9f9f9;
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #ccc;
-  padding-right: 6px;
-  font-weight: bold;
-  white-space: nowrap;
-  flex-shrink: 0;
 }
-.ws-scroll {
+
+.label-weather {
   display: flex;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  flex-direction: column;
+  border-bottom: 2px solid #ccc;
+}
+
+.label-graphs {
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
+
+.label-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px 2px;
+  border-bottom: 1px solid #eee;
+  height: 32px;
+  word-break: break-all;
+}
+
+.label-item:last-child {
+  border-bottom: none;
+}
+
+.label-item.graph-item {
+  writing-mode: horizontal-tb;
+  height: 150px;
+  font-size: 11px;
+}
+
+/* ▼ 右側スクロールエリア */
+.unified-scroll {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ▼ 天気表 */
+.weather-section {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  flex-shrink: 0;
+}
+
+.ws-scroll {
+  display: flex;
+}
+
 .ws-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 52px;
   border-right: 1px solid #eee;
+  flex-shrink: 0;
 }
+
 .ws-date, .ws-time, .ws-icon, .ws-val {
   padding: 4px 2px;
   text-align: center;
   font-size: 12px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  height: 32px;
+  width: 100%;
 }
+
 .ws-date {
-  height: 1.6em;
-  line-height: 1.6em;
-  padding-top: 4px;
-  padding-bottom: 4px;
+  height: 32px;
   overflow: hidden;
 }
+
 .ws-icon { font-size: 18px; }
 
 /* 信頼度の背景色 */
@@ -95,78 +150,35 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフ共通デザイン（統一） */
-.graph-container {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-}
-
-.graph-labels {
+/* ▼ グラフセクション */
+.graphs-section {
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #ccc;
-  padding-right: 6px;
-  flex-shrink: 0;
-  width: 60px;
-}
-
-.graph-label-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  overflow: hidden;
-  padding: 8px 4px;
-  min-height: 150px;
-}
-
-.graph-label-item:last-child {
-  border-bottom: none;
-}
-
-.graph-label-text {
-  writing-mode: vertical-rl;
-  -webkit-writing-mode: vertical-rl;
-  text-orientation: mixed;
-  -webkit-text-orientation: mixed;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  word-break: break-all;
-}
-
-.graph-scroll {
-  display: flex;
-  flex-direction: column;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   flex: 1;
 }
 
 .graph-block {
-  flex: 1;
   min-width: 600px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
-  padding: 16px;
-  min-height: 150px;
+  padding: 8px 16px;
 }
 
 .graph-block:last-child {
   border-bottom: none;
 }
 
-.graph-canvas { 
-  max-height: 200px;
-  width: 100%;
+.graph-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 134px;
 }
 
 #chart1 {
-  max-height: 150px !important;
+  max-height: 134px !important;
 }
 
 /* ページ下部の情報セクション */
@@ -177,36 +189,19 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
-.info-section h2 {
-  font-size: 16px;
-  margin-top: 0;
-}
-
+.info-section h2 { font-size: 16px; margin-top: 0; }
 .info-block {
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #eee;
 }
-
 .info-block:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
 }
-
-.info-block h3 {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-  color: #2c3e50;
-}
-
-.info-block p {
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 0;
-  color: #555;
-}
+.info-block h3 { font-size: 14px; margin: 0 0 8px 0; color: #2c3e50; }
+.info-block p { font-size: 13px; line-height: 1.6; margin: 0; color: #555; }
 
 footer {
   text-align: center;
