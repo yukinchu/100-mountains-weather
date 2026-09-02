@@ -80,7 +80,6 @@ async function showWeather() {
     drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
     drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
     drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
-    syncScroll();
   }, 100);
 }
 
@@ -117,7 +116,19 @@ function buildStrip(h) {
       + "</div>";
   }
 
-  strip.innerHTML = "<div class='ws-scroll'>" + cells + "</div>";
+  /* ▼ ここが変更点：左側に項目名ラベルを追加 */
+  strip.innerHTML =
+    "<div class='ws-labels'>"
+    + "<div class='ws-date'>日付</div>"
+    + "<div class='ws-time'>時刻</div>"
+    + "<div class='ws-icon'>天気</div>"
+    + "<div class='ws-val'>降水</div>"
+    + "<div class='ws-val'>雨量</div>"
+    + "<div class='ws-val'>湿度</div>"
+    + "<div class='ws-val'>気温</div>"
+    + "<div class='ws-val'>風速</div>"
+    + "</div>"
+    + "<div class='ws-scroll'>" + cells + "</div>";
 }
 
 function drawChart1(labels, cloud, precip) {
@@ -185,29 +196,6 @@ function drawCloud(canvasId, labels, data, label, color) {
       }
     });
   }
-}
-
-function syncScroll() {
-  const scrollWrapper = document.querySelector(".unified-scroll-wrapper");
-  const graphScroll = document.getElementById("graphScroll");
-
-  if (!scrollWrapper || !graphScroll) return;
-
-  let isSyncing = false;
-
-  scrollWrapper.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
-    graphScroll.scrollLeft = scrollWrapper.scrollLeft;
-    isSyncing = false;
-  });
-
-  graphScroll.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
-    scrollWrapper.scrollLeft = graphScroll.scrollLeft;
-    isSyncing = false;
-  });
 }
 
 loadMountains();
