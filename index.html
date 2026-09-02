@@ -19,36 +19,52 @@
     </span>
   </div>
 
-  <div class="chart-area unified-graphs">
+  <div class="chart-area">
     <h2 id="title1"></h2>
-    <div class="graph-container">
-      <div class="graph-labels">
-        <div class="graph-label-item">
-          <span class="graph-label-text">全体概要</span>
+    <div class="unified-container">
+
+      <!-- 左側：固定ラベル -->
+      <div class="unified-labels">
+        <div class="label-weather">
+          <div class="label-item">日付</div>
+          <div class="label-item">時刻</div>
+          <div class="label-item">天気</div>
+          <div class="label-item">降水</div>
+          <div class="label-item">雨量</div>
+          <div class="label-item">湿度</div>
+          <div class="label-item">気温</div>
+          <div class="label-item">風速</div>
         </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">下層雲量</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">中層雲量</span>
-        </div>
-        <div class="graph-label-item">
-          <span class="graph-label-text">上層雲量</span>
+        <div class="label-graphs">
+          <div class="label-item graph-item">全体概要</div>
+          <div class="label-item graph-item">下層雲量</div>
+          <div class="label-item graph-item">中層雲量</div>
+          <div class="label-item graph-item">上層雲量</div>
         </div>
       </div>
-      <div class="graph-scroll">
-        <div class="graph-block">
-          <canvas id="chart1" class="graph-canvas"></canvas>
+
+      <!-- 右側：横スクロール -->
+      <div class="unified-scroll" id="unifiedScroll">
+
+        <!-- 天気表 -->
+        <div class="weather-section" id="weatherStrip"></div>
+
+        <!-- グラフ -->
+        <div class="graphs-section">
+          <div class="graph-block">
+            <canvas id="chart1" class="graph-canvas"></canvas>
+          </div>
+          <div class="graph-block">
+            <canvas id="chartLow" class="graph-canvas"></canvas>
+          </div>
+          <div class="graph-block">
+            <canvas id="chartMid" class="graph-canvas"></canvas>
+          </div>
+          <div class="graph-block">
+            <canvas id="chartHigh" class="graph-canvas"></canvas>
+          </div>
         </div>
-        <div class="graph-block">
-          <canvas id="chartLow" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartMid" class="graph-canvas"></canvas>
-        </div>
-        <div class="graph-block">
-          <canvas id="chartHigh" class="graph-canvas"></canvas>
-        </div>
+
       </div>
     </div>
   </div>
@@ -70,7 +86,6 @@
   </div>
 
   <footer><p>データ提供：Open-Meteo</p></footer>
-
   <script src="app.js"></script>
 </body>
 </html>
