@@ -71,4 +71,7 @@ async function showWeather() {
   const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
   document.getElementById("title1").textContent = title;
 
-  buildStrip
+  buildStrip(h);
+
+  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
+  drawChart1(labels
