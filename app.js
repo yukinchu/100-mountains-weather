@@ -78,8 +78,6 @@ async function showWeather() {
   drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
   drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
   drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
-
-  syncScroll();
 }
 
 function buildStrip(h) {
@@ -132,23 +130,16 @@ function drawChart1(labels, cloud, precip) {
       responsive: true,
       maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
-      plugins: {
-        legend: { display: true }
-      },
+      plugins: { legend: { display: true } },
       scales: {
-        x: {
-          ticks: {
-            maxRotation: 0,
-            autoSkip: true,
-            maxTicksLimit: 10
-          }
-        },
+        x: { ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 10 } },
         y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
         y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
       }
     }
   });
 }
+
 function drawCloud(canvasId, labels, data, label, color) {
   if (canvasId === "chartLow") {
     if (chartLow) chartLow.destroy();
@@ -187,29 +178,6 @@ function drawCloud(canvasId, labels, data, label, color) {
       }
     });
   }
-}
-
-function syncScroll() {
-  const scrollWrapper = document.querySelector(".unified-scroll-wrapper");
-  const graphScroll = document.getElementById("graphScroll");
-
-  if (!scrollWrapper || !graphScroll) return;
-
-  let isSyncing = false;
-
-  scrollWrapper.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
-    graphScroll.scrollLeft = scrollWrapper.scrollLeft;
-    isSyncing = false;
-  });
-
-  graphScroll.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
-    scrollWrapper.scrollLeft = graphScroll.scrollLeft;
-    isSyncing = false;
-  });
 }
 
 loadMountains();
