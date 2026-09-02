@@ -1,22 +1,16 @@
 * { box-sizing: border-box; }
-
 body {
   font-family: sans-serif;
   margin: 0;
   background: #f5f5f5;
   color: #333;
 }
-
 header {
   background: #2c3e50;
   color: #fff;
   padding: 12px 20px;
 }
-
-header h1 { 
-  margin: 0; 
-  font-size: 20px; 
-}
+header h1 { margin: 0; font-size: 20px; }
 
 .controls {
   padding: 12px 20px;
@@ -27,7 +21,6 @@ header h1 {
   gap: 10px;
   flex-wrap: wrap;
 }
-
 .model-btn {
   padding: 6px 14px;
   border: 1px solid #2c3e50;
@@ -36,7 +29,6 @@ header h1 {
   cursor: pointer;
   border-radius: 4px;
 }
-
 .model-btn.active {
   background: #2c3e50;
   color: #fff;
@@ -50,115 +42,45 @@ header h1 {
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.chart-area h2 { 
-  font-size: 16px; 
-  margin-top: 0;
+.chart-area h2 { font-size: 16px; margin-top: 0; }
+
+.unified-graphs {
   margin-bottom: 16px;
 }
 
-/* ▼ 統合ビュー */
-.unified-container {
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
-  height: 800px;
-}
-
-.unified-labels {
-  flex-shrink: 0;
-  border-right: 2px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  background: #f9f9f9;
-  width: 80px;
-}
-
-.label-section {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 2px solid #ccc;
-  flex: 1;
-}
-
-.label-section:last-child {
-  border-bottom: none;
-}
-
-.label-item {
-  padding: 8px 6px;
-  text-align: center;
-  font-size: 11px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  word-break: break-word;
-  line-height: 1.2;
-}
-
-.label-item:last-child {
-  border-bottom: none;
-}
-
-.unified-scroll-wrapper {
-  flex: 1;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
-}
-
-.weather-section {
-  flex-shrink: 0;
-  border-bottom: 2px solid #ccc;
-}
-
-.graphs-section {
-  flex: 1;
-  display: flex;
-  overflow: hidden;
-}
-
-/* ▼ 天気ストリップ */
+/* ▼ 天気ストリップ（横並び） */
 #weatherStrip {
   display: flex;
   align-items: stretch;
 }
-
 .ws-labels {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ccc;
+  padding-right: 6px;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-
 .ws-scroll {
   display: flex;
-  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
 }
-
 .ws-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 52px;
   border-right: 1px solid #eee;
-  flex-shrink: 0;
 }
-
 .ws-date, .ws-time, .ws-icon, .ws-val {
   padding: 4px 2px;
   text-align: center;
   font-size: 12px;
   white-space: nowrap;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  min-height: 40px;
 }
-
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
@@ -166,38 +88,27 @@ header h1 {
   padding-bottom: 4px;
   overflow: hidden;
 }
-
-.ws-icon { 
-  font-size: 18px; 
-}
-
-.ws-col:last-child .ws-date,
-.ws-col:last-child .ws-time,
-.ws-col:last-child .ws-icon,
-.ws-col:last-child .ws-val {
-  border-right: none;
-}
+.ws-icon { font-size: 18px; }
 
 /* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
+/* ▼ グラフ共通デザイン（統一） */
 .graph-container {
   display: flex;
   align-items: stretch;
-  width: 100%;
-  flex: 1;
+  gap: 0;
 }
 
 .graph-labels {
   display: flex;
   flex-direction: column;
   border-right: 2px solid #ccc;
+  padding-right: 6px;
   flex-shrink: 0;
   width: 60px;
-  background: #f9f9f9;
 }
 
 .graph-label-item {
@@ -208,6 +119,7 @@ header h1 {
   border-bottom: 1px solid #eee;
   overflow: hidden;
   padding: 8px 4px;
+  min-height: 150px;
 }
 
 .graph-label-item:last-child {
@@ -241,14 +153,13 @@ header h1 {
   justify-content: center;
   border-bottom: 1px solid #eee;
   padding: 16px;
-  position: relative;
 }
 
 .graph-block:last-child {
   border-bottom: none;
 }
 
-.graph-block canvas {
+.graph-canvas { 
   max-height: 200px;
   width: 100%;
 }
