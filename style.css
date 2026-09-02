@@ -157,6 +157,39 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
+/* ▼ グラフラベル */
+.graph-labels {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ccc;
+  flex-shrink: 0;
+  width: 60px;
+  background: #f9f9f9;
+}
+
+.graph-label-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  padding: 8px 4px;
+  min-height: 160px;
+}
+
+.graph-label-item:last-child {
+  border-bottom: none;
+}
+
+.graph-label-text {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
 /* ▼ グラフ表示 */
 .graphs-display {
   flex: 1;
