@@ -5,12 +5,17 @@ body {
   background: #f5f5f5;
   color: #333;
 }
+
 header {
   background: #2c3e50;
   color: #fff;
   padding: 12px 20px;
 }
-header h1 { margin: 0; font-size: 20px; }
+
+header h1 { 
+  margin: 0; 
+  font-size: 20px; 
+}
 
 .controls {
   padding: 12px 20px;
@@ -21,6 +26,7 @@ header h1 { margin: 0; font-size: 20px; }
   gap: 10px;
   flex-wrap: wrap;
 }
+
 .model-btn {
   padding: 6px 14px;
   border: 1px solid #2c3e50;
@@ -29,6 +35,7 @@ header h1 { margin: 0; font-size: 20px; }
   cursor: pointer;
   border-radius: 4px;
 }
+
 .model-btn.active {
   background: #2c3e50;
   color: #fff;
@@ -48,13 +55,12 @@ header h1 { margin: 0; font-size: 20px; }
   margin-bottom: 16px;
 }
 
-/* ▼ 統合ビュー */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
-  height: 900px;
+  height: 800px;
 }
 
 .unified-labels {
@@ -87,6 +93,7 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   justify-content: center;
   flex: 1;
+  min-height: 30px;
   word-break: break-word;
 }
 
@@ -98,7 +105,7 @@ header h1 { margin: 0; font-size: 20px; }
   flex: 1;
 }
 
-.graph-labels-section {
+.graph-labels {
   flex: 1;
 }
 
@@ -122,7 +129,6 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
-/* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
   align-items: stretch;
@@ -157,6 +163,7 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
+  min-height: 32px;
 }
 
 .ws-date {
@@ -169,6 +176,7 @@ header h1 { margin: 0; font-size: 20px; }
 
 .ws-icon { 
   font-size: 18px; 
+  min-height: auto;
 }
 
 .ws-col:last-child .ws-date,
@@ -178,17 +186,21 @@ header h1 { margin: 0; font-size: 20px; }
   border-right: none;
 }
 
-/* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
+.graph-container {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+}
+
 .graph-labels {
   display: flex;
   flex-direction: column;
   border-right: 2px solid #ccc;
-  padding-right: 6px;
   flex-shrink: 0;
   width: 60px;
   background: #f9f9f9;
@@ -251,7 +263,6 @@ header h1 { margin: 0; font-size: 20px; }
   max-height: 150px !important;
 }
 
-/* ページ下部の情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
