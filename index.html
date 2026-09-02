@@ -21,9 +21,7 @@
 
   <div class="chart-area">
     <h2 id="title1"></h2>
-    
     <div class="unified-container">
-      <!-- 左側：ラベル（固定） -->
       <div class="unified-labels">
         <div class="label-section weather-section-label">
           <div class="label-item">日付</div>
@@ -42,18 +40,21 @@
           <div class="label-item">上層雲量</div>
         </div>
       </div>
-
-      <!-- 右側：スクロール可能エリア -->
       <div class="unified-scroll-container" id="scrollContainer">
-        <!-- 天気表 -->
         <div class="weather-display" id="weatherStrip"></div>
-
-        <!-- グラフ -->
         <div class="graphs-display">
-          <canvas id="chart1" class="unified-canvas"></canvas>
-          <canvas id="chartLow" class="unified-canvas"></canvas>
-          <canvas id="chartMid" class="unified-canvas"></canvas>
-          <canvas id="chartHigh" class="unified-canvas"></canvas>
+          <div class="graph-wrap">
+            <canvas id="chart1"></canvas>
+          </div>
+          <div class="graph-wrap">
+            <canvas id="chartLow"></canvas>
+          </div>
+          <div class="graph-wrap">
+            <canvas id="chartMid"></canvas>
+          </div>
+          <div class="graph-wrap">
+            <canvas id="chartHigh"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -76,7 +77,6 @@
   </div>
 
   <footer><p>データ提供：Open-Meteo</p></footer>
-
   <script src="app.js"></script>
 </body>
 </html>
