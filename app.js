@@ -180,18 +180,7 @@ function drawCloud(canvasId, labels, data, label, color) {
 }
 
 function syncScroll() {
-  const scrollWrapper = document.querySelector(".unified-scroll-wrapper");
-  const graphScroll = document.getElementById("graphScroll");
-  
-  if (!scrollWrapper || !graphScroll) return;
-  
-  scrollWrapper.addEventListener("scroll", () => {
-    graphScroll.scrollLeft = scrollWrapper.scrollLeft;
-  });
-  
-  graphScroll.addEventListener("scroll", () => {
-    scrollWrapper.scrollLeft = graphScroll.scrollLeft;
-  });
+  // 統合ビューがない場合は、スクロール同期は不要
+  // （現在の構造では天気表とグラフは別のセクション）
 }
-
 loadMountains();
