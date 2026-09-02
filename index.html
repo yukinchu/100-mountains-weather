@@ -22,36 +22,44 @@
   <div class="chart-area">
     <h2 id="title1"></h2>
     <div class="unified-container">
-      <div class="unified-labels">
-        <div class="label-section weather-labels">
-          <div class="label-item">日付</div>
-          <div class="label-item">時刻</div>
-          <div class="label-item">天気</div>
-          <div class="label-item">降水</div>
-          <div class="label-item">雨量</div>
-          <div class="label-item">湿度</div>
-          <div class="label-item">気温</div>
-          <div class="label-item">風速</div>
+
+      <!-- 左側ラベル固定 -->
+      <div class="left-labels">
+        <div class="left-weather-labels">
+          <div class="left-item">日付</div>
+          <div class="left-item">時刻</div>
+          <div class="left-item">天気</div>
+          <div class="left-item">降水</div>
+          <div class="left-item">雨量</div>
+          <div class="left-item">湿度</div>
+          <div class="left-item">気温</div>
+          <div class="left-item">風速</div>
         </div>
-        <div class="label-section graph-labels">
-          <div class="label-item graph-label-item">
+        <div class="left-graph-labels">
+          <div class="left-item graph-item">
             <span class="graph-label-text">全体概要</span>
           </div>
-          <div class="label-item graph-label-item">
+          <div class="left-item graph-item">
             <span class="graph-label-text">下層雲量</span>
           </div>
-          <div class="label-item graph-label-item">
+          <div class="left-item graph-item">
             <span class="graph-label-text">中層雲量</span>
           </div>
-          <div class="label-item graph-label-item">
+          <div class="left-item graph-item">
             <span class="graph-label-text">上層雲量</span>
           </div>
         </div>
       </div>
-      <div class="unified-scroll-wrapper" id="unifiedScroll">
+
+      <!-- 右側スクロール -->
+      <div class="right-scroll" id="rightScroll">
+
+        <!-- 天気表 -->
         <div class="weather-section">
           <div id="weatherStrip"></div>
         </div>
+
+        <!-- グラフ -->
         <div class="graphs-section">
           <div class="graph-block">
             <canvas id="chart1" class="graph-canvas"></canvas>
@@ -66,6 +74,7 @@
             <canvas id="chartHigh" class="graph-canvas"></canvas>
           </div>
         </div>
+
       </div>
     </div>
   </div>
