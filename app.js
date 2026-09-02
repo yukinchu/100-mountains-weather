@@ -10,10 +10,7 @@ function fmtDate(t) {
   const d = parseInt(t.slice(8, 10), 10);
   return m + "/" + d;
 }
-
-function fmtHour(t) { 
-  return parseInt(t.slice(11, 13), 10); 
-}
+function fmtHour(t) { return parseInt(t.slice(11, 13), 10); }
 
 function weatherIcon(code) {
   if (code === 0) return "☀️";
@@ -43,4 +40,57 @@ async function loadMountains() {
     showWeather();
   });
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
-  document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_
+  document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
+  if (mountains.length > 0) { currentMountain = mountains[0]; showWeather(); }
+}
+
+function setModel(model, btnId) {
+  currentModel = model;
+  document.getElementById("btnJMA").classList.remove("active");
+  document.getElementById("btnECMWF").classList.remove("active");
+  document.getElementById(btnId).classList.add("active");
+  showWeather();
+}
+
+async function showWeather() {
+  const m = currentMountain;
+  if (!m) return;
+
+  const url = "https://api.open-meteo.com/v1/forecast"
+    + "?latitude=" + m.lat
+    + "&longitude=" + m.lon
+    + "&hourly=temperature_2m,precipitation,precipitation_probability,relativehumidity_2m,weathercode,windspeed_10m,cloudcover,cloudcover_low,cloudcover_mid,cloudcover_high"
+    + "&models=" + currentModel
+    + "&timezone=Asia%2FTokyo";
+
+  const res = await fetch(url);
+  const data = await res.json();
+  const h = data.hourly;
+
+  const modelName = currentModel === "jma_seamless" ? "JMA" : "ECMWF";
+  const title = m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
+  document.getElementById("titleWeather").textContent = title + "（天気予測）";
+  document.getElementById("title1").textContent = title;
+
+  buildStrip(h);
+
+  const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
+  drawChart1(labels, h.cloudcover, h.precipitation);
+  drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
+  drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
+  drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
+}
+
+function buildStrip(h) {
+  const strip = document.getElementById("weatherStrip");
+  strip.innerHTML = "";
+  const baseTime = new Date(h.time[0]);
+  let cells = "";
+
+  for (let i = 0; i < h.time.length; i++) {
+    const hour = fmtHour(h.time[i]);
+    const t = new Date(h.time[i]);
+    const dayDiff = Math.floor((t - baseTime) / (1000 * 60 * 60 * 24));
+
+    if (dayDiff <= 1) { if (hour % 3 !== 0) continue; }
+    else { if (
