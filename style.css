@@ -48,72 +48,57 @@ header h1 { margin: 0; font-size: 20px; }
   margin-bottom: 16px;
 }
 
-.unified-view {
+/* ▼ 天気表セクション */
+.weather-table-section {
+  margin-bottom: 16px;
+}
+
+.weather-table-container {
   display: flex;
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
-  height: 700px;
 }
 
-.fixed-labels {
+.weather-labels {
   flex-shrink: 0;
   border-right: 2px solid #ccc;
   display: flex;
   flex-direction: column;
   background: #f9f9f9;
-  width: 80px;
 }
 
-.label-group {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 2px solid #ccc;
-  flex: 1;
-}
-
-.label-group:last-child {
-  border-bottom: none;
-}
-
-.label {
-  padding: 8px;
+.label-item {
+  padding: 8px 12px;
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: bold;
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  word-break: break-word;
+  min-height: 40px;
+  min-width: 60px;
 }
 
-.label:last-child {
+.label-item:last-child {
   border-bottom: none;
 }
 
-.weather-group {
-  flex: 0.4;
-}
-
-.graph-group {
-  flex: 0.6;
-}
-
-.scroll-wrapper {
+.weather-scroll {
   flex: 1;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-#weatherStrip {
-  flex-shrink: 0;
-  display: flex;
-  border-bottom: 2px solid #ccc;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+/* ▼ 天気ストリップ */
+#weatherStrip {
+  display: flex;
+  align-items: stretch;
+}
+
+.ws-labels {
+  display: none;
 }
 
 .ws-scroll {
@@ -140,15 +125,20 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
-  min-height: 32px;
+  min-height: 40px;
 }
 
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  overflow: hidden;
 }
 
-.ws-icon { font-size: 18px; }
+.ws-icon { 
+  font-size: 18px; 
+}
 
 .ws-col:last-child .ws-date,
 .ws-col:last-child .ws-time,
@@ -157,48 +147,90 @@ header h1 { margin: 0; font-size: 20px; }
   border-right: none;
 }
 
+/* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-.graphs-wrapper {
-  flex: 1;
-  display: flex;
-  overflow: hidden;
+/* ▼ グラフセクション */
+.graphs-section {
+  margin-top: 16px;
 }
 
-.graph-scroll {
+.graphs-container {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 600px;
+}
+
+.graph-labels {
+  flex-shrink: 0;
+  border-right: 2px solid #ccc;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  flex: 1;
+  background: #f9f9f9;
+  width: 60px;
 }
 
-.graph-item {
+.graph-label-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  padding: 8px 4px;
+}
+
+.graph-label-item:last-child {
+  border-bottom: none;
+}
+
+.graph-label-text {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  -webkit-text-orientation: mixed;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  word-break: break-all;
+}
+
+.graphs-scroll {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-block {
   flex: 1;
   min-width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   padding: 16px;
-  position: relative;
 }
 
-.graph-item:last-child {
-  border-right: none;
+.graph-block:last-child {
+  border-bottom: none;
 }
 
-canvas {
-  max-height: 250px;
+.graph-canvas { 
+  max-height: 100%;
   width: 100%;
 }
 
 #chart1 {
-  max-height: 200px !important;
+  max-height: 150px !important;
 }
 
+/* ページ下部の情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
