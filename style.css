@@ -53,9 +53,7 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: stretch;
 }
 
-.ws-labels {
-  display: none;
-}
+
 
 .ws-scroll {
   display: flex;
