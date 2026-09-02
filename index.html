@@ -19,23 +19,23 @@
     </span>
   </div>
 
-  <div class="chart-area unified-view">
+  <div class="chart-area">
     <h2 id="title1"></h2>
     
     <div class="unified-container">
-      <!-- 左側：項目ラベル（固定） -->
+      <!-- 左側：ラベル（固定） -->
       <div class="unified-labels">
-        <div class="label-section weather-labels">
+        <div class="label-section weather-section-label">
           <div class="label-item">日付</div>
           <div class="label-item">時刻</div>
           <div class="label-item">天気</div>
-          <div class="label-item">降水</div>
+          <div class="label-item">降水確率</div>
           <div class="label-item">雨量</div>
           <div class="label-item">湿度</div>
           <div class="label-item">気温</div>
           <div class="label-item">風速</div>
         </div>
-        <div class="label-section graph-labels">
+        <div class="label-section graph-section-label">
           <div class="label-item">全体概要</div>
           <div class="label-item">下層雲量</div>
           <div class="label-item">中層雲量</div>
@@ -43,27 +43,17 @@
         </div>
       </div>
 
-      <!-- 右側：スクロール可能な内容 -->
-      <div class="unified-scroll-wrapper" id="unifiedScroll">
+      <!-- 右側：スクロール可能エリア -->
+      <div class="unified-scroll-container" id="scrollContainer">
         <!-- 天気表 -->
-        <div class="weather-section">
-          <div id="weatherStrip"></div>
-        </div>
+        <div class="weather-display" id="weatherStrip"></div>
 
-        <!-- 4つのグラフ -->
-        <div class="graphs-section">
-          <div class="graph-block">
-            <canvas id="chart1" class="graph-canvas"></canvas>
-          </div>
-          <div class="graph-block">
-            <canvas id="chartLow" class="graph-canvas"></canvas>
-          </div>
-          <div class="graph-block">
-            <canvas id="chartMid" class="graph-canvas"></canvas>
-          </div>
-          <div class="graph-block">
-            <canvas id="chartHigh" class="graph-canvas"></canvas>
-          </div>
+        <!-- グラフ -->
+        <div class="graphs-display">
+          <canvas id="chart1" class="unified-canvas"></canvas>
+          <canvas id="chartLow" class="unified-canvas"></canvas>
+          <canvas id="chartMid" class="unified-canvas"></canvas>
+          <canvas id="chartHigh" class="unified-canvas"></canvas>
         </div>
       </div>
     </div>
