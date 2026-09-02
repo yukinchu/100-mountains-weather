@@ -48,13 +48,20 @@ header h1 { margin: 0; font-size: 20px; }
   margin-bottom: 16px;
 }
 
-/* ▼ 統合ビュー */
+/* ▼ 統合ビュー（表とグラフを分離） */
 .unified-container {
   display: flex;
+  flex-direction: column;
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow: hidden;
-  max-height: 800px;
+}
+
+/* === 表セクション === */
+.weather-section {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  flex-shrink: 0;
 }
 
 .unified-labels {
@@ -69,16 +76,11 @@ header h1 { margin: 0; font-size: 20px; }
 .label-section {
   display: flex;
   flex-direction: column;
-  border-bottom: 2px solid #ccc;
   flex: 1;
 }
 
-.label-section:last-child {
-  border-bottom: none;
-}
-
 .label-item {
-  padding: 8px 6px;
+  padding: 8px 12px;
   text-align: center;
   font-size: 11px;
   font-weight: bold;
@@ -87,6 +89,7 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   justify-content: center;
   flex: 1;
+  min-height: 30px;
   word-break: break-word;
 }
 
@@ -94,30 +97,16 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-.unified-scroll-wrapper {
-  flex: 1;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.weather-labels {
   display: flex;
   flex-direction: column;
 }
 
-.weather-section {
-  flex-shrink: 0;
-  border-bottom: 2px solid #ccc;
-}
-
-.graphs-section {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-/* ▼ 天気ストリップ */
+/* ▼ 天気ストリップ（横並び） */
 #weatherStrip {
   display: flex;
   align-items: stretch;
+  flex: 1;
 }
 
 .ws-labels {
@@ -160,7 +149,7 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .ws-icon { 
-  font-size: 18px;
+  font-size: 18px; 
 }
 
 .ws-col:last-child .ws-date,
@@ -175,7 +164,71 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
+/* === グラフセクション === */
+.graphs-section {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.graph-container {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  flex: 1;
+}
+
+.graph-labels {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ccc;
+  padding-right: 6px;
+  flex-shrink: 0;
+  width: 80px;
+  background: #f9f9f9;
+}
+
+.graph-label-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
+  padding: 8px 4px;
+}
+
+.graph-label-item:last-child {
+  border-bottom: none;
+}
+
+.graph-label-text {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  -webkit-text-orientation: mixed;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  word-break: break-all;
+}
+
+.unified-scroll-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-scroll {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
 .graph-block {
   flex: 1;
   min-width: 600px;
@@ -193,7 +246,7 @@ header h1 { margin: 0; font-size: 20px; }
 .graph-canvas { 
   max-height: 200px;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 #chart1 {
