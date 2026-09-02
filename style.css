@@ -170,9 +170,10 @@ header h1 { margin: 0; font-size: 20px; }
 
 .graph-scroll {
   display: flex;
+  flex-direction: column;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
+  flex: 1;
 }
 
 .graph-item {
