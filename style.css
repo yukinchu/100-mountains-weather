@@ -42,13 +42,13 @@ header h1 { margin: 0; font-size: 20px; }
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.chart-area h2 { 
-  font-size: 16px; 
+.chart-area h2 {
+  font-size: 16px;
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-/* ▼ 統合ビュー */
+/* ▼ 統合コンテナ */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
@@ -56,13 +56,14 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
+/* ▼ 左側固定ラベル */
 .unified-labels {
   flex-shrink: 0;
   border-right: 2px solid #ccc;
   display: flex;
   flex-direction: column;
   background: #f9f9f9;
-  width: 80px;
+  width: 70px;
 }
 
 .label-section {
@@ -76,14 +77,14 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .label-item {
-  padding: 4px 8px;
-  text-align: center;
   font-size: 11px;
   font-weight: bold;
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 4px;
   min-height: 32px;
   word-break: break-word;
 }
@@ -92,6 +93,21 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
+.graph-label-item {
+  flex: 1;
+  min-height: 150px;
+}
+
+.graph-label-text {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* ▼ 右側スクロール */
 .unified-scroll-wrapper {
   flex: 1;
   overflow-x: auto;
@@ -108,12 +124,12 @@ header h1 { margin: 0; font-size: 20px; }
 .graphs-section {
   flex: 1;
   display: flex;
+  flex-direction: column;
 }
 
 /* ▼ 天気ストリップ */
 #weatherStrip {
   display: flex;
-  align-items: stretch;
 }
 
 .ws-labels {
@@ -122,7 +138,6 @@ header h1 { margin: 0; font-size: 20px; }
 
 .ws-scroll {
   display: flex;
-  width: 100%;
 }
 
 .ws-col {
@@ -135,6 +150,7 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .ws-date, .ws-time, .ws-icon, .ws-val {
+  width: 100%;
   padding: 4px 2px;
   text-align: center;
   font-size: 12px;
@@ -144,7 +160,6 @@ header h1 { margin: 0; font-size: 20px; }
   justify-content: center;
   border-bottom: 1px solid #eee;
   min-height: 32px;
-  width: 100%;
 }
 
 .ws-date {
@@ -153,7 +168,7 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
-.ws-icon { 
+.ws-icon {
   font-size: 18px;
 }
 
@@ -162,40 +177,23 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
-.graph-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.graph-labels {
-  display: none;
-}
-
-.graph-scroll {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
+/* ▼ グラフブロック */
 .graph-block {
   min-width: 600px;
+  border-bottom: 1px solid #eee;
+  padding: 8px 16px;
+  min-height: 150px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  padding: 16px;
-  min-height: 150px;
 }
 
 .graph-block:last-child {
   border-bottom: none;
 }
 
-.graph-canvas { 
-  max-height: 200px;
-  width: 100%;
+.graph-canvas {
+  width: 100% !important;
+  max-height: 150px;
 }
 
 #chart1 {
