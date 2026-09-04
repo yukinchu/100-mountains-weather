@@ -86,13 +86,11 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
+/* グラフ用ラベル：グラフ本体と同じ120pxに統一 */
 .graph-label-section .label-item {
-  min-height: 121px;
-  height: 121px;
-}
-.graph-label-section .label-item:last-child {
   min-height: 120px;
   height: 120px;
+  border-bottom: none;
 }
 
 .unified-scroll-wrapper {
@@ -155,14 +153,10 @@ header h1 { margin: 0; font-size: 20px; }
   flex-direction: column;
 }
 
+/* ★ border-bottomを削除し二重線を解消。高さ120pxに統一 */
 .graph-block {
-  height: 121px;
-  border-bottom: 1px solid #eee;
-  flex-shrink: 0;
-}
-.graph-block:last-child {
   height: 120px;
-  border-bottom: none;
+  flex-shrink: 0;
 }
 
 .graph-block canvas {
