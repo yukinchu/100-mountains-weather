@@ -119,7 +119,7 @@ function makeChartOptions(hasY1) {
     options.scales.y1 = {
       display: false,
       min: 0,
-      max: 10,
+      max: 20,
       position: "right",
       grid: { drawOnChartArea: false }
     };
@@ -140,9 +140,9 @@ function drawChart1(labels, cloud, precip) {
           data: cloud,
           yAxisID: "y",
           borderColor: "#888",
-          backgroundColor: "rgba(150,150,150,0.6)",
+          backgroundColor: "transparent",
           borderWidth: 2,
-          fill: true,
+          fill: false,
           pointRadius: 0,
           tension: 0.3
         },
@@ -151,7 +151,9 @@ function drawChart1(labels, cloud, precip) {
           label: "降水量",
           data: precip,
           yAxisID: "y1",
-          backgroundColor: "rgba(30,120,200,0.85)"
+          backgroundColor: "rgba(30,120,200,0.85)",
+          barPercentage: 0.5,
+          categoryPercentage: 0.5
         }
       ]
     },
@@ -174,9 +176,9 @@ function drawCloud(canvasId, labels, data, color) {
           label: "雲量",
           data: data,
           borderColor: color,
-          backgroundColor: color + "88",
+          backgroundColor: "transparent",
           borderWidth: 2,
-          fill: true,
+          fill: false,
           pointRadius: 0,
           tension: 0.3
         }
