@@ -8,16 +8,34 @@ header h1 { margin: 0; font-size: 20px; }
 .legend { color: #888; }
 .status { padding: 20px; text-align: center; color: #888; }
 
-.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px; }
+.table-wrap {
+  overflow: auto;                    /* 縦横両方スクロール可能に */
+  -webkit-overflow-scrolling: touch;
+  margin: 12px;
+  max-height: 80vh;                  /* 画面の高さの8割で固定 */
+}
 table { border-collapse: collapse; background: #fff; font-size: 11px; }
 
 thead th {
-  position: sticky; top: 0;
-  background: #eef2f5; border: 1px solid #ddd;
-  padding: 3px 5px; white-space: nowrap; z-index: 2;
+  position: sticky;
+  top: 0;
+  background: #eef2f5;
+  border: 1px solid #ddd;
+  padding: 3px 5px;
+  white-space: nowrap;
+  z-index: 2;
 }
-.date-row th { background: #dbe4ea; font-weight: bold; }
 
+/* 日付行（1段目）と時刻行（2段目）の位置を分ける */
+.date-row th {
+  top: 0;                            /* 1段目は一番上 */
+  background: #dbe4ea;
+  font-weight: bold;
+  z-index: 3;
+}
+thead tr:last-child th {
+  top: 27px;                         /* 2段目は1段目の下に固定 */
+}
 /* 山名列（左固定） */
 .mt-name {
   position: sticky; left: 0; z-index: 3;
