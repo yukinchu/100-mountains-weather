@@ -104,9 +104,12 @@ function makeChartOptions(hasY1) {
     },
     scales: {
       x: {
-        display: false,   // ★ X軸ラベルを完全に非表示
+        display: true,        // ★ 軸を表示（線を出すため）
+        ticks: {
+          display: false      // ★ 文字（時刻）だけ非表示
+        },
         grid: {
-          display: true   // 縦のグリッド線は残す（時間の目安になる）
+          display: true       // ★ 縦のグリッド線を表示
         }
       },
       y: {
@@ -126,6 +129,7 @@ function makeChartOptions(hasY1) {
   }
   return options;
 }
+
 function drawChart1(labels, cloud, precip) {
   if (chart1) { chart1.destroy(); chart1 = null; }
   const ctx = document.getElementById("chart1").getContext("2d");
