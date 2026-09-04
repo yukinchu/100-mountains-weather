@@ -86,9 +86,13 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-/* グラフラベルの高さをグラフ本体(120px)に合わせる */
 .graph-label-section .label-item {
+  min-height: 121px;
+  height: 121px;
+}
+.graph-label-section .label-item:last-child {
   min-height: 120px;
+  height: 120px;
 }
 
 .unified-scroll-wrapper {
@@ -142,7 +146,6 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション（修正の核心部分） */
 .graphs-section {
   flex-shrink: 0;
 }
@@ -153,20 +156,19 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .graph-block {
-  height: 120px;
+  height: 121px;
   border-bottom: 1px solid #eee;
   flex-shrink: 0;
 }
 .graph-block:last-child {
+  height: 120px;
   border-bottom: none;
 }
 
-/* position:absolute と !important を削除（これが原因でした） */
 .graph-block canvas {
   display: block;
 }
 
-/* 情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
