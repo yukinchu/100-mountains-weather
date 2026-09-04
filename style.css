@@ -41,14 +41,13 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
 .chart-area h2 {
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 16px;
 }
 
-/* ▼ 統合コンテナ */
+/* 統合コンテナ */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
@@ -56,7 +55,7 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
-/* ▼ 左側ラベル（固定） */
+/* 左ラベル固定 */
 .unified-labels {
   flex-shrink: 0;
   border-right: 2px solid #ccc;
@@ -65,17 +64,14 @@ header h1 { margin: 0; font-size: 20px; }
   background: #f9f9f9;
   width: 70px;
 }
-
 .label-section {
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid #ccc;
 }
-
 .label-section:last-child {
   border-bottom: none;
 }
-
 .label-item {
   font-size: 11px;
   font-weight: bold;
@@ -88,36 +84,32 @@ header h1 { margin: 0; font-size: 20px; }
   min-height: 32px;
   word-break: break-word;
 }
-
 .label-item:last-child {
   border-bottom: none;
 }
 
-/* ▼ 右側スクロール領域 */
+/* 右スクロール領域 */
 .unified-scroll-wrapper {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
-/* ▼ 天気表セクション */
+/* 天気表 */
 .weather-section {
   flex-shrink: 0;
   border-bottom: 2px solid #ccc;
 }
-
 #weatherStrip {
   display: flex;
   align-items: stretch;
 }
-
 .ws-scroll {
   display: flex;
 }
-
-/* 1列の幅：グラフの列幅と合わせる基準 */
 .ws-col {
   display: flex;
   flex-direction: column;
@@ -128,7 +120,6 @@ header h1 { margin: 0; font-size: 20px; }
   border-right: 1px solid #eee;
   flex-shrink: 0;
 }
-
 .ws-date, .ws-time, .ws-icon, .ws-val {
   width: 100%;
   padding: 4px 2px;
@@ -141,48 +132,83 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: 1px solid #eee;
   min-height: 32px;
 }
-
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
   overflow: hidden;
 }
+.ws-icon { font-size: 18px; }
 
-.ws-icon {
-  font-size: 18px;
-}
-
-/* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフセクション */
+/* グラフセクション */
 .graphs-section {
-  flex: 1;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
-.graph-scroll {
+/* グラフ行コンテナ：幅はJSで動的設定 */
+.graph-rows {
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
+/* 各グラフブロック：高さ固定・幅はJSで設定 */
 .graph-block {
-  width: 100%;
-  display: flex;
-  align-items: stretch;
+  height: 120px;
   border-bottom: 1px solid #eee;
-  min-height: 130px;
-  height: 130px;
-  padding: 4px 0;
+  position: relative;
+  flex-shrink: 0;
 }
-
 .graph-block:last-child {
   border-bottom: none;
 }
 
-.graph-canvas {
+/* canvasはブロックいっぱいに */
+.graph-block canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100% !important;
-  height: 120px !important;
+  height: 100% !important;
+}
+
+/* 情報セクション */
+.info-section {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.info-section h2 { font-size: 16px; margin-top: 0; }
+.info-block {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+}
+.info-block:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.info-block h3 {
+  font-size: 14px;
+  margin: 0 0 8px 0;
+  color: #2c3e50;
+}
+.info-block p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+  color: #555;
+}
+
+footer {
+  text-align: center;
+  padding: 16px;
+  color: #888;
+  font-size: 12px;
 }
