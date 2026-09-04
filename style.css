@@ -41,13 +41,14 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.chart-area h2 {
-  font-size: 16px;
+
+.chart-area h2 { 
+  font-size: 16px; 
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
-/* ▼ 統合コンテナ */
+/* ▼ 統合ビュー */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
@@ -55,70 +56,55 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
-/* ▼ 左側ラベル（固定） */
+/* 左側固定ラベル */
 .unified-labels {
   flex-shrink: 0;
-  width: 70px;
   border-right: 2px solid #ccc;
-  background: #f9f9f9;
   display: flex;
   flex-direction: column;
+  background: #f9f9f9;
+  width: 60px;
 }
 
-.label-weather {
+.label-section {
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid #ccc;
 }
 
+.label-section:last-child {
+  border-bottom: none;
+}
+
 .label-item {
+  padding: 4px 6px;
+  text-align: center;
   font-size: 11px;
   font-weight: bold;
-  text-align: center;
+  border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #eee;
-  padding: 4px 2px;
-  min-height: 28px;
+  min-height: 32px;
+  word-break: break-word;
+  line-height: 1.2;
 }
 
 .label-item:last-child {
   border-bottom: none;
 }
 
-.label-graphs {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.label-graph-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  min-height: 160px;
-  overflow: hidden;
-}
-
-.label-graph-item:last-child {
-  border-bottom: none;
-}
-
-.label-graph-text {
+/* グラフ側のラベルは縦書き */
+.graph-labels-left .label-item {
   writing-mode: vertical-rl;
   -webkit-writing-mode: vertical-rl;
-  text-orientation: mixed;
-  -webkit-text-orientation: mixed;
+  min-height: 150px;
   font-size: 12px;
-  font-weight: bold;
   letter-spacing: 2px;
 }
 
-/* ▼ 右側スクロール領域 */
-.unified-scroll {
+/* ▼ 右側スクロール全体 */
+.unified-scroll-wrapper {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -126,24 +112,31 @@ header h1 { margin: 0; font-size: 20px; }
   flex-direction: column;
 }
 
-/* ▼ 天気ストリップ */
+/* 天気ストリップ */
 .weather-section {
-  border-bottom: 2px solid #ccc;
   flex-shrink: 0;
+  border-bottom: 2px solid #ccc;
 }
 
 #weatherStrip {
   display: flex;
+  align-items: stretch;
+}
+
+.ws-labels {
+  display: none;
 }
 
 .ws-scroll {
   display: flex;
+  min-width: max-content;
 }
 
 .ws-col {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 52px;
   min-width: 52px;
   border-right: 1px solid #eee;
   flex-shrink: 0;
@@ -159,7 +152,7 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
-  min-height: 28px;
+  min-height: 32px;
 }
 
 .ws-date {
@@ -170,37 +163,47 @@ header h1 { margin: 0; font-size: 20px; }
 
 .ws-icon { font-size: 18px; }
 
+/* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
 /* ▼ グラフセクション */
 .graphs-section {
+  flex: 1;
+  overflow: hidden;
+}
+
+.graph-scroll {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  min-width: max-content;
 }
 
 .graph-block {
-  min-width: 600px;
+  width: 100%;
+  min-width: 1200px;
+  border-bottom: 1px solid #eee;
+  padding: 8px 16px;
   height: 160px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  padding: 8px 16px;
 }
 
 .graph-block:last-child {
   border-bottom: none;
 }
 
-.graph-canvas {
+.graph-canvas { 
   width: 100% !important;
-  height: 100% !important;
+  height: 140px !important;
 }
 
-/* ▼ 情報セクション */
+#chart1 {
+  height: 140px !important;
+}
+
+/* ページ下部の情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
@@ -208,22 +211,30 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-.info-section h2 { font-size: 16px; margin-top: 0; }
+
+.info-section h2 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
 .info-block {
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #eee;
 }
+
 .info-block:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
 }
+
 .info-block h3 {
   font-size: 14px;
   margin: 0 0 8px 0;
   color: #2c3e50;
 }
+
 .info-block p {
   font-size: 13px;
   line-height: 1.6;
