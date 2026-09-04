@@ -296,8 +296,16 @@ async function loadMountains() {
   });
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
   document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
+  // ▼ URLパラメータ ?mt=番号 があればその山を初期表示
+  const params = new URLSearchParams(window.location.search);
+  const mtParam = params.get("mt");
+  let startIndex = 0;
+  if (mtParam !== null && mountains[mtParam]) {
+    startIndex = parseInt(mtParam, 10);
+    select.value = startIndex;
+  }
   if (mountains.length > 0) {
-    currentMountain = mountains[0];
+    currentMountain = mountains[startIndex];
     showWeather();
   }
 }
