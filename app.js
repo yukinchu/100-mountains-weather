@@ -11,8 +11,8 @@ function fmtDate(t) {
   return m + "/" + d;
 }
 
-function fmtHour(t) { 
-  return parseInt(t.slice(11, 13), 10); 
+function fmtHour(t) {
+  return parseInt(t.slice(11, 13), 10);
 }
 
 function weatherIcon(code) {
@@ -44,9 +44,9 @@ async function loadMountains() {
   });
   document.getElementById("btnJMA").addEventListener("click", () => setModel("jma_seamless", "btnJMA"));
   document.getElementById("btnECMWF").addEventListener("click", () => setModel("ecmwf_ifs025", "btnECMWF"));
-  if (mountains.length > 0) { 
-    currentMountain = mountains[0]; 
-    showWeather(); 
+  if (mountains.length > 0) {
+    currentMountain = mountains[0];
+    showWeather();
   }
 }
 
@@ -80,7 +80,7 @@ async function showWeather() {
   buildStrip(h);
 
   const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
-  
+
   drawChart1(labels, h.cloudcover, h.precipitation);
   drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
   drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
@@ -131,23 +131,23 @@ function drawChart1(labels, cloud, precip) {
     data: {
       labels,
       datasets: [
-        { 
-          type: "line", 
-          label: "雲量（%）", 
-          data: cloud, 
-          yAxisID: "y", 
-          borderColor: "#999", 
-          backgroundColor: "rgba(180,180,180,0.4)", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
+        {
+          type: "line",
+          label: "雲量（%）",
+          data: cloud,
+          yAxisID: "y",
+          borderColor: "#999",
+          backgroundColor: "rgba(180,180,180,0.4)",
+          fill: true,
+          pointRadius: 0,
+          tension: 0.3
         },
-        { 
-          type: "bar", 
-          label: "降水量（mm）", 
-          data: precip, 
-          yAxisID: "y1", 
-          backgroundColor: "#3399dd" 
+        {
+          type: "bar",
+          label: "降水量（mm）",
+          data: precip,
+          yAxisID: "y1",
+          backgroundColor: "#3399dd"
         }
       ]
     },
@@ -156,17 +156,17 @@ function drawChart1(labels, cloud, precip) {
       maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
       scales: {
-        y: { 
-          position: "left", 
-          min: 0, 
-          max: 100, 
-          title: { display: true, text: "雲量（%）" } 
+        y: {
+          position: "left",
+          min: 0,
+          max: 100,
+          title: { display: true, text: "雲量（%）" }
         },
-        y1: { 
-          position: "right", 
-          min: 0, 
-          grid: { drawOnChartArea: false }, 
-          title: { display: true, text: "降水量（mm）" } 
+        y1: {
+          position: "right",
+          min: 0,
+          grid: { drawOnChartArea: false },
+          title: { display: true, text: "降水量（mm）" }
         }
       }
     }
@@ -174,116 +174,62 @@ function drawChart1(labels, cloud, precip) {
 }
 
 function drawCloud(canvasId, labels, data, label, color) {
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: "index", intersect: false },
+    scales: {
+      y: {
+        min: 0,
+        max: 100,
+        title: { display: true, text: "雲量（%）" }
+      }
+    }
+  };
+  const dataset = [{
+    label,
+    data,
+    borderColor: color,
+    backgroundColor: color + "33",
+    fill: true,
+    pointRadius: 0,
+    tension: 0.3
+  }];
+
   if (canvasId === "chartLow") {
     if (chartLow) chartLow.destroy();
     chartLow = new Chart(document.getElementById(canvasId), {
       type: "line",
-      data: { 
-        labels, 
-        datasets: [ { 
-          label, 
-          data, 
-          borderColor: color, 
-          backgroundColor: color + "33", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        } ] 
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 100, 
-            title: { display: true, text: "雲量（%）" } 
-          } 
-        }
-      }
+      data: { labels, datasets: dataset },
+      options
     });
   } else if (canvasId === "chartMid") {
     if (chartMid) chartMid.destroy();
     chartMid = new Chart(document.getElementById(canvasId), {
       type: "line",
-      data: { 
-        labels, 
-        datasets: [ { 
-          label, 
-          data, 
-          borderColor: color, 
-          backgroundColor: color + "33", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        } ] 
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 100, 
-            title: { display: true, text: "雲量（%）" } 
-          } 
-        }
-      }
+      data: { labels, datasets: dataset },
+      options
     });
   } else if (canvasId === "chartHigh") {
     if (chartHigh) chartHigh.destroy();
     chartHigh = new Chart(document.getElementById(canvasId), {
       type: "line",
-      data: { 
-        labels, 
-        datasets: [ { 
-          label, 
-          data, 
-          borderColor: color, 
-          backgroundColor: color + "33", 
-          fill: true, 
-          pointRadius: 0, 
-          tension: 0.3 
-        } ] 
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 100, 
-            title: { display: true, text: "雲量（%）" } 
-          } 
-        }
-      }
+      data: { labels, datasets: dataset },
+      options
     });
   }
 }
 
 function syncScroll() {
-  const scrollWrapper = document.querySelector(".unified-scroll-wrapper");
-  const graphScroll = document.getElementById("graphScroll");
-
-  if (!scrollWrapper || !graphScroll) return;
+  const unifiedScroll = document.getElementById("unifiedScroll");
+  if (!unifiedScroll) return;
 
   let isSyncing = false;
 
-  scrollWrapper.addEventListener("scroll", () => {
+  unifiedScroll.addEventListener("scroll", () => {
     if (isSyncing) return;
     isSyncing = true;
-    graphScroll.scrollLeft = scrollWrapper.scrollLeft;
-    isSyncing = false;
-  });
-
-  graphScroll.addEventListener("scroll", () => {
-    if (isSyncing) return;
-    isSyncing = true;
-    scrollWrapper.scrollLeft = graphScroll.scrollLeft;
-    isSyncing = false;
+    setTimeout(() => { isSyncing = false; }, 50);
   });
 }
 
