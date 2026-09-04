@@ -113,19 +113,18 @@ header h1 { margin: 0; font-size: 20px; }
   align-items: stretch;
 }
 
-.ws-labels {
-  display: none;
-}
-
 .ws-scroll {
   display: flex;
 }
 
+/* 1列の幅：グラフの列幅と合わせる基準 */
 .ws-col {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 52px;
   min-width: 52px;
+  max-width: 52px;
   border-right: 1px solid #eee;
   flex-shrink: 0;
 }
@@ -170,13 +169,13 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .graph-block {
-  min-width: 600px;
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
   border-bottom: 1px solid #eee;
-  padding: 16px;
-  min-height: 150px;
+  min-height: 130px;
+  height: 130px;
+  padding: 4px 0;
 }
 
 .graph-block:last-child {
@@ -184,56 +183,6 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .graph-canvas {
-  max-height: 150px;
-  width: 100%;
-}
-
-#chart1 {
-  max-height: 150px !important;
-}
-
-/* ページ下部の情報セクション */
-.info-section {
-  background: #fff;
-  margin: 16px;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.info-section h2 {
-  font-size: 16px;
-  margin-top: 0;
-}
-
-.info-block {
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid #eee;
-}
-
-.info-block:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.info-block h3 {
-  font-size: 14px;
-  margin: 0 0 8px 0;
-  color: #2c3e50;
-}
-
-.info-block p {
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 0;
-  color: #555;
-}
-
-footer {
-  text-align: center;
-  padding: 16px;
-  color: #888;
-  font-size: 12px;
+  width: 100% !important;
+  height: 120px !important;
 }
