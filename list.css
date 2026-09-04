@@ -20,22 +20,24 @@ thead th {
   position: sticky;
   top: 0;
   background: #eef2f5;
-  border: 1px solid #ddd;
+  border: none;                    /* ボーダーを消して隙間対策 */
+  box-shadow: inset 0 0 0 1px #ddd; /* 枠線は内側に描く */
   padding: 3px 5px;
   white-space: nowrap;
   z-index: 2;
 }
 
-/* 日付行（1段目）と時刻行（2段目）の位置を分ける */
 .date-row th {
-  top: 0;                            /* 1段目は一番上 */
+  top: 0;
   background: #dbe4ea;
   font-weight: bold;
   z-index: 3;
 }
 thead tr:last-child th {
-  top: 27px;                         /* 2段目は1段目の下に固定 */
+  top: 27px;
+  z-index: 3;
 }
+
 /* 山名列（左固定） */
 .mt-name {
   position: sticky; left: 0; z-index: 3;
