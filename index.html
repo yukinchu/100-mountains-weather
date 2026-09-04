@@ -21,9 +21,11 @@
 
   <div class="chart-area">
     <h2 id="title1"></h2>
-    <div class="unified-container">
-      <div class="unified-labels">
-        <div class="label-section weather-labels">
+
+    <!-- カード1：天気表 -->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-labels">
           <div class="label-item">日付</div>
           <div class="label-item">時刻</div>
           <div class="label-item">天気</div>
@@ -33,36 +35,68 @@
           <div class="label-item">気温</div>
           <div class="label-item">風速</div>
         </div>
-        <div class="label-section graph-label-section">
-          <div class="label-item">全体概要</div>
-          <div class="label-item">下層雲量</div>
-          <div class="label-item">中層雲量</div>
-          <div class="label-item">上層雲量</div>
-        </div>
-      </div>
-
-      <div class="unified-scroll-wrapper" id="unifiedScroll">
-        <div class="weather-section">
+        <div class="card-scroll sync-scroll">
           <div id="weatherStrip"></div>
         </div>
-        <div class="graphs-section">
-          <div class="graph-rows" id="graphRows">
-            <div class="graph-block" id="block1">
-              <canvas id="chart1"></canvas>
-            </div>
-            <div class="graph-block" id="blockLow">
-              <canvas id="chartLow"></canvas>
-            </div>
-            <div class="graph-block" id="blockMid">
-              <canvas id="chartMid"></canvas>
-            </div>
-            <div class="graph-block" id="blockHigh">
-              <canvas id="chartHigh"></canvas>
-            </div>
+      </div>
+    </div>
+
+    <!-- カード2：全体概要 -->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-labels graph-label">
+          <div class="label-item">全体概要</div>
+        </div>
+        <div class="card-scroll sync-scroll">
+          <div class="graph-holder" id="holder1">
+            <canvas id="chart1"></canvas>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- カード3：下層雲量 -->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-labels graph-label">
+          <div class="label-item">下層雲量</div>
+        </div>
+        <div class="card-scroll sync-scroll">
+          <div class="graph-holder" id="holderLow">
+            <canvas id="chartLow"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード4：中層雲量 -->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-labels graph-label">
+          <div class="label-item">中層雲量</div>
+        </div>
+        <div class="card-scroll sync-scroll">
+          <div class="graph-holder" id="holderMid">
+            <canvas id="chartMid"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カード5：上層雲量 -->
+    <div class="card">
+      <div class="card-body">
+        <div class="card-labels graph-label">
+          <div class="label-item">上層雲量</div>
+        </div>
+        <div class="card-scroll sync-scroll">
+          <div class="graph-holder" id="holderHigh">
+            <canvas id="chartHigh"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="info-section">
