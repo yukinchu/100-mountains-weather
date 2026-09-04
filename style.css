@@ -210,6 +210,10 @@ header h1 { margin: 0; font-size: 20px; }
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   flex: 1;
+  min-width: 600px;
+}
+.graph-labels {
+  display: none !important;
 }
 
 .graph-block {
