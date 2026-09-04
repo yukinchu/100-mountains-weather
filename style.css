@@ -41,33 +41,103 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
 .chart-area h2 {
   font-size: 16px;
   margin-top: 0;
+  margin-bottom: 12px;
+}
+
+/* ▼ 統合コンテナ */
+.unified-container {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* ▼ 左側ラベル（固定） */
+.unified-labels {
+  flex-shrink: 0;
+  width: 70px;
+  border-right: 2px solid #ccc;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+}
+
+.label-weather {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid #ccc;
+}
+
+.label-item {
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  padding: 4px 2px;
+  min-height: 28px;
+}
+
+.label-item:last-child {
+  border-bottom: none;
+}
+
+.label-graphs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.label-graph-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  min-height: 160px;
+  overflow: hidden;
+}
+
+.label-graph-item:last-child {
+  border-bottom: none;
+}
+
+.label-graph-text {
+  writing-mode: vertical-rl;
+  -webkit-writing-mode: vertical-rl;
+  text-orientation: mixed;
+  -webkit-text-orientation: mixed;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* ▼ 右側スクロール領域 */
+.unified-scroll {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ▼ 天気ストリップ */
-#weatherStrip {
-  display: flex;
-  align-items: stretch;
+.weather-section {
+  border-bottom: 2px solid #ccc;
+  flex-shrink: 0;
 }
 
-.ws-labels {
+#weatherStrip {
   display: flex;
-  flex-direction: column;
-  border-right: 2px solid #ccc;
-  padding-right: 6px;
-  font-weight: bold;
-  white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .ws-scroll {
   display: flex;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  flex: 1;
 }
 
 .ws-col {
@@ -84,80 +154,41 @@ header h1 { margin: 0; font-size: 20px; }
   text-align: center;
   font-size: 12px;
   white-space: nowrap;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #eee;
+  min-height: 28px;
 }
 
 .ws-date {
   height: 1.6em;
   line-height: 1.6em;
-  padding-top: 4px;
-  padding-bottom: 4px;
   overflow: hidden;
 }
 
 .ws-icon { font-size: 18px; }
 
-/* 信頼度の背景色 */
 .conf-high { background: #ffffff; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* ▼ グラフ共通デザイン */
-.graph-container {
-  display: flex;
-  align-items: stretch;
-}
-
-.graph-labels {
+/* ▼ グラフセクション */
+.graphs-section {
   display: flex;
   flex-direction: column;
-  border-right: 2px solid #ccc;
-  padding-right: 6px;
-  flex-shrink: 0;
-  width: 60px;
-}
-
-.graph-label-item {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #eee;
-  overflow: hidden;
-  padding: 8px 4px;
-  min-height: 150px;
-}
-
-.graph-label-item:last-child {
-  border-bottom: none;
-}
-
-.graph-label-text {
-  writing-mode: vertical-rl;
-  -webkit-writing-mode: vertical-rl;
-  text-orientation: mixed;
-  -webkit-text-orientation: mixed;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.graph-scroll {
-  display: flex;
-  flex-direction: column;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   flex: 1;
 }
 
 .graph-block {
-  flex: 1;
   min-width: 600px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #eee;
-  padding: 16px;
-  height: 180px;
+  padding: 8px 16px;
 }
 
 .graph-block:last-child {
@@ -166,10 +197,10 @@ header h1 { margin: 0; font-size: 20px; }
 
 .graph-canvas {
   width: 100% !important;
-  height: 150px !important;
+  height: 100% !important;
 }
 
-/* ページ下部の情報セクション */
+/* ▼ 情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
@@ -177,30 +208,22 @@ header h1 { margin: 0; font-size: 20px; }
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
-
-.info-section h2 {
-  font-size: 16px;
-  margin-top: 0;
-}
-
+.info-section h2 { font-size: 16px; margin-top: 0; }
 .info-block {
   margin-bottom: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #eee;
 }
-
 .info-block:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
   border-bottom: none;
 }
-
 .info-block h3 {
   font-size: 14px;
   margin: 0 0 8px 0;
   color: #2c3e50;
 }
-
 .info-block p {
   font-size: 13px;
   line-height: 1.6;
