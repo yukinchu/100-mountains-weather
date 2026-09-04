@@ -99,14 +99,22 @@ function makeChartOptions(hasY1) {
     responsive: false,
     maintainAspectRatio: false,
     animation: false,
+    layout: {
+      padding: 0
+    },
     plugins: {
       legend: { display: false }
     },
     scales: {
       x: {
+        type: "category",
+        offset: true,
         display: true,
         ticks: { display: false },
-        grid: { display: true }
+        grid: {
+          display: true,
+          offset: true
+        }
       },
       y: {
         display: false,
