@@ -104,11 +104,9 @@ function makeChartOptions(hasY1) {
     },
     scales: {
       x: {
-        ticks: {
-          maxRotation: 90,
-          minRotation: 90,
-          font: { size: 10 },
-          autoSkip: false
+        display: false,   // ★ X軸ラベルを完全に非表示
+        grid: {
+          display: true   // 縦のグリッド線は残す（時間の目安になる）
         }
       },
       y: {
@@ -128,7 +126,6 @@ function makeChartOptions(hasY1) {
   }
   return options;
 }
-
 function drawChart1(labels, cloud, precip) {
   if (chart1) { chart1.destroy(); chart1 = null; }
   const ctx = document.getElementById("chart1").getContext("2d");
