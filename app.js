@@ -168,8 +168,14 @@ async function drawCloud(canvasId, labels, data, label, color) {
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
-        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
-      }
+scales: { 
+  y: { 
+    min: 0, 
+    max: 100, 
+    title: { display: false },
+    ticks: { display: false }
+  } 
+}      }
     });
   } else if (canvasId === "chartMid") {
     if (chartMid) chartMid.destroy();
@@ -180,7 +186,14 @@ async function drawCloud(canvasId, labels, data, label, color) {
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
-        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
+scales: { 
+  y: { 
+    min: 0, 
+    max: 100, 
+    title: { display: false },
+    ticks: { display: false }
+  } 
+}
       }
     });
   } else if (canvasId === "chartHigh") {
@@ -192,7 +205,14 @@ async function drawCloud(canvasId, labels, data, label, color) {
         responsive: true,
         maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
-        scales: { y: { min: 0, max: 100, title: { display: true, text: "雲量（%）" } } }
+scales: { 
+  y: { 
+    min: 0, 
+    max: 100, 
+    title: { display: false },
+    ticks: { display: false }
+  } 
+}
       }
     });
   }
