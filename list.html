@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百名山 天気予報一覧</title>
+  <link rel="stylesheet" href="list.css">
+</head>
+<body>
+  <header><h1>百名山 天気予報一覧</h1></header>
+  <div class="note">
+    <p>3日間・3時間おきの予報です。山名をクリックすると詳細ページへ移動します。</p>
+    <p class="legend">☀️晴れ 🌤️薄曇り ☁️曇り 🌫️霧 🌧️雨 ❄️雪 ⛈️雷雨</p>
+  </div>
+  <div id="status" class="status">データを読み込んでいます…</div>
+  <div class="table-wrap">
+    <table id="mtTable">
+      <thead id="tableHead"></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+  <footer><p>データ提供：Open-Meteo</p></footer>
+  <script src="list.js"></script>
+</body>
+</html>
