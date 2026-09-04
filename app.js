@@ -104,13 +104,9 @@ function makeChartOptions(hasY1) {
     },
     scales: {
       x: {
-        display: true,        // ★ 軸を表示（線を出すため）
-        ticks: {
-          display: false      // ★ 文字（時刻）だけ非表示
-        },
-        grid: {
-          display: true       // ★ 縦のグリッド線を表示
-        }
+        display: true,
+        ticks: { display: false },
+        grid: { display: true }
       },
       y: {
         display: false,
@@ -123,6 +119,7 @@ function makeChartOptions(hasY1) {
     options.scales.y1 = {
       display: false,
       min: 0,
+      max: 10,
       position: "right",
       grid: { drawOnChartArea: false }
     };
@@ -142,8 +139,9 @@ function drawChart1(labels, cloud, precip) {
           label: "雲量",
           data: cloud,
           yAxisID: "y",
-          borderColor: "#999",
-          backgroundColor: "rgba(180,180,180,0.4)",
+          borderColor: "#888",
+          backgroundColor: "rgba(150,150,150,0.6)",
+          borderWidth: 2,
           fill: true,
           pointRadius: 0,
           tension: 0.3
@@ -153,7 +151,7 @@ function drawChart1(labels, cloud, precip) {
           label: "降水量",
           data: precip,
           yAxisID: "y1",
-          backgroundColor: "rgba(51,153,221,0.7)"
+          backgroundColor: "rgba(30,120,200,0.85)"
         }
       ]
     },
@@ -176,7 +174,8 @@ function drawCloud(canvasId, labels, data, color) {
           label: "雲量",
           data: data,
           borderColor: color,
-          backgroundColor: color + "55",
+          backgroundColor: color + "88",
+          borderWidth: 2,
           fill: true,
           pointRadius: 0,
           tension: 0.3
