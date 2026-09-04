@@ -123,11 +123,9 @@ function buildStrip(h) {
   strip.innerHTML = "<div class='ws-scroll'>" + cells + "</div>";
 }
 
-async function drawChart1(labels, cloud, precip) {
+function drawChart1(labels, cloud, precip) {
   if (chart1) chart1.destroy();
-  const canvas = document.getElementById("chart1");
-  if (!canvas) return;
-  chart1 = new Chart(canvas, {
+  chart1 = new Chart(document.getElementById("chart1"), {
     data: {
       labels,
       datasets: [
@@ -135,18 +133,28 @@ async function drawChart1(labels, cloud, precip) {
         { type: "bar", label: "降水量（mm）", data: precip, yAxisID: "y1", backgroundColor: "#3399dd" }
       ]
     },
-options: {
-  responsive: true,
-  maintainAspectRatio: false,
-  interaction: { mode: "index", intersect: false },
-    scales: {
-        y: { position: "left", min: 0, max: 100, title: { display: true, text: "雲量（%）" } },
-        y1: { position: "right", min: 0, grid: { drawOnChartArea: false }, title: { display: true, text: "降水量（mm）" } }
+    options: {
+      responsive: true,
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        y: {
+          position: "left",
+          min: 0,
+          max: 100,
+          title: { display: false },
+          ticks: { display: false }
+        },
+        y1: {
+          position: "right",
+          min: 0,
+          grid: { drawOnChartArea: false },
+          title: { display: false },
+          ticks: { display: false }
+        }
       }
     }
   });
 }
-
 async function drawCloud(canvasId, labels, data, label, color) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
