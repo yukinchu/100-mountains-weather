@@ -35,41 +35,46 @@ header h1 { margin: 0; font-size: 20px; }
 }
 
 .chart-area {
-  background: #fff;
   margin: 16px;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .chart-area h2 {
   font-size: 16px;
-  margin-top: 0;
-  margin-bottom: 16px;
+  margin: 0 0 16px 0;
 }
 
-.unified-container {
-  display: flex;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+/* ▼ 独立カード */
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+  margin-bottom: 12px;
   overflow: hidden;
 }
 
-.unified-labels {
+.card-body {
+  display: flex;
+}
+
+/* 左ラベル */
+.card-labels {
   flex-shrink: 0;
+  width: 70px;
+  background: #f9f9f9;
   border-right: 2px solid #ccc;
   display: flex;
   flex-direction: column;
-  background: #f9f9f9;
-  width: 70px;
 }
-.label-section {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 2px solid #ccc;
+
+/* グラフカードの左ラベル：中央寄せ・120px */
+.card-labels.graph-label {
+  justify-content: center;
 }
-.label-section:last-child {
+.card-labels.graph-label .label-item {
+  min-height: 120px;
+  height: 120px;
   border-bottom: none;
 }
+
 .label-item {
   font-size: 11px;
   font-weight: bold;
@@ -86,26 +91,15 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-/* グラフ用ラベル：グラフ本体と同じ120pxに統一 */
-.graph-label-section .label-item {
-  min-height: 120px;
-  height: 120px;
-  border-bottom: none;
-}
-
-.unified-scroll-wrapper {
+/* 右スクロール領域 */
+.card-scroll {
   flex: 1;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  display: flex;
-  flex-direction: column;
   min-width: 0;
 }
 
-.weather-section {
-  flex-shrink: 0;
-  border-bottom: 2px solid #ccc;
-}
+/* 天気表 */
 #weatherStrip {
   display: flex;
 }
@@ -144,25 +138,15 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-.graphs-section {
-  flex-shrink: 0;
-}
-
-.graph-rows {
-  display: flex;
-  flex-direction: column;
-}
-
-/* ★ border-bottomを削除し二重線を解消。高さ120pxに統一 */
-.graph-block {
+/* グラフ保持枠 */
+.graph-holder {
   height: 120px;
-  flex-shrink: 0;
 }
-
-.graph-block canvas {
+.graph-holder canvas {
   display: block;
 }
 
+/* 情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
