@@ -4,6 +4,29 @@ let currentModel = "jma_seamless";
 const COL_WIDTH = 52;
 const GRAPH_HEIGHT = 120;
 
+// 50%ライン描画プラグイン（追加ライブラリ不要）
+const midLinePlugin = {
+  id: "midLine",
+  afterDraw(chart) {
+    const yScale = chart.scales.y;
+    if (!yScale) return;
+    const ctx = chart.ctx;
+    const y = yScale.getPixelForValue(50);
+    const left = chart.chartArea.left;
+    const right = chart.chartArea.right;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([5, 4]);
+    ctx.moveTo(left, y);
+    ctx.lineTo(right, y);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(150,150,150,0.8)";
+    ctx.stroke();
+    ctx.restore();
+  }
+};
+
 function fmtDate(t) {
   const m = parseInt(t.slice(5, 7), 10);
   const d = parseInt(t.slice(8, 10), 10);
@@ -99,9 +122,7 @@ function makeChartOptions(hasY1) {
     responsive: false,
     maintainAspectRatio: false,
     animation: false,
-    layout: {
-      padding: 0
-    },
+    layout: { padding: 0 },
     plugins: {
       legend: { display: false }
     },
@@ -111,10 +132,7 @@ function makeChartOptions(hasY1) {
         offset: true,
         display: true,
         ticks: { display: false },
-        grid: {
-          display: true,
-          offset: true
-        }
+        grid: { display: true, offset: true }
       },
       y: {
         display: false,
@@ -148,11 +166,12 @@ function drawChart1(labels, cloud, precip) {
           data: cloud,
           yAxisID: "y",
           borderColor: "#888",
-          backgroundColor: "transparent",
+          backgroundColor: "rgba(150,150,150,0.35)",
           borderWidth: 2,
-          fill: false,
-          pointRadius: 0,
-          tension: 0.3
+          fill: true,
+          pointRadius: 3,
+          pointBackgroundColor: "#888",
+          tension: 0
         },
         {
           type: "bar",
@@ -165,7 +184,8 @@ function drawChart1(labels, cloud, precip) {
         }
       ]
     },
-    options: makeChartOptions(true)
+    options: makeChartOptions(true),
+    plugins: [midLinePlugin]
   });
 }
 
@@ -184,15 +204,17 @@ function drawCloud(canvasId, labels, data, color) {
           label: "雲量",
           data: data,
           borderColor: color,
-          backgroundColor: "transparent",
+          backgroundColor: color + "40",
           borderWidth: 2,
-          fill: false,
-          pointRadius: 0,
-          tension: 0.3
+          fill: true,
+          pointRadius: 3,
+          pointBackgroundColor: color,
+          tension: 0
         }
       ]
     },
-    options: makeChartOptions(false)
+    options: makeChartOptions(false),
+    plugins: [midLinePlugin]
   });
 
   if (canvasId === "chartLow")  chartLow  = newChart;
