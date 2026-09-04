@@ -47,7 +47,6 @@ header h1 { margin: 0; font-size: 20px; }
   margin-bottom: 16px;
 }
 
-/* 統合コンテナ */
 .unified-container {
   display: flex;
   border: 1px solid #ddd;
@@ -55,7 +54,6 @@ header h1 { margin: 0; font-size: 20px; }
   overflow: hidden;
 }
 
-/* 左ラベル固定 */
 .unified-labels {
   flex-shrink: 0;
   border-right: 2px solid #ccc;
@@ -88,7 +86,6 @@ header h1 { margin: 0; font-size: 20px; }
   border-bottom: none;
 }
 
-/* 右スクロール領域 */
 .unified-scroll-wrapper {
   flex: 1;
   overflow-x: auto;
@@ -98,14 +95,12 @@ header h1 { margin: 0; font-size: 20px; }
   min-width: 0;
 }
 
-/* 天気表 */
 .weather-section {
   flex-shrink: 0;
   border-bottom: 2px solid #ccc;
 }
 #weatherStrip {
   display: flex;
-  align-items: stretch;
 }
 .ws-scroll {
   display: flex;
@@ -133,8 +128,7 @@ header h1 { margin: 0; font-size: 20px; }
   min-height: 32px;
 }
 .ws-date {
-  height: 1.6em;
-  line-height: 1.6em;
+  height: 32px;
   overflow: hidden;
 }
 .ws-icon { font-size: 18px; }
@@ -143,19 +137,15 @@ header h1 { margin: 0; font-size: 20px; }
 .conf-mid  { background: #fff7e6; }
 .conf-low  { background: #f0f0f0; }
 
-/* グラフセクション */
 .graphs-section {
   flex-shrink: 0;
-  overflow: visible;
 }
 
-/* グラフ行コンテナ：幅はJSで動的設定 */
 .graph-rows {
   display: flex;
   flex-direction: column;
 }
 
-/* 各グラフブロック：高さ固定・幅はJSで設定 */
 .graph-block {
   height: 120px;
   border-bottom: 1px solid #eee;
@@ -165,8 +155,6 @@ header h1 { margin: 0; font-size: 20px; }
 .graph-block:last-child {
   border-bottom: none;
 }
-
-/* canvasはブロックいっぱいに */
 .graph-block canvas {
   position: absolute;
   top: 0;
@@ -175,7 +163,6 @@ header h1 { margin: 0; font-size: 20px; }
   height: 100% !important;
 }
 
-/* 情報セクション */
 .info-section {
   background: #fff;
   margin: 16px;
