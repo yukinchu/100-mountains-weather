@@ -26,6 +26,15 @@ function weatherIcon(code) {
   return "☁️";
 }
 
+const xAxisOptions = {
+  ticks: {
+    maxRotation: 90,
+    minRotation: 90,
+    font: { size: 10 },
+    autoSkip: false
+  }
+};
+
 async function loadMountains() {
   const res = await fetch("mountains.json");
   const mountains = await res.json();
@@ -76,10 +85,10 @@ async function showWeather() {
 
   const labels = h.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
 
-  await drawChart1(labels, h.cloudcover, h.precipitation);
-  await drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
-  await drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
-  await drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
+  drawChart1(labels, h.cloudcover, h.precipitation);
+  drawCloud("chartLow", labels, h.cloudcover_low, "下層雲量（%）", "#e91e8c");
+  drawCloud("chartMid", labels, h.cloudcover_mid, "中層雲量（%）", "#2196f3");
+  drawCloud("chartHigh", labels, h.cloudcover_high, "上層雲量（%）", "#4caf50");
 
   if (!scrollSynced) {
     syncScroll();
@@ -125,7 +134,9 @@ function buildStrip(h) {
 
 function drawChart1(labels, cloud, precip) {
   if (chart1) chart1.destroy();
-  chart1 = new Chart(document.getElementById("chart1"), {
+  const canvas = document.getElementById("chart1");
+  canvas.style.height = "150px";
+  chart1 = new Chart(canvas, {
     data: {
       labels,
       datasets: [
@@ -135,8 +146,10 @@ function drawChart1(labels, cloud, precip) {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: { mode: "index", intersect: false },
       scales: {
+        x: xAxisOptions,
         y: {
           position: "left",
           min: 0,
@@ -155,66 +168,52 @@ function drawChart1(labels, cloud, precip) {
     }
   });
 }
-async function drawCloud(canvasId, labels, data, label, color) {
+
+function drawCloud(canvasId, labels, data, label, color) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
+  canvas.style.height = "150px";
+
+  const config = {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        label,
+        data,
+        borderColor: color,
+        backgroundColor: color + "33",
+        fill: true,
+        pointRadius: 0,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      scales: {
+        x: xAxisOptions,
+        y: {
+          min: 0,
+          max: 100,
+          title: { display: false },
+          ticks: { display: false }
+        }
+      }
+    }
+  };
+
   if (canvasId === "chartLow") {
     if (chartLow) chartLow.destroy();
-    chartLow = new Chart(canvas, {
-      type: "line",
-      data: { labels, datasets: [{ label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 }] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-scales: { 
-  y: { 
-    min: 0, 
-    max: 100, 
-    title: { display: false },
-    ticks: { display: false }
-  } 
-}      }
-    });
+    chartLow = new Chart(canvas, config);
   } else if (canvasId === "chartMid") {
     if (chartMid) chartMid.destroy();
-    chartMid = new Chart(canvas, {
-      type: "line",
-      data: { labels, datasets: [{ label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 }] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-scales: { 
-  y: { 
-    min: 0, 
-    max: 100, 
-    title: { display: false },
-    ticks: { display: false }
-  } 
-}
-      }
-    });
+    chartMid = new Chart(canvas, config);
   } else if (canvasId === "chartHigh") {
     if (chartHigh) chartHigh.destroy();
-    chartHigh = new Chart(canvas, {
-      type: "line",
-      data: { labels, datasets: [{ label, data, borderColor: color, backgroundColor: color + "33", fill: true, pointRadius: 0, tension: 0.3 }] },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: { mode: "index", intersect: false },
-scales: { 
-  y: { 
-    min: 0, 
-    max: 100, 
-    title: { display: false },
-    ticks: { display: false }
-  } 
-}
-      }
-    });
+    chartHigh = new Chart(canvas, config);
   }
 }
 
