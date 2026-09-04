@@ -191,7 +191,7 @@ async function drawCloud(canvasId, labels, data, label, color) {
 
 function syncScroll() {
   const scrollWrapper = document.querySelector(".unified-scroll-wrapper");
-  const graphScroll = document.getElementById("graphScroll");
+  const graphScroll = document.querySelector(".graph-scroll");
 
   if (!scrollWrapper || !graphScroll) return;
 
@@ -201,14 +201,14 @@ function syncScroll() {
     if (isSyncing) return;
     isSyncing = true;
     graphScroll.scrollLeft = scrollWrapper.scrollLeft;
-    isSyncing = false;
+    setTimeout(() => { isSyncing = false; }, 50);
   });
 
   graphScroll.addEventListener("scroll", () => {
     if (isSyncing) return;
     isSyncing = true;
     scrollWrapper.scrollLeft = graphScroll.scrollLeft;
-    isSyncing = false;
+    setTimeout(() => { isSyncing = false; }, 50);
   });
 }
 
