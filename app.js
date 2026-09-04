@@ -2,6 +2,7 @@ let chart1, chartLow, chartMid, chartHigh;
 let currentMountain = null;
 let currentModel = "jma_seamless";
 const COL_WIDTH = 52;
+const GRAPH_HEIGHT = 120;
 
 function fmtDate(t) {
   const m = parseInt(t.slice(5, 7), 10);
@@ -41,12 +42,25 @@ function filterEvery3Hours(h) {
   return result;
 }
 
-function adjustGraphWidth(colCount) {
+// ★ グラフ幅＋canvasサイズをピクセル直接指定
+function adjustGraphSize(colCount) {
   const totalWidth = colCount * COL_WIDTH;
   const graphRows = document.getElementById("graphRows");
   if (graphRows) graphRows.style.width = totalWidth + "px";
+
   document.querySelectorAll(".graph-block").forEach(block => {
     block.style.width = totalWidth + "px";
+  });
+
+  // canvasに直接サイズを指定
+  ["chart1", "chartLow", "chartMid", "chartHigh"].forEach(id => {
+    const cv = document.getElementById(id);
+    if (cv) {
+      cv.style.width = totalWidth + "px";
+      cv.style.height = GRAPH_HEIGHT + "px";
+      cv.width = totalWidth;
+      cv.height = GRAPH_HEIGHT;
+    }
   });
 }
 
@@ -82,9 +96,10 @@ function buildStrip(h) {
   strip.innerHTML = "<div class='ws-scroll'>" + cells + "</div>";
 }
 
+// ★ responsive:false で固定サイズ描画
 function makeChartOptions(hasY1) {
   const options = {
-    responsive: true,
+    responsive: false,
     maintainAspectRatio: false,
     animation: false,
     plugins: {
@@ -97,9 +112,6 @@ function makeChartOptions(hasY1) {
           minRotation: 90,
           font: { size: 10 },
           autoSkip: false
-        },
-        grid: {
-          display: true
         }
       },
       y: {
@@ -181,15 +193,6 @@ function drawCloud(canvasId, labels, data, color) {
   if (canvasId === "chartHigh") chartHigh = newChart;
 }
 
-function syncScroll() {
-  const wrapper = document.getElementById("unifiedScroll");
-  if (!wrapper) return;
-  const clone = wrapper.cloneNode(true);
-  wrapper.parentNode.replaceChild(clone, wrapper);
-  document.getElementById("unifiedScroll").addEventListener("scroll", function() {
-  });
-}
-
 async function showWeather() {
   const m = currentMountain;
   if (!m) return;
@@ -212,20 +215,17 @@ async function showWeather() {
     m.name + "　緯度:" + m.lat + " 経度:" + m.lon + "　【" + modelName + "】";
 
   const filtered = filterEvery3Hours(h);
-
   buildStrip(filtered);
 
   const labels = filtered.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
 
-  adjustGraphWidth(filtered.time.length);
+  // ★ 先にサイズ確定
+  adjustGraphSize(filtered.time.length);
 
-  setTimeout(() => {
-    drawChart1(labels, filtered.cloudcover, filtered.precipitation);
-    drawCloud("chartLow",  labels, filtered.cloudcover_low,  "#e91e8c");
-    drawCloud("chartMid",  labels, filtered.cloudcover_mid,  "#2196f3");
-    drawCloud("chartHigh", labels, filtered.cloudcover_high, "#4caf50");
-    syncScroll();
-  }, 50);
+  drawChart1(labels, filtered.cloudcover, filtered.precipitation);
+  drawCloud("chartLow",  labels, filtered.cloudcover_low,  "#e91e8c");
+  drawCloud("chartMid",  labels, filtered.cloudcover_mid,  "#2196f3");
+  drawCloud("chartHigh", labels, filtered.cloudcover_high, "#4caf50");
 }
 
 function setModel(model, btnId) {
@@ -257,5 +257,3 @@ async function loadMountains() {
     showWeather();
   }
 }
-
-loadMountains();
