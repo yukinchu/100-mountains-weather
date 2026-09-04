@@ -42,7 +42,6 @@ function filterEvery3Hours(h) {
   return result;
 }
 
-// ★ グラフ幅＋canvasサイズをピクセル直接指定
 function adjustGraphSize(colCount) {
   const totalWidth = colCount * COL_WIDTH;
   const graphRows = document.getElementById("graphRows");
@@ -52,7 +51,6 @@ function adjustGraphSize(colCount) {
     block.style.width = totalWidth + "px";
   });
 
-  // canvasに直接サイズを指定
   ["chart1", "chartLow", "chartMid", "chartHigh"].forEach(id => {
     const cv = document.getElementById(id);
     if (cv) {
@@ -96,7 +94,6 @@ function buildStrip(h) {
   strip.innerHTML = "<div class='ws-scroll'>" + cells + "</div>";
 }
 
-// ★ responsive:false で固定サイズ描画
 function makeChartOptions(hasY1) {
   const options = {
     responsive: false,
@@ -219,7 +216,6 @@ async function showWeather() {
 
   const labels = filtered.time.map(t => fmtDate(t) + " " + fmtHour(t) + "時");
 
-  // ★ 先にサイズ確定
   adjustGraphSize(filtered.time.length);
 
   drawChart1(labels, filtered.cloudcover, filtered.precipitation);
@@ -257,3 +253,5 @@ async function loadMountains() {
     showWeather();
   }
 }
+
+loadMountains();
