@@ -4,7 +4,6 @@ let currentModel = "jma_seamless";
 const COL_WIDTH = 52;
 const GRAPH_HEIGHT = 120;
 
-// 50%ライン描画プラグイン（追加ライブラリ不要）
 const midLinePlugin = {
   id: "midLine",
   afterDraw(chart) {
@@ -14,7 +13,6 @@ const midLinePlugin = {
     const y = yScale.getPixelForValue(50);
     const left = chart.chartArea.left;
     const right = chart.chartArea.right;
-
     ctx.save();
     ctx.beginPath();
     ctx.setLineDash([5, 4]);
@@ -65,15 +63,13 @@ function filterEvery3Hours(h) {
   return result;
 }
 
+// グラフ枠とcanvasのサイズを設定
 function adjustGraphSize(colCount) {
   const totalWidth = colCount * COL_WIDTH;
-  const graphRows = document.getElementById("graphRows");
-  if (graphRows) graphRows.style.width = totalWidth + "px";
-
-  document.querySelectorAll(".graph-block").forEach(block => {
-    block.style.width = totalWidth + "px";
+  ["holder1", "holderLow", "holderMid", "holderHigh"].forEach(id => {
+    const holder = document.getElementById(id);
+    if (holder) holder.style.width = totalWidth + "px";
   });
-
   ["chart1", "chartLow", "chartMid", "chartHigh"].forEach(id => {
     const cv = document.getElementById(id);
     if (cv) {
@@ -222,6 +218,24 @@ function drawCloud(canvasId, labels, data, color) {
   if (canvasId === "chartHigh") chartHigh = newChart;
 }
 
+// ★ 全カードのスクロールを同期
+function setupSyncScroll() {
+  const scrolls = document.querySelectorAll(".sync-scroll");
+  let isSyncing = false;
+
+  scrolls.forEach(el => {
+    el.addEventListener("scroll", () => {
+      if (isSyncing) return;
+      isSyncing = true;
+      const left = el.scrollLeft;
+      scrolls.forEach(other => {
+        if (other !== el) other.scrollLeft = left;
+      });
+      window.requestAnimationFrame(() => { isSyncing = false; });
+    });
+  });
+}
+
 async function showWeather() {
   const m = currentMountain;
   if (!m) return;
@@ -254,6 +268,8 @@ async function showWeather() {
   drawCloud("chartLow",  labels, filtered.cloudcover_low,  "#e91e8c");
   drawCloud("chartMid",  labels, filtered.cloudcover_mid,  "#2196f3");
   drawCloud("chartHigh", labels, filtered.cloudcover_high, "#4caf50");
+
+  setupSyncScroll();
 }
 
 function setModel(model, btnId) {
